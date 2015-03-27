@@ -1,0 +1,7 @@
+# Tracing options for the org.xtext.example.statemachine.diagram plug-in
+
+# Common issues
+org.xtext.example.statemachine.diagram/debug=false
+
+# Visual IDs
+org.xtext.example.statemachine.diagram/debug/visualID=false

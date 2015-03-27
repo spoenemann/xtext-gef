@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.xtext.example.statemachine.gmf
+Bundle-SymbolicName: org.xtext.example.statemachine.gmf;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore,
+ org.xtext.example.statemachine,
+ org.xtext.example.statemachine.diagram
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

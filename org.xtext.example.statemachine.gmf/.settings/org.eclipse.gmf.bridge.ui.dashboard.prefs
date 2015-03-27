@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/org.xtext.example.statemachine/model/generated/Statemachine.genmodel
+gmf_dashboard/domainModel=platform\:/resource/org.xtext.example.statemachine/model/generated/Statemachine.ecore
+gmf_dashboard/generationModel=platform\:/resource/org.xtext.example.statemachine.gmf/model/statemachine.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.xtext.example.statemachine.gmf/model/statemachine.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/org.xtext.example.statemachine.gmf/model/statemachine.gmfmap
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.xtext.example.statemachine.gmf/model/statemachine.gmftool
