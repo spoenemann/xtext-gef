@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.xtext.example.statemachine.ui
-Bundle-Vendor: My Company
+Bundle-Name: Statemachine Text Editor
+Bundle-Vendor: itemis AG
 Bundle-Version: 2.8.1.qualifier
 Bundle-SymbolicName: org.xtext.example.statemachine.ui;singleton:=true
 Bundle-ActivationPolicy: lazy

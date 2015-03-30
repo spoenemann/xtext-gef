@@ -6,14 +6,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
-import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.Statemachine;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 import org.xtext.example.statemachine.statemachine.diagram.edit.parts.StateEditPart;
 import org.xtext.example.statemachine.statemachine.diagram.edit.parts.StateNameEditPart;
 import org.xtext.example.statemachine.statemachine.diagram.edit.parts.StatemachineEditPart;
 import org.xtext.example.statemachine.statemachine.diagram.edit.parts.TransitionEditPart;
-import org.xtext.example.statemachine.statemachine.diagram.expressions.StatemachineOCLFactory;
 
 /**
  * This registry is used to determine which type of visual object should be
@@ -124,8 +122,7 @@ public class StatemachineVisualIDRegistry {
 		switch (containerVisualID) {
 		case StatemachineEditPart.VISUAL_ID:
 			if (StatemachinePackage.eINSTANCE.getState().isSuperTypeOf(
-					domainElement.eClass())
-					&& isState_2001((State) domainElement)) {
+					domainElement.eClass())) {
 				return StateEditPart.VISUAL_ID;
 			}
 			break;
@@ -190,16 +187,6 @@ public class StatemachineVisualIDRegistry {
 	 */
 	private static boolean isDiagram(Statemachine element) {
 		return true;
-	}
-
-	/**
-	 * @generated
-	 */
-	private static boolean isState_2001(State domainElement) {
-		Object result = StatemachineOCLFactory.getExpression(0,
-				StatemachinePackage.eINSTANCE.getState(), null).evaluate(
-				domainElement);
-		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**

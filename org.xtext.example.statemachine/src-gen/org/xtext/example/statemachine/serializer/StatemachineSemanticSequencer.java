@@ -90,7 +90,7 @@ public class StatemachineSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (name=ID actions+=Command*)
+	 *     (id=ID name=STRING? actions+=Command*)
 	 */
 	protected void sequence_State(EObject context, State semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

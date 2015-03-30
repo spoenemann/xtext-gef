@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.MultiRule;
+import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
@@ -53,6 +54,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
+import org.xtext.example.statemachine.StatemachineUtil;
 
 /**
  * @generated
@@ -576,7 +578,7 @@ public class StatemachineDocumentProvider extends AbstractDocumentProvider
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void doSaveDocument(IProgressMonitor monitor, Object element,
 			IDocument document, boolean overwrite) throws CoreException {
@@ -599,7 +601,7 @@ public class StatemachineDocumentProvider extends AbstractDocumentProvider
 						info.getResourceSet().getResources().size() + 1); //"Saving diagram"
 				for (Iterator<Resource> it = info.getLoadedResourcesIterator(); it
 						.hasNext();) {
-					Resource nextResource = it.next();
+					final Resource nextResource = it.next();
 					monitor.setTaskName(NLS
 							.bind(Messages.StatemachineDocumentProvider_SaveNextResourceTask,
 									nextResource.getURI()));
@@ -607,6 +609,23 @@ public class StatemachineDocumentProvider extends AbstractDocumentProvider
 							&& !info.getEditingDomain()
 									.isReadOnly(nextResource)) {
 						try {
+							info.getEditingDomain().getCommandStack().execute(new AbstractCommand("Set unique IDs") {
+								@Override
+								public void execute() {
+									StatemachineUtil.ensureUniqueIds(nextResource);
+								}
+								@Override
+								public boolean canUndo() {
+									return false;
+								}
+								@Override
+								public void redo() {
+								}
+								@Override
+								protected boolean prepare() {
+									return true;
+								}
+							});
 							nextResource.save(StatemachineDiagramEditorUtil
 									.getSaveOptions());
 						} catch (IOException e) {

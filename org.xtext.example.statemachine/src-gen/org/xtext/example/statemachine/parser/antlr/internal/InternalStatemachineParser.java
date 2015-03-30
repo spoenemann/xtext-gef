@@ -303,41 +303,42 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleState"
-    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:144:1: ruleState returns [EObject current=null] : (otherlv_0= 'state' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'actions' otherlv_3= '{' ( (lv_actions_4_0= ruleCommand ) )* otherlv_5= '}' )? otherlv_6= 'end' ) ;
+    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:144:1: ruleState returns [EObject current=null] : (otherlv_0= 'state' ( (lv_id_1_0= RULE_ID ) ) ( (lv_name_2_0= RULE_STRING ) )? (otherlv_3= 'actions' otherlv_4= '{' ( (lv_actions_5_0= ruleCommand ) )* otherlv_6= '}' )? otherlv_7= 'end' ) ;
     public final EObject ruleState() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_0=null;
-        Token lv_name_1_0=null;
-        Token otherlv_2=null;
+        Token lv_id_1_0=null;
+        Token lv_name_2_0=null;
         Token otherlv_3=null;
-        Token otherlv_5=null;
+        Token otherlv_4=null;
         Token otherlv_6=null;
-        EObject lv_actions_4_0 = null;
+        Token otherlv_7=null;
+        EObject lv_actions_5_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:147:28: ( (otherlv_0= 'state' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'actions' otherlv_3= '{' ( (lv_actions_4_0= ruleCommand ) )* otherlv_5= '}' )? otherlv_6= 'end' ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:148:1: (otherlv_0= 'state' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'actions' otherlv_3= '{' ( (lv_actions_4_0= ruleCommand ) )* otherlv_5= '}' )? otherlv_6= 'end' )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:147:28: ( (otherlv_0= 'state' ( (lv_id_1_0= RULE_ID ) ) ( (lv_name_2_0= RULE_STRING ) )? (otherlv_3= 'actions' otherlv_4= '{' ( (lv_actions_5_0= ruleCommand ) )* otherlv_6= '}' )? otherlv_7= 'end' ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:148:1: (otherlv_0= 'state' ( (lv_id_1_0= RULE_ID ) ) ( (lv_name_2_0= RULE_STRING ) )? (otherlv_3= 'actions' otherlv_4= '{' ( (lv_actions_5_0= ruleCommand ) )* otherlv_6= '}' )? otherlv_7= 'end' )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:148:1: (otherlv_0= 'state' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'actions' otherlv_3= '{' ( (lv_actions_4_0= ruleCommand ) )* otherlv_5= '}' )? otherlv_6= 'end' )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:148:3: otherlv_0= 'state' ( (lv_name_1_0= RULE_ID ) ) (otherlv_2= 'actions' otherlv_3= '{' ( (lv_actions_4_0= ruleCommand ) )* otherlv_5= '}' )? otherlv_6= 'end'
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:148:1: (otherlv_0= 'state' ( (lv_id_1_0= RULE_ID ) ) ( (lv_name_2_0= RULE_STRING ) )? (otherlv_3= 'actions' otherlv_4= '{' ( (lv_actions_5_0= ruleCommand ) )* otherlv_6= '}' )? otherlv_7= 'end' )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:148:3: otherlv_0= 'state' ( (lv_id_1_0= RULE_ID ) ) ( (lv_name_2_0= RULE_STRING ) )? (otherlv_3= 'actions' otherlv_4= '{' ( (lv_actions_5_0= ruleCommand ) )* otherlv_6= '}' )? otherlv_7= 'end'
             {
             otherlv_0=(Token)match(input,11,FOLLOW_11_in_ruleState253); 
 
                 	newLeafNode(otherlv_0, grammarAccess.getStateAccess().getStateKeyword_0());
                 
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:152:1: ( (lv_name_1_0= RULE_ID ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:153:1: (lv_name_1_0= RULE_ID )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:152:1: ( (lv_id_1_0= RULE_ID ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:153:1: (lv_id_1_0= RULE_ID )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:153:1: (lv_name_1_0= RULE_ID )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:154:3: lv_name_1_0= RULE_ID
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:153:1: (lv_id_1_0= RULE_ID )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:154:3: lv_id_1_0= RULE_ID
             {
-            lv_name_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleState270); 
+            lv_id_1_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleState270); 
 
-            			newLeafNode(lv_name_1_0, grammarAccess.getStateAccess().getNameIDTerminalRuleCall_1_0()); 
+            			newLeafNode(lv_id_1_0, grammarAccess.getStateAccess().getIdIDTerminalRuleCall_1_0()); 
             		
 
             	        if (current==null) {
@@ -345,8 +346,8 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
             	        }
                    		setWithLastConsumed(
                    			current, 
-                   			"name",
-                    		lv_name_1_0, 
+                   			"id",
+                    		lv_id_1_0, 
                     		"ID");
             	    
 
@@ -355,48 +356,85 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:170:2: (otherlv_2= 'actions' otherlv_3= '{' ( (lv_actions_4_0= ruleCommand ) )* otherlv_5= '}' )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:170:2: ( (lv_name_2_0= RULE_STRING ) )?
+            int alt2=2;
+            int LA2_0 = input.LA(1);
 
-            if ( (LA3_0==12) ) {
-                alt3=1;
+            if ( (LA2_0==RULE_STRING) ) {
+                alt2=1;
             }
-            switch (alt3) {
+            switch (alt2) {
                 case 1 :
-                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:170:4: otherlv_2= 'actions' otherlv_3= '{' ( (lv_actions_4_0= ruleCommand ) )* otherlv_5= '}'
+                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:171:1: (lv_name_2_0= RULE_STRING )
                     {
-                    otherlv_2=(Token)match(input,12,FOLLOW_12_in_ruleState288); 
+                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:171:1: (lv_name_2_0= RULE_STRING )
+                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:172:3: lv_name_2_0= RULE_STRING
+                    {
+                    lv_name_2_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleState292); 
 
-                        	newLeafNode(otherlv_2, grammarAccess.getStateAccess().getActionsKeyword_2_0());
-                        
-                    otherlv_3=(Token)match(input,13,FOLLOW_13_in_ruleState300); 
+                    			newLeafNode(lv_name_2_0, grammarAccess.getStateAccess().getNameSTRINGTerminalRuleCall_2_0()); 
+                    		
 
-                        	newLeafNode(otherlv_3, grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_2_1());
+                    	        if (current==null) {
+                    	            current = createModelElement(grammarAccess.getStateRule());
+                    	        }
+                           		setWithLastConsumed(
+                           			current, 
+                           			"name",
+                            		lv_name_2_0, 
+                            		"STRING");
+                    	    
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:188:3: (otherlv_3= 'actions' otherlv_4= '{' ( (lv_actions_5_0= ruleCommand ) )* otherlv_6= '}' )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
+
+            if ( (LA4_0==12) ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:188:5: otherlv_3= 'actions' otherlv_4= '{' ( (lv_actions_5_0= ruleCommand ) )* otherlv_6= '}'
+                    {
+                    otherlv_3=(Token)match(input,12,FOLLOW_12_in_ruleState311); 
+
+                        	newLeafNode(otherlv_3, grammarAccess.getStateAccess().getActionsKeyword_3_0());
                         
-                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:178:1: ( (lv_actions_4_0= ruleCommand ) )*
-                    loop2:
+                    otherlv_4=(Token)match(input,13,FOLLOW_13_in_ruleState323); 
+
+                        	newLeafNode(otherlv_4, grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_3_1());
+                        
+                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:196:1: ( (lv_actions_5_0= ruleCommand ) )*
+                    loop3:
                     do {
-                        int alt2=2;
-                        int LA2_0 = input.LA(1);
+                        int alt3=2;
+                        int LA3_0 = input.LA(1);
 
-                        if ( (LA2_0==RULE_STRING) ) {
-                            alt2=1;
+                        if ( (LA3_0==RULE_STRING) ) {
+                            alt3=1;
                         }
 
 
-                        switch (alt2) {
+                        switch (alt3) {
                     	case 1 :
-                    	    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:179:1: (lv_actions_4_0= ruleCommand )
+                    	    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:197:1: (lv_actions_5_0= ruleCommand )
                     	    {
-                    	    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:179:1: (lv_actions_4_0= ruleCommand )
-                    	    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:180:3: lv_actions_4_0= ruleCommand
+                    	    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:197:1: (lv_actions_5_0= ruleCommand )
+                    	    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:198:3: lv_actions_5_0= ruleCommand
                     	    {
                     	     
-                    	    	        newCompositeNode(grammarAccess.getStateAccess().getActionsCommandParserRuleCall_2_2_0()); 
+                    	    	        newCompositeNode(grammarAccess.getStateAccess().getActionsCommandParserRuleCall_3_2_0()); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleCommand_in_ruleState321);
-                    	    lv_actions_4_0=ruleCommand();
+                    	    pushFollow(FOLLOW_ruleCommand_in_ruleState344);
+                    	    lv_actions_5_0=ruleCommand();
 
                     	    state._fsp--;
 
@@ -407,7 +445,7 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
                     	           		add(
                     	           			current, 
                     	           			"actions",
-                    	            		lv_actions_4_0, 
+                    	            		lv_actions_5_0, 
                     	            		"Command");
                     	    	        afterParserOrEnumRuleCall();
                     	    	    
@@ -419,13 +457,13 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop2;
+                    	    break loop3;
                         }
                     } while (true);
 
-                    otherlv_5=(Token)match(input,14,FOLLOW_14_in_ruleState334); 
+                    otherlv_6=(Token)match(input,14,FOLLOW_14_in_ruleState357); 
 
-                        	newLeafNode(otherlv_5, grammarAccess.getStateAccess().getRightCurlyBracketKeyword_2_3());
+                        	newLeafNode(otherlv_6, grammarAccess.getStateAccess().getRightCurlyBracketKeyword_3_3());
                         
 
                     }
@@ -433,9 +471,9 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_6=(Token)match(input,15,FOLLOW_15_in_ruleState348); 
+            otherlv_7=(Token)match(input,15,FOLLOW_15_in_ruleState371); 
 
-                	newLeafNode(otherlv_6, grammarAccess.getStateAccess().getEndKeyword_3());
+                	newLeafNode(otherlv_7, grammarAccess.getStateAccess().getEndKeyword_4());
                 
 
             }
@@ -458,7 +496,7 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleTransition"
-    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:212:1: entryRuleTransition returns [EObject current=null] : iv_ruleTransition= ruleTransition EOF ;
+    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:230:1: entryRuleTransition returns [EObject current=null] : iv_ruleTransition= ruleTransition EOF ;
     public final EObject entryRuleTransition() throws RecognitionException {
         EObject current = null;
 
@@ -466,17 +504,17 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:213:2: (iv_ruleTransition= ruleTransition EOF )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:214:2: iv_ruleTransition= ruleTransition EOF
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:231:2: (iv_ruleTransition= ruleTransition EOF )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:232:2: iv_ruleTransition= ruleTransition EOF
             {
              newCompositeNode(grammarAccess.getTransitionRule()); 
-            pushFollow(FOLLOW_ruleTransition_in_entryRuleTransition384);
+            pushFollow(FOLLOW_ruleTransition_in_entryRuleTransition407);
             iv_ruleTransition=ruleTransition();
 
             state._fsp--;
 
              current =iv_ruleTransition; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTransition394); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTransition417); 
 
             }
 
@@ -494,7 +532,7 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleTransition"
-    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:221:1: ruleTransition returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )? ) ;
+    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:239:1: ruleTransition returns [EObject current=null] : ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )? ) ;
     public final EObject ruleTransition() throws RecognitionException {
         EObject current = null;
 
@@ -509,24 +547,24 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:224:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )? ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:225:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )? )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:242:28: ( ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )? ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:243:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )? )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:225:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )? )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:225:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )?
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:243:1: ( ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )? )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:243:2: ( (otherlv_0= RULE_ID ) ) otherlv_1= '=>' ( (otherlv_2= RULE_ID ) ) (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )?
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:225:2: ( (otherlv_0= RULE_ID ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:226:1: (otherlv_0= RULE_ID )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:243:2: ( (otherlv_0= RULE_ID ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:244:1: (otherlv_0= RULE_ID )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:226:1: (otherlv_0= RULE_ID )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:227:3: otherlv_0= RULE_ID
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:244:1: (otherlv_0= RULE_ID )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:245:3: otherlv_0= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getTransitionRule());
             	        }
                     
-            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTransition439); 
+            otherlv_0=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTransition462); 
 
             		newLeafNode(otherlv_0, grammarAccess.getTransitionAccess().getSourceStateStateCrossReference_0_0()); 
             	
@@ -536,22 +574,22 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_1=(Token)match(input,16,FOLLOW_16_in_ruleTransition451); 
+            otherlv_1=(Token)match(input,16,FOLLOW_16_in_ruleTransition474); 
 
                 	newLeafNode(otherlv_1, grammarAccess.getTransitionAccess().getEqualsSignGreaterThanSignKeyword_1());
                 
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:242:1: ( (otherlv_2= RULE_ID ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:243:1: (otherlv_2= RULE_ID )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:260:1: ( (otherlv_2= RULE_ID ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:261:1: (otherlv_2= RULE_ID )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:243:1: (otherlv_2= RULE_ID )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:244:3: otherlv_2= RULE_ID
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:261:1: (otherlv_2= RULE_ID )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:262:3: otherlv_2= RULE_ID
             {
 
             			if (current==null) {
             	            current = createModelElement(grammarAccess.getTransitionRule());
             	        }
                     
-            otherlv_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTransition471); 
+            otherlv_2=(Token)match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleTransition494); 
 
             		newLeafNode(otherlv_2, grammarAccess.getTransitionAccess().getTargetStateStateCrossReference_2_0()); 
             	
@@ -561,39 +599,39 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:255:2: (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )?
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:273:2: (otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')' )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( (LA5_0==17) ) {
-                alt5=1;
+            if ( (LA6_0==17) ) {
+                alt6=1;
             }
-            switch (alt5) {
+            switch (alt6) {
                 case 1 :
-                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:255:4: otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')'
+                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:273:4: otherlv_3= '(' ( (lv_event_4_0= ruleEvent ) )? otherlv_5= ')'
                     {
-                    otherlv_3=(Token)match(input,17,FOLLOW_17_in_ruleTransition484); 
+                    otherlv_3=(Token)match(input,17,FOLLOW_17_in_ruleTransition507); 
 
                         	newLeafNode(otherlv_3, grammarAccess.getTransitionAccess().getLeftParenthesisKeyword_3_0());
                         
-                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:259:1: ( (lv_event_4_0= ruleEvent ) )?
-                    int alt4=2;
-                    int LA4_0 = input.LA(1);
+                    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:277:1: ( (lv_event_4_0= ruleEvent ) )?
+                    int alt5=2;
+                    int LA5_0 = input.LA(1);
 
-                    if ( (LA4_0==RULE_STRING) ) {
-                        alt4=1;
+                    if ( (LA5_0==RULE_STRING) ) {
+                        alt5=1;
                     }
-                    switch (alt4) {
+                    switch (alt5) {
                         case 1 :
-                            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:260:1: (lv_event_4_0= ruleEvent )
+                            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:278:1: (lv_event_4_0= ruleEvent )
                             {
-                            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:260:1: (lv_event_4_0= ruleEvent )
-                            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:261:3: lv_event_4_0= ruleEvent
+                            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:278:1: (lv_event_4_0= ruleEvent )
+                            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:279:3: lv_event_4_0= ruleEvent
                             {
                              
                             	        newCompositeNode(grammarAccess.getTransitionAccess().getEventEventParserRuleCall_3_1_0()); 
                             	    
-                            pushFollow(FOLLOW_ruleEvent_in_ruleTransition505);
+                            pushFollow(FOLLOW_ruleEvent_in_ruleTransition528);
                             lv_event_4_0=ruleEvent();
 
                             state._fsp--;
@@ -618,7 +656,7 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    otherlv_5=(Token)match(input,18,FOLLOW_18_in_ruleTransition518); 
+                    otherlv_5=(Token)match(input,18,FOLLOW_18_in_ruleTransition541); 
 
                         	newLeafNode(otherlv_5, grammarAccess.getTransitionAccess().getRightParenthesisKeyword_3_2());
                         
@@ -649,7 +687,7 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEvent"
-    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:289:1: entryRuleEvent returns [EObject current=null] : iv_ruleEvent= ruleEvent EOF ;
+    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:307:1: entryRuleEvent returns [EObject current=null] : iv_ruleEvent= ruleEvent EOF ;
     public final EObject entryRuleEvent() throws RecognitionException {
         EObject current = null;
 
@@ -657,17 +695,17 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:290:2: (iv_ruleEvent= ruleEvent EOF )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:291:2: iv_ruleEvent= ruleEvent EOF
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:308:2: (iv_ruleEvent= ruleEvent EOF )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:309:2: iv_ruleEvent= ruleEvent EOF
             {
              newCompositeNode(grammarAccess.getEventRule()); 
-            pushFollow(FOLLOW_ruleEvent_in_entryRuleEvent556);
+            pushFollow(FOLLOW_ruleEvent_in_entryRuleEvent579);
             iv_ruleEvent=ruleEvent();
 
             state._fsp--;
 
              current =iv_ruleEvent; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEvent566); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEvent589); 
 
             }
 
@@ -685,7 +723,7 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEvent"
-    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:298:1: ruleEvent returns [EObject current=null] : ( (lv_code_0_0= RULE_STRING ) ) ;
+    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:316:1: ruleEvent returns [EObject current=null] : ( (lv_code_0_0= RULE_STRING ) ) ;
     public final EObject ruleEvent() throws RecognitionException {
         EObject current = null;
 
@@ -694,16 +732,16 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:301:28: ( ( (lv_code_0_0= RULE_STRING ) ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:302:1: ( (lv_code_0_0= RULE_STRING ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:319:28: ( ( (lv_code_0_0= RULE_STRING ) ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:320:1: ( (lv_code_0_0= RULE_STRING ) )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:302:1: ( (lv_code_0_0= RULE_STRING ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:303:1: (lv_code_0_0= RULE_STRING )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:320:1: ( (lv_code_0_0= RULE_STRING ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:321:1: (lv_code_0_0= RULE_STRING )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:303:1: (lv_code_0_0= RULE_STRING )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:304:3: lv_code_0_0= RULE_STRING
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:321:1: (lv_code_0_0= RULE_STRING )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:322:3: lv_code_0_0= RULE_STRING
             {
-            lv_code_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleEvent607); 
+            lv_code_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleEvent630); 
 
             			newLeafNode(lv_code_0_0, grammarAccess.getEventAccess().getCodeSTRINGTerminalRuleCall_0()); 
             		
@@ -741,7 +779,7 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCommand"
-    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:328:1: entryRuleCommand returns [EObject current=null] : iv_ruleCommand= ruleCommand EOF ;
+    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:346:1: entryRuleCommand returns [EObject current=null] : iv_ruleCommand= ruleCommand EOF ;
     public final EObject entryRuleCommand() throws RecognitionException {
         EObject current = null;
 
@@ -749,17 +787,17 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:329:2: (iv_ruleCommand= ruleCommand EOF )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:330:2: iv_ruleCommand= ruleCommand EOF
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:347:2: (iv_ruleCommand= ruleCommand EOF )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:348:2: iv_ruleCommand= ruleCommand EOF
             {
              newCompositeNode(grammarAccess.getCommandRule()); 
-            pushFollow(FOLLOW_ruleCommand_in_entryRuleCommand647);
+            pushFollow(FOLLOW_ruleCommand_in_entryRuleCommand670);
             iv_ruleCommand=ruleCommand();
 
             state._fsp--;
 
              current =iv_ruleCommand; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCommand657); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCommand680); 
 
             }
 
@@ -777,7 +815,7 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCommand"
-    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:337:1: ruleCommand returns [EObject current=null] : ( (lv_code_0_0= RULE_STRING ) ) ;
+    // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:355:1: ruleCommand returns [EObject current=null] : ( (lv_code_0_0= RULE_STRING ) ) ;
     public final EObject ruleCommand() throws RecognitionException {
         EObject current = null;
 
@@ -786,16 +824,16 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
          enterRule(); 
             
         try {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:340:28: ( ( (lv_code_0_0= RULE_STRING ) ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:341:1: ( (lv_code_0_0= RULE_STRING ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:358:28: ( ( (lv_code_0_0= RULE_STRING ) ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:359:1: ( (lv_code_0_0= RULE_STRING ) )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:341:1: ( (lv_code_0_0= RULE_STRING ) )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:342:1: (lv_code_0_0= RULE_STRING )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:359:1: ( (lv_code_0_0= RULE_STRING ) )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:360:1: (lv_code_0_0= RULE_STRING )
             {
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:342:1: (lv_code_0_0= RULE_STRING )
-            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:343:3: lv_code_0_0= RULE_STRING
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:360:1: (lv_code_0_0= RULE_STRING )
+            // ../org.xtext.example.statemachine/src-gen/org/xtext/example/statemachine/parser/antlr/internal/InternalStatemachine.g:361:3: lv_code_0_0= RULE_STRING
             {
-            lv_code_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleCommand698); 
+            lv_code_0_0=(Token)match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleCommand721); 
 
             			newLeafNode(lv_code_0_0, grammarAccess.getCommandAccess().getCodeSTRINGTerminalRuleCall_0()); 
             		
@@ -843,25 +881,26 @@ public class InternalStatemachineParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleState_in_entryRuleState206 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleState216 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_11_in_ruleState253 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleState270 = new BitSet(new long[]{0x0000000000009000L});
-    public static final BitSet FOLLOW_12_in_ruleState288 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleState300 = new BitSet(new long[]{0x0000000000004020L});
-    public static final BitSet FOLLOW_ruleCommand_in_ruleState321 = new BitSet(new long[]{0x0000000000004020L});
-    public static final BitSet FOLLOW_14_in_ruleState334 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_15_in_ruleState348 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTransition_in_entryRuleTransition384 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTransition394 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleTransition439 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_ruleTransition451 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleTransition471 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_17_in_ruleTransition484 = new BitSet(new long[]{0x0000000000040020L});
-    public static final BitSet FOLLOW_ruleEvent_in_ruleTransition505 = new BitSet(new long[]{0x0000000000040000L});
-    public static final BitSet FOLLOW_18_in_ruleTransition518 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEvent_in_entryRuleEvent556 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEvent566 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleEvent607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommand_in_entryRuleCommand647 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCommand657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleCommand698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleState270 = new BitSet(new long[]{0x0000000000009020L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleState292 = new BitSet(new long[]{0x0000000000009000L});
+    public static final BitSet FOLLOW_12_in_ruleState311 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleState323 = new BitSet(new long[]{0x0000000000004020L});
+    public static final BitSet FOLLOW_ruleCommand_in_ruleState344 = new BitSet(new long[]{0x0000000000004020L});
+    public static final BitSet FOLLOW_14_in_ruleState357 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleState371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTransition_in_entryRuleTransition407 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTransition417 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleTransition462 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_ruleTransition474 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleTransition494 = new BitSet(new long[]{0x0000000000020002L});
+    public static final BitSet FOLLOW_17_in_ruleTransition507 = new BitSet(new long[]{0x0000000000040020L});
+    public static final BitSet FOLLOW_ruleEvent_in_ruleTransition528 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_ruleTransition541 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEvent_in_entryRuleEvent579 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEvent589 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleEvent630 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommand_in_entryRuleCommand670 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCommand680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleCommand721 = new BitSet(new long[]{0x0000000000000002L});
 
 }

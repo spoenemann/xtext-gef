@@ -15,13 +15,13 @@ Statemachine :
 ;
 
 State:
-	'state' name=ID
+	'state' id=ID name=STRING?
 		('actions' '{' actions+=Command* '}')?
 	'end'
 ;
 
 Transition:
-	sourceState=[State] '=>' targetState=[State] ('(' event=Event? ')')?
+	sourceState=[State|ID] '=>' targetState=[State|ID] ('(' event=Event? ')')?
 ;
 
 Event:

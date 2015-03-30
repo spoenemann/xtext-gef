@@ -104,13 +104,22 @@ public interface StatemachinePackage extends EPackage
   int STATE = 1;
 
   /**
+   * The feature id for the '<em><b>Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STATE__ID = 0;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STATE__NAME = 0;
+  int STATE__NAME = 1;
 
   /**
    * The feature id for the '<em><b>Actions</b></em>' containment reference list.
@@ -119,7 +128,7 @@ public interface StatemachinePackage extends EPackage
    * @generated
    * @ordered
    */
-  int STATE__ACTIONS = 1;
+  int STATE__ACTIONS = 2;
 
   /**
    * The number of structural features of the '<em>State</em>' class.
@@ -128,7 +137,7 @@ public interface StatemachinePackage extends EPackage
    * @generated
    * @ordered
    */
-  int STATE_FEATURE_COUNT = 2;
+  int STATE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.xtext.example.statemachine.statemachine.impl.TransitionImpl <em>Transition</em>}' class.
@@ -274,6 +283,17 @@ public interface StatemachinePackage extends EPackage
    * @generated
    */
   EClass getState();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.statemachine.statemachine.State#getId <em>Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Id</em>'.
+   * @see org.xtext.example.statemachine.statemachine.State#getId()
+   * @see #getState()
+   * @generated
+   */
+  EAttribute getState_Id();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.statemachine.statemachine.State#getName <em>Name</em>}'.
@@ -440,6 +460,14 @@ public interface StatemachinePackage extends EPackage
      * @generated
      */
     EClass STATE = eINSTANCE.getState();
+
+    /**
+     * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STATE__ID = eINSTANCE.getState_Id();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

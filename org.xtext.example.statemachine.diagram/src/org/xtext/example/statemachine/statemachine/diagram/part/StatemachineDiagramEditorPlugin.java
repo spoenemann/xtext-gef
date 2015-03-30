@@ -19,7 +19,6 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 import org.xtext.example.statemachine.statemachine.diagram.edit.policies.StatemachineBaseItemSemanticEditPolicy;
-import org.xtext.example.statemachine.statemachine.diagram.expressions.StatemachineOCLFactory;
 import org.xtext.example.statemachine.statemachine.diagram.providers.ElementInitializers;
 import org.xtext.example.statemachine.statemachine.provider.StatemachineItemProviderAdapterFactory;
 
@@ -72,11 +71,6 @@ public class StatemachineDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	private StatemachineOCLFactory oclFactory;
-
-	/**
-	 * @generated
-	 */
 	public StatemachineDiagramEditorPlugin() {
 	}
 
@@ -100,7 +94,6 @@ public class StatemachineDiagramEditorPlugin extends AbstractUIPlugin {
 		adapterFactory = null;
 		linkConstraints = null;
 		initializers = null;
-		oclFactory = null;
 		instance = null;
 		super.stop(context);
 	}
@@ -244,20 +237,6 @@ public class StatemachineDiagramEditorPlugin extends AbstractUIPlugin {
 	 */
 	public void setElementInitializers(ElementInitializers i) {
 		this.initializers = i;
-	}
-
-	/**
-	 * @generated
-	 */
-	public StatemachineOCLFactory getStatemachineOCLFactory() {
-		return oclFactory;
-	}
-
-	/**
-	 * @generated
-	 */
-	public void setStatemachineOCLFactory(StatemachineOCLFactory f) {
-		this.oclFactory = f;
 	}
 
 	/**

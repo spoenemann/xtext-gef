@@ -29,6 +29,7 @@ import org.xtext.example.statemachine.statemachine.StatemachinePackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getActions <em>Actions</em>}</li>
  * </ul>
@@ -38,6 +39,26 @@ import org.xtext.example.statemachine.statemachine.StatemachinePackage;
  */
 public class StateImpl extends MinimalEObjectImpl.Container implements State
 {
+  /**
+   * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getId()
+   * @generated
+   * @ordered
+   */
+  protected static final String ID_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getId()
+   * @generated
+   * @ordered
+   */
+  protected String id = ID_EDEFAULT;
+
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -87,6 +108,29 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   protected EClass eStaticClass()
   {
     return StatemachinePackage.Literals.STATE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getId()
+  {
+    return id;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setId(String newId)
+  {
+    String oldId = id;
+    id = newId;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, StatemachinePackage.STATE__ID, oldId, id));
   }
 
   /**
@@ -152,6 +196,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case StatemachinePackage.STATE__ID:
+        return getId();
       case StatemachinePackage.STATE__NAME:
         return getName();
       case StatemachinePackage.STATE__ACTIONS:
@@ -171,6 +217,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case StatemachinePackage.STATE__ID:
+        setId((String)newValue);
+        return;
       case StatemachinePackage.STATE__NAME:
         setName((String)newValue);
         return;
@@ -192,6 +241,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case StatemachinePackage.STATE__ID:
+        setId(ID_EDEFAULT);
+        return;
       case StatemachinePackage.STATE__NAME:
         setName(NAME_EDEFAULT);
         return;
@@ -212,6 +264,8 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case StatemachinePackage.STATE__ID:
+        return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
       case StatemachinePackage.STATE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case StatemachinePackage.STATE__ACTIONS:
@@ -231,7 +285,9 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
+    result.append(" (id: ");
+    result.append(id);
+    result.append(", name: ");
     result.append(name);
     result.append(')');
     return result.toString();

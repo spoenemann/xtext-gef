@@ -848,31 +848,31 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__State__Group__1__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:334:1: rule__State__Group__1__Impl : ( ( rule__State__NameAssignment_1 ) ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:334:1: rule__State__Group__1__Impl : ( ( rule__State__IdAssignment_1 ) ) ;
     public final void rule__State__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:338:1: ( ( ( rule__State__NameAssignment_1 ) ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:339:1: ( ( rule__State__NameAssignment_1 ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:338:1: ( ( ( rule__State__IdAssignment_1 ) ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:339:1: ( ( rule__State__IdAssignment_1 ) )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:339:1: ( ( rule__State__NameAssignment_1 ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:340:1: ( rule__State__NameAssignment_1 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:339:1: ( ( rule__State__IdAssignment_1 ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:340:1: ( rule__State__IdAssignment_1 )
             {
-             before(grammarAccess.getStateAccess().getNameAssignment_1()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:341:1: ( rule__State__NameAssignment_1 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:341:2: rule__State__NameAssignment_1
+             before(grammarAccess.getStateAccess().getIdAssignment_1()); 
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:341:1: ( rule__State__IdAssignment_1 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:341:2: rule__State__IdAssignment_1
             {
-            pushFollow(FOLLOW_rule__State__NameAssignment_1_in_rule__State__Group__1__Impl634);
-            rule__State__NameAssignment_1();
+            pushFollow(FOLLOW_rule__State__IdAssignment_1_in_rule__State__Group__1__Impl634);
+            rule__State__IdAssignment_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getStateAccess().getNameAssignment_1()); 
+             after(grammarAccess.getStateAccess().getIdAssignment_1()); 
 
             }
 
@@ -933,32 +933,32 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__State__Group__2__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:363:1: rule__State__Group__2__Impl : ( ( rule__State__Group_2__0 )? ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:363:1: rule__State__Group__2__Impl : ( ( rule__State__NameAssignment_2 )? ) ;
     public final void rule__State__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:367:1: ( ( ( rule__State__Group_2__0 )? ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:368:1: ( ( rule__State__Group_2__0 )? )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:367:1: ( ( ( rule__State__NameAssignment_2 )? ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:368:1: ( ( rule__State__NameAssignment_2 )? )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:368:1: ( ( rule__State__Group_2__0 )? )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:369:1: ( rule__State__Group_2__0 )?
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:368:1: ( ( rule__State__NameAssignment_2 )? )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:369:1: ( rule__State__NameAssignment_2 )?
             {
-             before(grammarAccess.getStateAccess().getGroup_2()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:370:1: ( rule__State__Group_2__0 )?
+             before(grammarAccess.getStateAccess().getNameAssignment_2()); 
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:370:1: ( rule__State__NameAssignment_2 )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
-            if ( (LA3_0==13) ) {
+            if ( (LA3_0==RULE_STRING) ) {
                 alt3=1;
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:370:2: rule__State__Group_2__0
+                    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:370:2: rule__State__NameAssignment_2
                     {
-                    pushFollow(FOLLOW_rule__State__Group_2__0_in_rule__State__Group__2__Impl694);
-                    rule__State__Group_2__0();
+                    pushFollow(FOLLOW_rule__State__NameAssignment_2_in_rule__State__Group__2__Impl694);
+                    rule__State__NameAssignment_2();
 
                     state._fsp--;
 
@@ -968,7 +968,7 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
             }
 
-             after(grammarAccess.getStateAccess().getGroup_2()); 
+             after(grammarAccess.getStateAccess().getNameAssignment_2()); 
 
             }
 
@@ -991,17 +991,22 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__State__Group__3"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:380:1: rule__State__Group__3 : rule__State__Group__3__Impl ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:380:1: rule__State__Group__3 : rule__State__Group__3__Impl rule__State__Group__4 ;
     public final void rule__State__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:384:1: ( rule__State__Group__3__Impl )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:385:2: rule__State__Group__3__Impl
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:384:1: ( rule__State__Group__3__Impl rule__State__Group__4 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:385:2: rule__State__Group__3__Impl rule__State__Group__4
             {
             pushFollow(FOLLOW_rule__State__Group__3__Impl_in_rule__State__Group__3725);
             rule__State__Group__3__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__State__Group__4_in_rule__State__Group__3728);
+            rule__State__Group__4();
 
             state._fsp--;
 
@@ -1024,21 +1029,42 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__State__Group__3__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:391:1: rule__State__Group__3__Impl : ( 'end' ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:392:1: rule__State__Group__3__Impl : ( ( rule__State__Group_3__0 )? ) ;
     public final void rule__State__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:395:1: ( ( 'end' ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:396:1: ( 'end' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:396:1: ( ( ( rule__State__Group_3__0 )? ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:397:1: ( ( rule__State__Group_3__0 )? )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:396:1: ( 'end' )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:397:1: 'end'
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:397:1: ( ( rule__State__Group_3__0 )? )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:398:1: ( rule__State__Group_3__0 )?
             {
-             before(grammarAccess.getStateAccess().getEndKeyword_3()); 
-            match(input,12,FOLLOW_12_in_rule__State__Group__3__Impl753); 
-             after(grammarAccess.getStateAccess().getEndKeyword_3()); 
+             before(grammarAccess.getStateAccess().getGroup_3()); 
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:399:1: ( rule__State__Group_3__0 )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
+
+            if ( (LA4_0==13) ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:399:2: rule__State__Group_3__0
+                    {
+                    pushFollow(FOLLOW_rule__State__Group_3__0_in_rule__State__Group__3__Impl755);
+                    rule__State__Group_3__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getStateAccess().getGroup_3()); 
 
             }
 
@@ -1060,23 +1086,18 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__State__Group__3__Impl"
 
 
-    // $ANTLR start "rule__State__Group_2__0"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:418:1: rule__State__Group_2__0 : rule__State__Group_2__0__Impl rule__State__Group_2__1 ;
-    public final void rule__State__Group_2__0() throws RecognitionException {
+    // $ANTLR start "rule__State__Group__4"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:409:1: rule__State__Group__4 : rule__State__Group__4__Impl ;
+    public final void rule__State__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:422:1: ( rule__State__Group_2__0__Impl rule__State__Group_2__1 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:423:2: rule__State__Group_2__0__Impl rule__State__Group_2__1
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:413:1: ( rule__State__Group__4__Impl )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:414:2: rule__State__Group__4__Impl
             {
-            pushFollow(FOLLOW_rule__State__Group_2__0__Impl_in_rule__State__Group_2__0792);
-            rule__State__Group_2__0__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__State__Group_2__1_in_rule__State__Group_2__0795);
-            rule__State__Group_2__1();
+            pushFollow(FOLLOW_rule__State__Group__4__Impl_in_rule__State__Group__4786);
+            rule__State__Group__4__Impl();
 
             state._fsp--;
 
@@ -1095,25 +1116,25 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__State__Group_2__0"
+    // $ANTLR end "rule__State__Group__4"
 
 
-    // $ANTLR start "rule__State__Group_2__0__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:430:1: rule__State__Group_2__0__Impl : ( 'actions' ) ;
-    public final void rule__State__Group_2__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__State__Group__4__Impl"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:420:1: rule__State__Group__4__Impl : ( 'end' ) ;
+    public final void rule__State__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:434:1: ( ( 'actions' ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:435:1: ( 'actions' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:424:1: ( ( 'end' ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:425:1: ( 'end' )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:435:1: ( 'actions' )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:436:1: 'actions'
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:425:1: ( 'end' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:426:1: 'end'
             {
-             before(grammarAccess.getStateAccess().getActionsKeyword_2_0()); 
-            match(input,13,FOLLOW_13_in_rule__State__Group_2__0__Impl823); 
-             after(grammarAccess.getStateAccess().getActionsKeyword_2_0()); 
+             before(grammarAccess.getStateAccess().getEndKeyword_4()); 
+            match(input,12,FOLLOW_12_in_rule__State__Group__4__Impl814); 
+             after(grammarAccess.getStateAccess().getEndKeyword_4()); 
 
             }
 
@@ -1132,101 +1153,26 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__State__Group_2__0__Impl"
+    // $ANTLR end "rule__State__Group__4__Impl"
 
 
-    // $ANTLR start "rule__State__Group_2__1"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:449:1: rule__State__Group_2__1 : rule__State__Group_2__1__Impl rule__State__Group_2__2 ;
-    public final void rule__State__Group_2__1() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:453:1: ( rule__State__Group_2__1__Impl rule__State__Group_2__2 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:454:2: rule__State__Group_2__1__Impl rule__State__Group_2__2
-            {
-            pushFollow(FOLLOW_rule__State__Group_2__1__Impl_in_rule__State__Group_2__1854);
-            rule__State__Group_2__1__Impl();
-
-            state._fsp--;
-
-            pushFollow(FOLLOW_rule__State__Group_2__2_in_rule__State__Group_2__1857);
-            rule__State__Group_2__2();
-
-            state._fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__State__Group_2__1"
-
-
-    // $ANTLR start "rule__State__Group_2__1__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:461:1: rule__State__Group_2__1__Impl : ( '{' ) ;
-    public final void rule__State__Group_2__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__State__Group_3__0"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:449:1: rule__State__Group_3__0 : rule__State__Group_3__0__Impl rule__State__Group_3__1 ;
+    public final void rule__State__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:465:1: ( ( '{' ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:466:1: ( '{' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:453:1: ( rule__State__Group_3__0__Impl rule__State__Group_3__1 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:454:2: rule__State__Group_3__0__Impl rule__State__Group_3__1
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:466:1: ( '{' )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:467:1: '{'
-            {
-             before(grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_2_1()); 
-            match(input,14,FOLLOW_14_in_rule__State__Group_2__1__Impl885); 
-             after(grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_2_1()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end "rule__State__Group_2__1__Impl"
-
-
-    // $ANTLR start "rule__State__Group_2__2"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:480:1: rule__State__Group_2__2 : rule__State__Group_2__2__Impl rule__State__Group_2__3 ;
-    public final void rule__State__Group_2__2() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:484:1: ( rule__State__Group_2__2__Impl rule__State__Group_2__3 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:485:2: rule__State__Group_2__2__Impl rule__State__Group_2__3
-            {
-            pushFollow(FOLLOW_rule__State__Group_2__2__Impl_in_rule__State__Group_2__2916);
-            rule__State__Group_2__2__Impl();
+            pushFollow(FOLLOW_rule__State__Group_3__0__Impl_in_rule__State__Group_3__0855);
+            rule__State__Group_3__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__State__Group_2__3_in_rule__State__Group_2__2919);
-            rule__State__Group_2__3();
+            pushFollow(FOLLOW_rule__State__Group_3__1_in_rule__State__Group_3__0858);
+            rule__State__Group_3__1();
 
             state._fsp--;
 
@@ -1245,40 +1191,190 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__State__Group_2__2"
+    // $ANTLR end "rule__State__Group_3__0"
 
 
-    // $ANTLR start "rule__State__Group_2__2__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:492:1: rule__State__Group_2__2__Impl : ( ( rule__State__ActionsAssignment_2_2 )* ) ;
-    public final void rule__State__Group_2__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__State__Group_3__0__Impl"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:461:1: rule__State__Group_3__0__Impl : ( 'actions' ) ;
+    public final void rule__State__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:496:1: ( ( ( rule__State__ActionsAssignment_2_2 )* ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:497:1: ( ( rule__State__ActionsAssignment_2_2 )* )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:465:1: ( ( 'actions' ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:466:1: ( 'actions' )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:497:1: ( ( rule__State__ActionsAssignment_2_2 )* )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:498:1: ( rule__State__ActionsAssignment_2_2 )*
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:466:1: ( 'actions' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:467:1: 'actions'
             {
-             before(grammarAccess.getStateAccess().getActionsAssignment_2_2()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:499:1: ( rule__State__ActionsAssignment_2_2 )*
-            loop4:
+             before(grammarAccess.getStateAccess().getActionsKeyword_3_0()); 
+            match(input,13,FOLLOW_13_in_rule__State__Group_3__0__Impl886); 
+             after(grammarAccess.getStateAccess().getActionsKeyword_3_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__State__Group_3__0__Impl"
+
+
+    // $ANTLR start "rule__State__Group_3__1"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:480:1: rule__State__Group_3__1 : rule__State__Group_3__1__Impl rule__State__Group_3__2 ;
+    public final void rule__State__Group_3__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:484:1: ( rule__State__Group_3__1__Impl rule__State__Group_3__2 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:485:2: rule__State__Group_3__1__Impl rule__State__Group_3__2
+            {
+            pushFollow(FOLLOW_rule__State__Group_3__1__Impl_in_rule__State__Group_3__1917);
+            rule__State__Group_3__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__State__Group_3__2_in_rule__State__Group_3__1920);
+            rule__State__Group_3__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__State__Group_3__1"
+
+
+    // $ANTLR start "rule__State__Group_3__1__Impl"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:492:1: rule__State__Group_3__1__Impl : ( '{' ) ;
+    public final void rule__State__Group_3__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:496:1: ( ( '{' ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:497:1: ( '{' )
+            {
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:497:1: ( '{' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:498:1: '{'
+            {
+             before(grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_3_1()); 
+            match(input,14,FOLLOW_14_in_rule__State__Group_3__1__Impl948); 
+             after(grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_3_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__State__Group_3__1__Impl"
+
+
+    // $ANTLR start "rule__State__Group_3__2"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:511:1: rule__State__Group_3__2 : rule__State__Group_3__2__Impl rule__State__Group_3__3 ;
+    public final void rule__State__Group_3__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:515:1: ( rule__State__Group_3__2__Impl rule__State__Group_3__3 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:516:2: rule__State__Group_3__2__Impl rule__State__Group_3__3
+            {
+            pushFollow(FOLLOW_rule__State__Group_3__2__Impl_in_rule__State__Group_3__2979);
+            rule__State__Group_3__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__State__Group_3__3_in_rule__State__Group_3__2982);
+            rule__State__Group_3__3();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__State__Group_3__2"
+
+
+    // $ANTLR start "rule__State__Group_3__2__Impl"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:523:1: rule__State__Group_3__2__Impl : ( ( rule__State__ActionsAssignment_3_2 )* ) ;
+    public final void rule__State__Group_3__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:527:1: ( ( ( rule__State__ActionsAssignment_3_2 )* ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:528:1: ( ( rule__State__ActionsAssignment_3_2 )* )
+            {
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:528:1: ( ( rule__State__ActionsAssignment_3_2 )* )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:529:1: ( rule__State__ActionsAssignment_3_2 )*
+            {
+             before(grammarAccess.getStateAccess().getActionsAssignment_3_2()); 
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:530:1: ( rule__State__ActionsAssignment_3_2 )*
+            loop5:
             do {
-                int alt4=2;
-                int LA4_0 = input.LA(1);
+                int alt5=2;
+                int LA5_0 = input.LA(1);
 
-                if ( (LA4_0==RULE_STRING) ) {
-                    alt4=1;
+                if ( (LA5_0==RULE_STRING) ) {
+                    alt5=1;
                 }
 
 
-                switch (alt4) {
+                switch (alt5) {
             	case 1 :
-            	    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:499:2: rule__State__ActionsAssignment_2_2
+            	    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:530:2: rule__State__ActionsAssignment_3_2
             	    {
-            	    pushFollow(FOLLOW_rule__State__ActionsAssignment_2_2_in_rule__State__Group_2__2__Impl946);
-            	    rule__State__ActionsAssignment_2_2();
+            	    pushFollow(FOLLOW_rule__State__ActionsAssignment_3_2_in_rule__State__Group_3__2__Impl1009);
+            	    rule__State__ActionsAssignment_3_2();
 
             	    state._fsp--;
 
@@ -1287,11 +1383,11 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
             	    break;
 
             	default :
-            	    break loop4;
+            	    break loop5;
                 }
             } while (true);
 
-             after(grammarAccess.getStateAccess().getActionsAssignment_2_2()); 
+             after(grammarAccess.getStateAccess().getActionsAssignment_3_2()); 
 
             }
 
@@ -1310,21 +1406,21 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__State__Group_2__2__Impl"
+    // $ANTLR end "rule__State__Group_3__2__Impl"
 
 
-    // $ANTLR start "rule__State__Group_2__3"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:509:1: rule__State__Group_2__3 : rule__State__Group_2__3__Impl ;
-    public final void rule__State__Group_2__3() throws RecognitionException {
+    // $ANTLR start "rule__State__Group_3__3"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:540:1: rule__State__Group_3__3 : rule__State__Group_3__3__Impl ;
+    public final void rule__State__Group_3__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:513:1: ( rule__State__Group_2__3__Impl )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:514:2: rule__State__Group_2__3__Impl
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:544:1: ( rule__State__Group_3__3__Impl )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:545:2: rule__State__Group_3__3__Impl
             {
-            pushFollow(FOLLOW_rule__State__Group_2__3__Impl_in_rule__State__Group_2__3977);
-            rule__State__Group_2__3__Impl();
+            pushFollow(FOLLOW_rule__State__Group_3__3__Impl_in_rule__State__Group_3__31040);
+            rule__State__Group_3__3__Impl();
 
             state._fsp--;
 
@@ -1343,25 +1439,25 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__State__Group_2__3"
+    // $ANTLR end "rule__State__Group_3__3"
 
 
-    // $ANTLR start "rule__State__Group_2__3__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:520:1: rule__State__Group_2__3__Impl : ( '}' ) ;
-    public final void rule__State__Group_2__3__Impl() throws RecognitionException {
+    // $ANTLR start "rule__State__Group_3__3__Impl"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:551:1: rule__State__Group_3__3__Impl : ( '}' ) ;
+    public final void rule__State__Group_3__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:524:1: ( ( '}' ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:525:1: ( '}' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:555:1: ( ( '}' ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:556:1: ( '}' )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:525:1: ( '}' )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:526:1: '}'
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:556:1: ( '}' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:557:1: '}'
             {
-             before(grammarAccess.getStateAccess().getRightCurlyBracketKeyword_2_3()); 
-            match(input,15,FOLLOW_15_in_rule__State__Group_2__3__Impl1005); 
-             after(grammarAccess.getStateAccess().getRightCurlyBracketKeyword_2_3()); 
+             before(grammarAccess.getStateAccess().getRightCurlyBracketKeyword_3_3()); 
+            match(input,15,FOLLOW_15_in_rule__State__Group_3__3__Impl1068); 
+             after(grammarAccess.getStateAccess().getRightCurlyBracketKeyword_3_3()); 
 
             }
 
@@ -1380,25 +1476,25 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__State__Group_2__3__Impl"
+    // $ANTLR end "rule__State__Group_3__3__Impl"
 
 
     // $ANTLR start "rule__Transition__Group__0"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:547:1: rule__Transition__Group__0 : rule__Transition__Group__0__Impl rule__Transition__Group__1 ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:578:1: rule__Transition__Group__0 : rule__Transition__Group__0__Impl rule__Transition__Group__1 ;
     public final void rule__Transition__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:551:1: ( rule__Transition__Group__0__Impl rule__Transition__Group__1 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:552:2: rule__Transition__Group__0__Impl rule__Transition__Group__1
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:582:1: ( rule__Transition__Group__0__Impl rule__Transition__Group__1 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:583:2: rule__Transition__Group__0__Impl rule__Transition__Group__1
             {
-            pushFollow(FOLLOW_rule__Transition__Group__0__Impl_in_rule__Transition__Group__01044);
+            pushFollow(FOLLOW_rule__Transition__Group__0__Impl_in_rule__Transition__Group__01107);
             rule__Transition__Group__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Transition__Group__1_in_rule__Transition__Group__01047);
+            pushFollow(FOLLOW_rule__Transition__Group__1_in_rule__Transition__Group__01110);
             rule__Transition__Group__1();
 
             state._fsp--;
@@ -1422,23 +1518,23 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group__0__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:559:1: rule__Transition__Group__0__Impl : ( ( rule__Transition__SourceStateAssignment_0 ) ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:590:1: rule__Transition__Group__0__Impl : ( ( rule__Transition__SourceStateAssignment_0 ) ) ;
     public final void rule__Transition__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:563:1: ( ( ( rule__Transition__SourceStateAssignment_0 ) ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:564:1: ( ( rule__Transition__SourceStateAssignment_0 ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:594:1: ( ( ( rule__Transition__SourceStateAssignment_0 ) ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:595:1: ( ( rule__Transition__SourceStateAssignment_0 ) )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:564:1: ( ( rule__Transition__SourceStateAssignment_0 ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:565:1: ( rule__Transition__SourceStateAssignment_0 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:595:1: ( ( rule__Transition__SourceStateAssignment_0 ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:596:1: ( rule__Transition__SourceStateAssignment_0 )
             {
              before(grammarAccess.getTransitionAccess().getSourceStateAssignment_0()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:566:1: ( rule__Transition__SourceStateAssignment_0 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:566:2: rule__Transition__SourceStateAssignment_0
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:597:1: ( rule__Transition__SourceStateAssignment_0 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:597:2: rule__Transition__SourceStateAssignment_0
             {
-            pushFollow(FOLLOW_rule__Transition__SourceStateAssignment_0_in_rule__Transition__Group__0__Impl1074);
+            pushFollow(FOLLOW_rule__Transition__SourceStateAssignment_0_in_rule__Transition__Group__0__Impl1137);
             rule__Transition__SourceStateAssignment_0();
 
             state._fsp--;
@@ -1469,21 +1565,21 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group__1"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:576:1: rule__Transition__Group__1 : rule__Transition__Group__1__Impl rule__Transition__Group__2 ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:607:1: rule__Transition__Group__1 : rule__Transition__Group__1__Impl rule__Transition__Group__2 ;
     public final void rule__Transition__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:580:1: ( rule__Transition__Group__1__Impl rule__Transition__Group__2 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:581:2: rule__Transition__Group__1__Impl rule__Transition__Group__2
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:611:1: ( rule__Transition__Group__1__Impl rule__Transition__Group__2 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:612:2: rule__Transition__Group__1__Impl rule__Transition__Group__2
             {
-            pushFollow(FOLLOW_rule__Transition__Group__1__Impl_in_rule__Transition__Group__11104);
+            pushFollow(FOLLOW_rule__Transition__Group__1__Impl_in_rule__Transition__Group__11167);
             rule__Transition__Group__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Transition__Group__2_in_rule__Transition__Group__11107);
+            pushFollow(FOLLOW_rule__Transition__Group__2_in_rule__Transition__Group__11170);
             rule__Transition__Group__2();
 
             state._fsp--;
@@ -1507,20 +1603,20 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group__1__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:588:1: rule__Transition__Group__1__Impl : ( '=>' ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:619:1: rule__Transition__Group__1__Impl : ( '=>' ) ;
     public final void rule__Transition__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:592:1: ( ( '=>' ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:593:1: ( '=>' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:623:1: ( ( '=>' ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:624:1: ( '=>' )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:593:1: ( '=>' )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:594:1: '=>'
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:624:1: ( '=>' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:625:1: '=>'
             {
              before(grammarAccess.getTransitionAccess().getEqualsSignGreaterThanSignKeyword_1()); 
-            match(input,16,FOLLOW_16_in_rule__Transition__Group__1__Impl1135); 
+            match(input,16,FOLLOW_16_in_rule__Transition__Group__1__Impl1198); 
              after(grammarAccess.getTransitionAccess().getEqualsSignGreaterThanSignKeyword_1()); 
 
             }
@@ -1544,21 +1640,21 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group__2"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:607:1: rule__Transition__Group__2 : rule__Transition__Group__2__Impl rule__Transition__Group__3 ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:638:1: rule__Transition__Group__2 : rule__Transition__Group__2__Impl rule__Transition__Group__3 ;
     public final void rule__Transition__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:611:1: ( rule__Transition__Group__2__Impl rule__Transition__Group__3 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:612:2: rule__Transition__Group__2__Impl rule__Transition__Group__3
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:642:1: ( rule__Transition__Group__2__Impl rule__Transition__Group__3 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:643:2: rule__Transition__Group__2__Impl rule__Transition__Group__3
             {
-            pushFollow(FOLLOW_rule__Transition__Group__2__Impl_in_rule__Transition__Group__21166);
+            pushFollow(FOLLOW_rule__Transition__Group__2__Impl_in_rule__Transition__Group__21229);
             rule__Transition__Group__2__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Transition__Group__3_in_rule__Transition__Group__21169);
+            pushFollow(FOLLOW_rule__Transition__Group__3_in_rule__Transition__Group__21232);
             rule__Transition__Group__3();
 
             state._fsp--;
@@ -1582,23 +1678,23 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group__2__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:619:1: rule__Transition__Group__2__Impl : ( ( rule__Transition__TargetStateAssignment_2 ) ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:650:1: rule__Transition__Group__2__Impl : ( ( rule__Transition__TargetStateAssignment_2 ) ) ;
     public final void rule__Transition__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:623:1: ( ( ( rule__Transition__TargetStateAssignment_2 ) ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:624:1: ( ( rule__Transition__TargetStateAssignment_2 ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:654:1: ( ( ( rule__Transition__TargetStateAssignment_2 ) ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:655:1: ( ( rule__Transition__TargetStateAssignment_2 ) )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:624:1: ( ( rule__Transition__TargetStateAssignment_2 ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:625:1: ( rule__Transition__TargetStateAssignment_2 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:655:1: ( ( rule__Transition__TargetStateAssignment_2 ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:656:1: ( rule__Transition__TargetStateAssignment_2 )
             {
              before(grammarAccess.getTransitionAccess().getTargetStateAssignment_2()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:626:1: ( rule__Transition__TargetStateAssignment_2 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:626:2: rule__Transition__TargetStateAssignment_2
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:657:1: ( rule__Transition__TargetStateAssignment_2 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:657:2: rule__Transition__TargetStateAssignment_2
             {
-            pushFollow(FOLLOW_rule__Transition__TargetStateAssignment_2_in_rule__Transition__Group__2__Impl1196);
+            pushFollow(FOLLOW_rule__Transition__TargetStateAssignment_2_in_rule__Transition__Group__2__Impl1259);
             rule__Transition__TargetStateAssignment_2();
 
             state._fsp--;
@@ -1629,16 +1725,16 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group__3"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:636:1: rule__Transition__Group__3 : rule__Transition__Group__3__Impl ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:667:1: rule__Transition__Group__3 : rule__Transition__Group__3__Impl ;
     public final void rule__Transition__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:640:1: ( rule__Transition__Group__3__Impl )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:641:2: rule__Transition__Group__3__Impl
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:671:1: ( rule__Transition__Group__3__Impl )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:672:2: rule__Transition__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Transition__Group__3__Impl_in_rule__Transition__Group__31226);
+            pushFollow(FOLLOW_rule__Transition__Group__3__Impl_in_rule__Transition__Group__31289);
             rule__Transition__Group__3__Impl();
 
             state._fsp--;
@@ -1662,31 +1758,31 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group__3__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:647:1: rule__Transition__Group__3__Impl : ( ( rule__Transition__Group_3__0 )? ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:678:1: rule__Transition__Group__3__Impl : ( ( rule__Transition__Group_3__0 )? ) ;
     public final void rule__Transition__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:651:1: ( ( ( rule__Transition__Group_3__0 )? ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:652:1: ( ( rule__Transition__Group_3__0 )? )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:682:1: ( ( ( rule__Transition__Group_3__0 )? ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:683:1: ( ( rule__Transition__Group_3__0 )? )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:652:1: ( ( rule__Transition__Group_3__0 )? )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:653:1: ( rule__Transition__Group_3__0 )?
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:683:1: ( ( rule__Transition__Group_3__0 )? )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:684:1: ( rule__Transition__Group_3__0 )?
             {
              before(grammarAccess.getTransitionAccess().getGroup_3()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:654:1: ( rule__Transition__Group_3__0 )?
-            int alt5=2;
-            int LA5_0 = input.LA(1);
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:685:1: ( rule__Transition__Group_3__0 )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-            if ( (LA5_0==17) ) {
-                alt5=1;
+            if ( (LA6_0==17) ) {
+                alt6=1;
             }
-            switch (alt5) {
+            switch (alt6) {
                 case 1 :
-                    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:654:2: rule__Transition__Group_3__0
+                    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:685:2: rule__Transition__Group_3__0
                     {
-                    pushFollow(FOLLOW_rule__Transition__Group_3__0_in_rule__Transition__Group__3__Impl1253);
+                    pushFollow(FOLLOW_rule__Transition__Group_3__0_in_rule__Transition__Group__3__Impl1316);
                     rule__Transition__Group_3__0();
 
                     state._fsp--;
@@ -1720,21 +1816,21 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group_3__0"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:672:1: rule__Transition__Group_3__0 : rule__Transition__Group_3__0__Impl rule__Transition__Group_3__1 ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:703:1: rule__Transition__Group_3__0 : rule__Transition__Group_3__0__Impl rule__Transition__Group_3__1 ;
     public final void rule__Transition__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:676:1: ( rule__Transition__Group_3__0__Impl rule__Transition__Group_3__1 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:677:2: rule__Transition__Group_3__0__Impl rule__Transition__Group_3__1
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:707:1: ( rule__Transition__Group_3__0__Impl rule__Transition__Group_3__1 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:708:2: rule__Transition__Group_3__0__Impl rule__Transition__Group_3__1
             {
-            pushFollow(FOLLOW_rule__Transition__Group_3__0__Impl_in_rule__Transition__Group_3__01292);
+            pushFollow(FOLLOW_rule__Transition__Group_3__0__Impl_in_rule__Transition__Group_3__01355);
             rule__Transition__Group_3__0__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Transition__Group_3__1_in_rule__Transition__Group_3__01295);
+            pushFollow(FOLLOW_rule__Transition__Group_3__1_in_rule__Transition__Group_3__01358);
             rule__Transition__Group_3__1();
 
             state._fsp--;
@@ -1758,20 +1854,20 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group_3__0__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:684:1: rule__Transition__Group_3__0__Impl : ( '(' ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:715:1: rule__Transition__Group_3__0__Impl : ( '(' ) ;
     public final void rule__Transition__Group_3__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:688:1: ( ( '(' ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:689:1: ( '(' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:719:1: ( ( '(' ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:720:1: ( '(' )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:689:1: ( '(' )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:690:1: '('
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:720:1: ( '(' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:721:1: '('
             {
              before(grammarAccess.getTransitionAccess().getLeftParenthesisKeyword_3_0()); 
-            match(input,17,FOLLOW_17_in_rule__Transition__Group_3__0__Impl1323); 
+            match(input,17,FOLLOW_17_in_rule__Transition__Group_3__0__Impl1386); 
              after(grammarAccess.getTransitionAccess().getLeftParenthesisKeyword_3_0()); 
 
             }
@@ -1795,21 +1891,21 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group_3__1"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:703:1: rule__Transition__Group_3__1 : rule__Transition__Group_3__1__Impl rule__Transition__Group_3__2 ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:734:1: rule__Transition__Group_3__1 : rule__Transition__Group_3__1__Impl rule__Transition__Group_3__2 ;
     public final void rule__Transition__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:707:1: ( rule__Transition__Group_3__1__Impl rule__Transition__Group_3__2 )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:708:2: rule__Transition__Group_3__1__Impl rule__Transition__Group_3__2
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:738:1: ( rule__Transition__Group_3__1__Impl rule__Transition__Group_3__2 )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:739:2: rule__Transition__Group_3__1__Impl rule__Transition__Group_3__2
             {
-            pushFollow(FOLLOW_rule__Transition__Group_3__1__Impl_in_rule__Transition__Group_3__11354);
+            pushFollow(FOLLOW_rule__Transition__Group_3__1__Impl_in_rule__Transition__Group_3__11417);
             rule__Transition__Group_3__1__Impl();
 
             state._fsp--;
 
-            pushFollow(FOLLOW_rule__Transition__Group_3__2_in_rule__Transition__Group_3__11357);
+            pushFollow(FOLLOW_rule__Transition__Group_3__2_in_rule__Transition__Group_3__11420);
             rule__Transition__Group_3__2();
 
             state._fsp--;
@@ -1833,31 +1929,31 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group_3__1__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:715:1: rule__Transition__Group_3__1__Impl : ( ( rule__Transition__EventAssignment_3_1 )? ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:746:1: rule__Transition__Group_3__1__Impl : ( ( rule__Transition__EventAssignment_3_1 )? ) ;
     public final void rule__Transition__Group_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:719:1: ( ( ( rule__Transition__EventAssignment_3_1 )? ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:720:1: ( ( rule__Transition__EventAssignment_3_1 )? )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:750:1: ( ( ( rule__Transition__EventAssignment_3_1 )? ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:751:1: ( ( rule__Transition__EventAssignment_3_1 )? )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:720:1: ( ( rule__Transition__EventAssignment_3_1 )? )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:721:1: ( rule__Transition__EventAssignment_3_1 )?
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:751:1: ( ( rule__Transition__EventAssignment_3_1 )? )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:752:1: ( rule__Transition__EventAssignment_3_1 )?
             {
              before(grammarAccess.getTransitionAccess().getEventAssignment_3_1()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:722:1: ( rule__Transition__EventAssignment_3_1 )?
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:753:1: ( rule__Transition__EventAssignment_3_1 )?
+            int alt7=2;
+            int LA7_0 = input.LA(1);
 
-            if ( (LA6_0==RULE_STRING) ) {
-                alt6=1;
+            if ( (LA7_0==RULE_STRING) ) {
+                alt7=1;
             }
-            switch (alt6) {
+            switch (alt7) {
                 case 1 :
-                    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:722:2: rule__Transition__EventAssignment_3_1
+                    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:753:2: rule__Transition__EventAssignment_3_1
                     {
-                    pushFollow(FOLLOW_rule__Transition__EventAssignment_3_1_in_rule__Transition__Group_3__1__Impl1384);
+                    pushFollow(FOLLOW_rule__Transition__EventAssignment_3_1_in_rule__Transition__Group_3__1__Impl1447);
                     rule__Transition__EventAssignment_3_1();
 
                     state._fsp--;
@@ -1891,16 +1987,16 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group_3__2"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:732:1: rule__Transition__Group_3__2 : rule__Transition__Group_3__2__Impl ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:763:1: rule__Transition__Group_3__2 : rule__Transition__Group_3__2__Impl ;
     public final void rule__Transition__Group_3__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:736:1: ( rule__Transition__Group_3__2__Impl )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:737:2: rule__Transition__Group_3__2__Impl
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:767:1: ( rule__Transition__Group_3__2__Impl )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:768:2: rule__Transition__Group_3__2__Impl
             {
-            pushFollow(FOLLOW_rule__Transition__Group_3__2__Impl_in_rule__Transition__Group_3__21415);
+            pushFollow(FOLLOW_rule__Transition__Group_3__2__Impl_in_rule__Transition__Group_3__21478);
             rule__Transition__Group_3__2__Impl();
 
             state._fsp--;
@@ -1924,20 +2020,20 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__Group_3__2__Impl"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:743:1: rule__Transition__Group_3__2__Impl : ( ')' ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:774:1: rule__Transition__Group_3__2__Impl : ( ')' ) ;
     public final void rule__Transition__Group_3__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:747:1: ( ( ')' ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:748:1: ( ')' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:778:1: ( ( ')' ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:779:1: ( ')' )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:748:1: ( ')' )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:749:1: ')'
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:779:1: ( ')' )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:780:1: ')'
             {
              before(grammarAccess.getTransitionAccess().getRightParenthesisKeyword_3_2()); 
-            match(input,18,FOLLOW_18_in_rule__Transition__Group_3__2__Impl1443); 
+            match(input,18,FOLLOW_18_in_rule__Transition__Group_3__2__Impl1506); 
              after(grammarAccess.getTransitionAccess().getRightParenthesisKeyword_3_2()); 
 
             }
@@ -1961,20 +2057,20 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Statemachine__StatesAssignment_1_0"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:769:1: rule__Statemachine__StatesAssignment_1_0 : ( ruleState ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:800:1: rule__Statemachine__StatesAssignment_1_0 : ( ruleState ) ;
     public final void rule__Statemachine__StatesAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:773:1: ( ( ruleState ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:774:1: ( ruleState )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:804:1: ( ( ruleState ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:805:1: ( ruleState )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:774:1: ( ruleState )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:775:1: ruleState
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:805:1: ( ruleState )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:806:1: ruleState
             {
              before(grammarAccess.getStatemachineAccess().getStatesStateParserRuleCall_1_0_0()); 
-            pushFollow(FOLLOW_ruleState_in_rule__Statemachine__StatesAssignment_1_01485);
+            pushFollow(FOLLOW_ruleState_in_rule__Statemachine__StatesAssignment_1_01548);
             ruleState();
 
             state._fsp--;
@@ -2002,20 +2098,20 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Statemachine__TransitionsAssignment_1_1"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:784:1: rule__Statemachine__TransitionsAssignment_1_1 : ( ruleTransition ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:815:1: rule__Statemachine__TransitionsAssignment_1_1 : ( ruleTransition ) ;
     public final void rule__Statemachine__TransitionsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:788:1: ( ( ruleTransition ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:789:1: ( ruleTransition )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:819:1: ( ( ruleTransition ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:820:1: ( ruleTransition )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:789:1: ( ruleTransition )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:790:1: ruleTransition
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:820:1: ( ruleTransition )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:821:1: ruleTransition
             {
              before(grammarAccess.getStatemachineAccess().getTransitionsTransitionParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_ruleTransition_in_rule__Statemachine__TransitionsAssignment_1_11516);
+            pushFollow(FOLLOW_ruleTransition_in_rule__Statemachine__TransitionsAssignment_1_11579);
             ruleTransition();
 
             state._fsp--;
@@ -2042,22 +2138,22 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
     // $ANTLR end "rule__Statemachine__TransitionsAssignment_1_1"
 
 
-    // $ANTLR start "rule__State__NameAssignment_1"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:799:1: rule__State__NameAssignment_1 : ( RULE_ID ) ;
-    public final void rule__State__NameAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__State__IdAssignment_1"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:830:1: rule__State__IdAssignment_1 : ( RULE_ID ) ;
+    public final void rule__State__IdAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:803:1: ( ( RULE_ID ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:804:1: ( RULE_ID )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:834:1: ( ( RULE_ID ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:835:1: ( RULE_ID )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:804:1: ( RULE_ID )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:805:1: RULE_ID
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:835:1: ( RULE_ID )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:836:1: RULE_ID
             {
-             before(grammarAccess.getStateAccess().getNameIDTerminalRuleCall_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__State__NameAssignment_11547); 
-             after(grammarAccess.getStateAccess().getNameIDTerminalRuleCall_1_0()); 
+             before(grammarAccess.getStateAccess().getIdIDTerminalRuleCall_1_0()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__State__IdAssignment_11610); 
+             after(grammarAccess.getStateAccess().getIdIDTerminalRuleCall_1_0()); 
 
             }
 
@@ -2076,29 +2172,66 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__State__NameAssignment_1"
+    // $ANTLR end "rule__State__IdAssignment_1"
 
 
-    // $ANTLR start "rule__State__ActionsAssignment_2_2"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:814:1: rule__State__ActionsAssignment_2_2 : ( ruleCommand ) ;
-    public final void rule__State__ActionsAssignment_2_2() throws RecognitionException {
+    // $ANTLR start "rule__State__NameAssignment_2"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:845:1: rule__State__NameAssignment_2 : ( RULE_STRING ) ;
+    public final void rule__State__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:818:1: ( ( ruleCommand ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:819:1: ( ruleCommand )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:849:1: ( ( RULE_STRING ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:850:1: ( RULE_STRING )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:819:1: ( ruleCommand )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:820:1: ruleCommand
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:850:1: ( RULE_STRING )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:851:1: RULE_STRING
             {
-             before(grammarAccess.getStateAccess().getActionsCommandParserRuleCall_2_2_0()); 
-            pushFollow(FOLLOW_ruleCommand_in_rule__State__ActionsAssignment_2_21578);
+             before(grammarAccess.getStateAccess().getNameSTRINGTerminalRuleCall_2_0()); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__State__NameAssignment_21641); 
+             after(grammarAccess.getStateAccess().getNameSTRINGTerminalRuleCall_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__State__NameAssignment_2"
+
+
+    // $ANTLR start "rule__State__ActionsAssignment_3_2"
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:860:1: rule__State__ActionsAssignment_3_2 : ( ruleCommand ) ;
+    public final void rule__State__ActionsAssignment_3_2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:864:1: ( ( ruleCommand ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:865:1: ( ruleCommand )
+            {
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:865:1: ( ruleCommand )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:866:1: ruleCommand
+            {
+             before(grammarAccess.getStateAccess().getActionsCommandParserRuleCall_3_2_0()); 
+            pushFollow(FOLLOW_ruleCommand_in_rule__State__ActionsAssignment_3_21672);
             ruleCommand();
 
             state._fsp--;
 
-             after(grammarAccess.getStateAccess().getActionsCommandParserRuleCall_2_2_0()); 
+             after(grammarAccess.getStateAccess().getActionsCommandParserRuleCall_3_2_0()); 
 
             }
 
@@ -2117,28 +2250,28 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
         }
         return ;
     }
-    // $ANTLR end "rule__State__ActionsAssignment_2_2"
+    // $ANTLR end "rule__State__ActionsAssignment_3_2"
 
 
     // $ANTLR start "rule__Transition__SourceStateAssignment_0"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:829:1: rule__Transition__SourceStateAssignment_0 : ( ( RULE_ID ) ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:875:1: rule__Transition__SourceStateAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__Transition__SourceStateAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:833:1: ( ( ( RULE_ID ) ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:834:1: ( ( RULE_ID ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:879:1: ( ( ( RULE_ID ) ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:880:1: ( ( RULE_ID ) )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:834:1: ( ( RULE_ID ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:835:1: ( RULE_ID )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:880:1: ( ( RULE_ID ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:881:1: ( RULE_ID )
             {
              before(grammarAccess.getTransitionAccess().getSourceStateStateCrossReference_0_0()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:836:1: ( RULE_ID )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:837:1: RULE_ID
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:882:1: ( RULE_ID )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:883:1: RULE_ID
             {
              before(grammarAccess.getTransitionAccess().getSourceStateStateIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Transition__SourceStateAssignment_01613); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Transition__SourceStateAssignment_01707); 
              after(grammarAccess.getTransitionAccess().getSourceStateStateIDTerminalRuleCall_0_0_1()); 
 
             }
@@ -2166,24 +2299,24 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__TargetStateAssignment_2"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:848:1: rule__Transition__TargetStateAssignment_2 : ( ( RULE_ID ) ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:894:1: rule__Transition__TargetStateAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__Transition__TargetStateAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:852:1: ( ( ( RULE_ID ) ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:853:1: ( ( RULE_ID ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:898:1: ( ( ( RULE_ID ) ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:899:1: ( ( RULE_ID ) )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:853:1: ( ( RULE_ID ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:854:1: ( RULE_ID )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:899:1: ( ( RULE_ID ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:900:1: ( RULE_ID )
             {
              before(grammarAccess.getTransitionAccess().getTargetStateStateCrossReference_2_0()); 
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:855:1: ( RULE_ID )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:856:1: RULE_ID
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:901:1: ( RULE_ID )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:902:1: RULE_ID
             {
              before(grammarAccess.getTransitionAccess().getTargetStateStateIDTerminalRuleCall_2_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Transition__TargetStateAssignment_21652); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Transition__TargetStateAssignment_21746); 
              after(grammarAccess.getTransitionAccess().getTargetStateStateIDTerminalRuleCall_2_0_1()); 
 
             }
@@ -2211,20 +2344,20 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Transition__EventAssignment_3_1"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:867:1: rule__Transition__EventAssignment_3_1 : ( ruleEvent ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:913:1: rule__Transition__EventAssignment_3_1 : ( ruleEvent ) ;
     public final void rule__Transition__EventAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:871:1: ( ( ruleEvent ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:872:1: ( ruleEvent )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:917:1: ( ( ruleEvent ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:918:1: ( ruleEvent )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:872:1: ( ruleEvent )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:873:1: ruleEvent
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:918:1: ( ruleEvent )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:919:1: ruleEvent
             {
              before(grammarAccess.getTransitionAccess().getEventEventParserRuleCall_3_1_0()); 
-            pushFollow(FOLLOW_ruleEvent_in_rule__Transition__EventAssignment_3_11687);
+            pushFollow(FOLLOW_ruleEvent_in_rule__Transition__EventAssignment_3_11781);
             ruleEvent();
 
             state._fsp--;
@@ -2252,20 +2385,20 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Event__CodeAssignment"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:882:1: rule__Event__CodeAssignment : ( RULE_STRING ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:928:1: rule__Event__CodeAssignment : ( RULE_STRING ) ;
     public final void rule__Event__CodeAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:886:1: ( ( RULE_STRING ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:887:1: ( RULE_STRING )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:932:1: ( ( RULE_STRING ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:933:1: ( RULE_STRING )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:887:1: ( RULE_STRING )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:888:1: RULE_STRING
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:933:1: ( RULE_STRING )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:934:1: RULE_STRING
             {
              before(grammarAccess.getEventAccess().getCodeSTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Event__CodeAssignment1718); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Event__CodeAssignment1812); 
              after(grammarAccess.getEventAccess().getCodeSTRINGTerminalRuleCall_0()); 
 
             }
@@ -2289,20 +2422,20 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
 
 
     // $ANTLR start "rule__Command__CodeAssignment"
-    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:897:1: rule__Command__CodeAssignment : ( RULE_STRING ) ;
+    // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:943:1: rule__Command__CodeAssignment : ( RULE_STRING ) ;
     public final void rule__Command__CodeAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:901:1: ( ( RULE_STRING ) )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:902:1: ( RULE_STRING )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:947:1: ( ( RULE_STRING ) )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:948:1: ( RULE_STRING )
             {
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:902:1: ( RULE_STRING )
-            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:903:1: RULE_STRING
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:948:1: ( RULE_STRING )
+            // ../org.xtext.example.statemachine.ui/src-gen/org/xtext/example/statemachine/ui/contentassist/antlr/internal/InternalStatemachine.g:949:1: RULE_STRING
             {
              before(grammarAccess.getCommandAccess().getCodeSTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Command__CodeAssignment1749); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Command__CodeAssignment1843); 
              after(grammarAccess.getCommandAccess().getCodeSTRINGTerminalRuleCall_0()); 
 
             }
@@ -2353,52 +2486,56 @@ public class InternalStatemachineParser extends AbstractInternalContentAssistPar
     public static final BitSet FOLLOW_rule__State__Group__0__Impl_in_rule__State__Group__0542 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__State__Group__1_in_rule__State__Group__0545 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_11_in_rule__State__Group__0__Impl573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__Group__1__Impl_in_rule__State__Group__1604 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_rule__State__Group__1__Impl_in_rule__State__Group__1604 = new BitSet(new long[]{0x0000000000003020L});
     public static final BitSet FOLLOW_rule__State__Group__2_in_rule__State__Group__1607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__NameAssignment_1_in_rule__State__Group__1__Impl634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__Group__2__Impl_in_rule__State__Group__2664 = new BitSet(new long[]{0x0000000000003000L});
+    public static final BitSet FOLLOW_rule__State__IdAssignment_1_in_rule__State__Group__1__Impl634 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__Group__2__Impl_in_rule__State__Group__2664 = new BitSet(new long[]{0x0000000000003020L});
     public static final BitSet FOLLOW_rule__State__Group__3_in_rule__State__Group__2667 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__Group_2__0_in_rule__State__Group__2__Impl694 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__Group__3__Impl_in_rule__State__Group__3725 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__State__Group__3__Impl753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__Group_2__0__Impl_in_rule__State__Group_2__0792 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_rule__State__Group_2__1_in_rule__State__Group_2__0795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__State__Group_2__0__Impl823 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__Group_2__1__Impl_in_rule__State__Group_2__1854 = new BitSet(new long[]{0x0000000000008020L});
-    public static final BitSet FOLLOW_rule__State__Group_2__2_in_rule__State__Group_2__1857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__State__Group_2__1__Impl885 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__Group_2__2__Impl_in_rule__State__Group_2__2916 = new BitSet(new long[]{0x0000000000008020L});
-    public static final BitSet FOLLOW_rule__State__Group_2__3_in_rule__State__Group_2__2919 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__State__ActionsAssignment_2_2_in_rule__State__Group_2__2__Impl946 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_rule__State__Group_2__3__Impl_in_rule__State__Group_2__3977 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__State__Group_2__3__Impl1005 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__Group__0__Impl_in_rule__Transition__Group__01044 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_rule__Transition__Group__1_in_rule__Transition__Group__01047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__SourceStateAssignment_0_in_rule__Transition__Group__0__Impl1074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__Group__1__Impl_in_rule__Transition__Group__11104 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__Transition__Group__2_in_rule__Transition__Group__11107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__Transition__Group__1__Impl1135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__Group__2__Impl_in_rule__Transition__Group__21166 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_rule__Transition__Group__3_in_rule__Transition__Group__21169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__TargetStateAssignment_2_in_rule__Transition__Group__2__Impl1196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__Group__3__Impl_in_rule__Transition__Group__31226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__Group_3__0_in_rule__Transition__Group__3__Impl1253 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__Group_3__0__Impl_in_rule__Transition__Group_3__01292 = new BitSet(new long[]{0x0000000000040020L});
-    public static final BitSet FOLLOW_rule__Transition__Group_3__1_in_rule__Transition__Group_3__01295 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__Transition__Group_3__0__Impl1323 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__Group_3__1__Impl_in_rule__Transition__Group_3__11354 = new BitSet(new long[]{0x0000000000040020L});
-    public static final BitSet FOLLOW_rule__Transition__Group_3__2_in_rule__Transition__Group_3__11357 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__EventAssignment_3_1_in_rule__Transition__Group_3__1__Impl1384 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Transition__Group_3__2__Impl_in_rule__Transition__Group_3__21415 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_rule__Transition__Group_3__2__Impl1443 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleState_in_rule__Statemachine__StatesAssignment_1_01485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTransition_in_rule__Statemachine__TransitionsAssignment_1_11516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__State__NameAssignment_11547 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommand_in_rule__State__ActionsAssignment_2_21578 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Transition__SourceStateAssignment_01613 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Transition__TargetStateAssignment_21652 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEvent_in_rule__Transition__EventAssignment_3_11687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Event__CodeAssignment1718 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Command__CodeAssignment1749 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__NameAssignment_2_in_rule__State__Group__2__Impl694 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__Group__3__Impl_in_rule__State__Group__3725 = new BitSet(new long[]{0x0000000000003020L});
+    public static final BitSet FOLLOW_rule__State__Group__4_in_rule__State__Group__3728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__Group_3__0_in_rule__State__Group__3__Impl755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__Group__4__Impl_in_rule__State__Group__4786 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rule__State__Group__4__Impl814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__Group_3__0__Impl_in_rule__State__Group_3__0855 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__State__Group_3__1_in_rule__State__Group_3__0858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__State__Group_3__0__Impl886 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__Group_3__1__Impl_in_rule__State__Group_3__1917 = new BitSet(new long[]{0x0000000000008020L});
+    public static final BitSet FOLLOW_rule__State__Group_3__2_in_rule__State__Group_3__1920 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__State__Group_3__1__Impl948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__Group_3__2__Impl_in_rule__State__Group_3__2979 = new BitSet(new long[]{0x0000000000008020L});
+    public static final BitSet FOLLOW_rule__State__Group_3__3_in_rule__State__Group_3__2982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__State__ActionsAssignment_3_2_in_rule__State__Group_3__2__Impl1009 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_rule__State__Group_3__3__Impl_in_rule__State__Group_3__31040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__State__Group_3__3__Impl1068 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__Group__0__Impl_in_rule__Transition__Group__01107 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_rule__Transition__Group__1_in_rule__Transition__Group__01110 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__SourceStateAssignment_0_in_rule__Transition__Group__0__Impl1137 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__Group__1__Impl_in_rule__Transition__Group__11167 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Transition__Group__2_in_rule__Transition__Group__11170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__Transition__Group__1__Impl1198 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__Group__2__Impl_in_rule__Transition__Group__21229 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_rule__Transition__Group__3_in_rule__Transition__Group__21232 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__TargetStateAssignment_2_in_rule__Transition__Group__2__Impl1259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__Group__3__Impl_in_rule__Transition__Group__31289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__Group_3__0_in_rule__Transition__Group__3__Impl1316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__Group_3__0__Impl_in_rule__Transition__Group_3__01355 = new BitSet(new long[]{0x0000000000040020L});
+    public static final BitSet FOLLOW_rule__Transition__Group_3__1_in_rule__Transition__Group_3__01358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__Transition__Group_3__0__Impl1386 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__Group_3__1__Impl_in_rule__Transition__Group_3__11417 = new BitSet(new long[]{0x0000000000040020L});
+    public static final BitSet FOLLOW_rule__Transition__Group_3__2_in_rule__Transition__Group_3__11420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__EventAssignment_3_1_in_rule__Transition__Group_3__1__Impl1447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Transition__Group_3__2__Impl_in_rule__Transition__Group_3__21478 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__Transition__Group_3__2__Impl1506 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleState_in_rule__Statemachine__StatesAssignment_1_01548 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTransition_in_rule__Statemachine__TransitionsAssignment_1_11579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__State__IdAssignment_11610 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__State__NameAssignment_21641 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommand_in_rule__State__ActionsAssignment_3_21672 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Transition__SourceStateAssignment_01707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Transition__TargetStateAssignment_21746 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEvent_in_rule__Transition__EventAssignment_3_11781 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Event__CodeAssignment1812 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Command__CodeAssignment1843 = new BitSet(new long[]{0x0000000000000002L});
 
 }

@@ -62,52 +62,60 @@ public class StatemachineGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "State");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cStateKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cActionsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Assignment cActionsAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final RuleCall cActionsCommandParserRuleCall_2_2_0 = (RuleCall)cActionsAssignment_2_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
-		private final Keyword cEndKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cIdAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cIdIDTerminalRuleCall_1_0 = (RuleCall)cIdAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cActionsKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cActionsAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cActionsCommandParserRuleCall_3_2_0 = (RuleCall)cActionsAssignment_3_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
+		private final Keyword cEndKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//State:
-		//	"state" name=ID ("actions" "{" actions+=Command* "}")? "end";
+		//	"state" id=ID name=STRING? ("actions" "{" actions+=Command* "}")? "end";
 		@Override public ParserRule getRule() { return rule; }
 
-		//"state" name=ID ("actions" "{" actions+=Command* "}")? "end"
+		//"state" id=ID name=STRING? ("actions" "{" actions+=Command* "}")? "end"
 		public Group getGroup() { return cGroup; }
 
 		//"state"
 		public Keyword getStateKeyword_0() { return cStateKeyword_0; }
 
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//id=ID
+		public Assignment getIdAssignment_1() { return cIdAssignment_1; }
 
 		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		public RuleCall getIdIDTerminalRuleCall_1_0() { return cIdIDTerminalRuleCall_1_0; }
+
+		//name=STRING?
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_2_0() { return cNameSTRINGTerminalRuleCall_2_0; }
 
 		//("actions" "{" actions+=Command* "}")?
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_3() { return cGroup_3; }
 
 		//"actions"
-		public Keyword getActionsKeyword_2_0() { return cActionsKeyword_2_0; }
+		public Keyword getActionsKeyword_3_0() { return cActionsKeyword_3_0; }
 
 		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2_1() { return cLeftCurlyBracketKeyword_2_1; }
+		public Keyword getLeftCurlyBracketKeyword_3_1() { return cLeftCurlyBracketKeyword_3_1; }
 
 		//actions+=Command*
-		public Assignment getActionsAssignment_2_2() { return cActionsAssignment_2_2; }
+		public Assignment getActionsAssignment_3_2() { return cActionsAssignment_3_2; }
 
 		//Command
-		public RuleCall getActionsCommandParserRuleCall_2_2_0() { return cActionsCommandParserRuleCall_2_2_0; }
+		public RuleCall getActionsCommandParserRuleCall_3_2_0() { return cActionsCommandParserRuleCall_3_2_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_2_3() { return cRightCurlyBracketKeyword_2_3; }
+		public Keyword getRightCurlyBracketKeyword_3_3() { return cRightCurlyBracketKeyword_3_3; }
 
 		//"end"
-		public Keyword getEndKeyword_3() { return cEndKeyword_3; }
+		public Keyword getEndKeyword_4() { return cEndKeyword_4; }
 	}
 
 	public class TransitionElements extends AbstractParserRuleElementFinder {
@@ -263,7 +271,7 @@ public class StatemachineGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//State:
-	//	"state" name=ID ("actions" "{" actions+=Command* "}")? "end";
+	//	"state" id=ID name=STRING? ("actions" "{" actions+=Command* "}")? "end";
 	public StateElements getStateAccess() {
 		return pState;
 	}

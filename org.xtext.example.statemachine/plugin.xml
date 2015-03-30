@@ -5,7 +5,7 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/xtext/example/fowlerdsl/Statemachine" 
+       uri = "http://xtext.org/example/Statemachine" 
        class = "org.xtext.example.statemachine.statemachine.StatemachinePackage"
        genModel = "model/generated/Statemachine.genmodel" /> 
 	

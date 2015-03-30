@@ -5,18 +5,19 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine;
+package org.xtext.example.statemachine
 
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import com.google.inject.Inject
+import org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider
+import org.eclipse.xtext.naming.IQualifiedNameConverter
+import org.xtext.example.statemachine.statemachine.State
 
-/**
- * Use this class to register components to be used at runtime / without the Equinox extension registry.
- */
-public class StatemachineRuntimeModule extends AbstractStatemachineRuntimeModule {
+class StatemachineQualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 	
-	@Override
-	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return StatemachineQualifiedNameProvider.class;
+	@Inject IQualifiedNameConverter converter
+	
+	def qualifiedName(State state) {
+		converter.toQualifiedName(state.id)
 	}
 	
 }

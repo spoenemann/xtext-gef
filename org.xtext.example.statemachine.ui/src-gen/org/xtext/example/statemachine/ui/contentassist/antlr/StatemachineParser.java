@@ -44,13 +44,14 @@ public class StatemachineParser extends AbstractPartialContentAssistParser {
 					put(grammarAccess.getStatemachineAccess().getAlternatives_1(), "rule__Statemachine__Alternatives_1");
 					put(grammarAccess.getStatemachineAccess().getGroup(), "rule__Statemachine__Group__0");
 					put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
-					put(grammarAccess.getStateAccess().getGroup_2(), "rule__State__Group_2__0");
+					put(grammarAccess.getStateAccess().getGroup_3(), "rule__State__Group_3__0");
 					put(grammarAccess.getTransitionAccess().getGroup(), "rule__Transition__Group__0");
 					put(grammarAccess.getTransitionAccess().getGroup_3(), "rule__Transition__Group_3__0");
 					put(grammarAccess.getStatemachineAccess().getStatesAssignment_1_0(), "rule__Statemachine__StatesAssignment_1_0");
 					put(grammarAccess.getStatemachineAccess().getTransitionsAssignment_1_1(), "rule__Statemachine__TransitionsAssignment_1_1");
-					put(grammarAccess.getStateAccess().getNameAssignment_1(), "rule__State__NameAssignment_1");
-					put(grammarAccess.getStateAccess().getActionsAssignment_2_2(), "rule__State__ActionsAssignment_2_2");
+					put(grammarAccess.getStateAccess().getIdAssignment_1(), "rule__State__IdAssignment_1");
+					put(grammarAccess.getStateAccess().getNameAssignment_2(), "rule__State__NameAssignment_2");
+					put(grammarAccess.getStateAccess().getActionsAssignment_3_2(), "rule__State__ActionsAssignment_3_2");
 					put(grammarAccess.getTransitionAccess().getSourceStateAssignment_0(), "rule__Transition__SourceStateAssignment_0");
 					put(grammarAccess.getTransitionAccess().getTargetStateAssignment_2(), "rule__Transition__TargetStateAssignment_2");
 					put(grammarAccess.getTransitionAccess().getEventAssignment_3_1(), "rule__Transition__EventAssignment_3_1");

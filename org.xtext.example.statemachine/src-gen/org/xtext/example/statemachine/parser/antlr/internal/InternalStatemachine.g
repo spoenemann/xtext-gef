@@ -151,9 +151,27 @@ ruleState returns [EObject current=null]
     }
 (
 (
-		lv_name_1_0=RULE_ID
+		lv_id_1_0=RULE_ID
 		{
-			newLeafNode(lv_name_1_0, grammarAccess.getStateAccess().getNameIDTerminalRuleCall_1_0()); 
+			newLeafNode(lv_id_1_0, grammarAccess.getStateAccess().getIdIDTerminalRuleCall_1_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getStateRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"id",
+        		lv_id_1_0, 
+        		"ID");
+	    }
+
+)
+)(
+(
+		lv_name_2_0=RULE_STRING
+		{
+			newLeafNode(lv_name_2_0, grammarAccess.getStateAccess().getNameSTRINGTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
@@ -162,44 +180,44 @@ ruleState returns [EObject current=null]
        		setWithLastConsumed(
        			$current, 
        			"name",
-        		lv_name_1_0, 
-        		"ID");
+        		lv_name_2_0, 
+        		"STRING");
 	    }
 
 )
-)(	otherlv_2='actions' 
+)?(	otherlv_3='actions' 
     {
-    	newLeafNode(otherlv_2, grammarAccess.getStateAccess().getActionsKeyword_2_0());
+    	newLeafNode(otherlv_3, grammarAccess.getStateAccess().getActionsKeyword_3_0());
     }
-	otherlv_3='{' 
+	otherlv_4='{' 
     {
-    	newLeafNode(otherlv_3, grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_2_1());
+    	newLeafNode(otherlv_4, grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_3_1());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getStateAccess().getActionsCommandParserRuleCall_2_2_0()); 
+	        newCompositeNode(grammarAccess.getStateAccess().getActionsCommandParserRuleCall_3_2_0()); 
 	    }
-		lv_actions_4_0=ruleCommand		{
+		lv_actions_5_0=ruleCommand		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getStateRule());
 	        }
        		add(
        			$current, 
        			"actions",
-        		lv_actions_4_0, 
+        		lv_actions_5_0, 
         		"Command");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)*	otherlv_5='}' 
+)*	otherlv_6='}' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getStateAccess().getRightCurlyBracketKeyword_2_3());
+    	newLeafNode(otherlv_6, grammarAccess.getStateAccess().getRightCurlyBracketKeyword_3_3());
     }
-)?	otherlv_6='end' 
+)?	otherlv_7='end' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getStateAccess().getEndKeyword_3());
+    	newLeafNode(otherlv_7, grammarAccess.getStateAccess().getEndKeyword_4());
     }
 )
 ;
