@@ -12,5 +12,15 @@
          </package>
       </constraintProvider>
    </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.xtext.example.statemachine.gmf.ui.TextPropertiesViewPart"
+            icon="icons/properties.gif"
+            id="org.xtext.example.statemachine.textProperties"
+            name="XProperties"
+            restorable="true">
+      </view>
+   </extension>
 
 </plugin>
