@@ -1,11 +1,11 @@
 package org.xtext.example.statemachine.gmf.ui;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.ArrayList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
@@ -18,16 +18,14 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
+import org.xtext.example.statemachine.StatemachineUtil;
 import org.xtext.example.statemachine.statemachine.State;
+import org.xtext.example.statemachine.statemachine.Statemachine;
 import org.xtext.example.statemachine.statemachine.diagram.edit.parts.StateEditPart;
 
 @SuppressWarnings("all")
@@ -35,7 +33,7 @@ public class EditedResourceProvider implements IEditedResourceProvider {
   public static class SelectionListener implements ISelectionListener {
     private State currentState;
     
-    private Collection<Procedure1<? super State>> stateChangeListeners;
+    private final ArrayList<Procedure1<? super State>> stateChangeListeners = new ArrayList<Procedure1<? super State>>();
     
     @Override
     public void selectionChanged(final IWorkbenchPart part, final ISelection selection) {
@@ -69,8 +67,9 @@ public class EditedResourceProvider implements IEditedResourceProvider {
   
   private final EditedResourceProvider.SelectionListener selectionListener = new EditedResourceProvider.SelectionListener();
   
-  public EditedResourceProvider(final Procedure1<? super State>... stateChangeListeners) {
-    this.selectionListener.stateChangeListeners = ((Collection<Procedure1<? super State>>)Conversions.doWrapArray(stateChangeListeners));
+  private XtextResource resource;
+  
+  public EditedResourceProvider() {
     IWorkbench _workbench = PlatformUI.getWorkbench();
     final IWorkbenchWindow workbenchWindow = _workbench.getActiveWorkbenchWindow();
     final ISelectionService selectionService = workbenchWindow.getSelectionService();
@@ -79,6 +78,10 @@ public class EditedResourceProvider implements IEditedResourceProvider {
     IWorkbenchPart _activePart = _activePage.getActivePart();
     ISelection _selection = selectionService.getSelection();
     this.selectionListener.selectionChanged(_activePart, _selection);
+  }
+  
+  public boolean addStateChangeListener(final Procedure1<? super State> listener) {
+    return this.selectionListener.stateChangeListeners.add(listener);
   }
   
   public void dispose() {
@@ -93,33 +96,24 @@ public class EditedResourceProvider implements IEditedResourceProvider {
     final XtextResourceSet resourceSet = new XtextResourceSet();
     final URI uri = URI.createURI("embeddedResource.statemachine");
     Resource _createResource = resourceSet.createResource(uri);
-    final XtextResource resource = ((XtextResource) _createResource);
-    return resource;
+    this.resource = ((XtextResource) _createResource);
+    return this.resource;
   }
   
-  public List<String> createTextParts() {
-    final State state = this.getSelectedState();
-    boolean _or = false;
-    if ((state == null)) {
-      _or = true;
-    } else {
-      EObject _eContainer = state.eContainer();
-      boolean _tripleEquals = (_eContainer == null);
-      _or = _tripleEquals;
-    }
-    if (_or) {
+  public EObject copy(final State state) {
+    EObject _eContainer = state.eContainer();
+    if ((!(_eContainer instanceof Statemachine))) {
       throw new IllegalStateException();
     }
-    final ICompositeNode stateNode = NodeModelUtils.findActualNodeFor(state);
+    final EcoreUtil.Copier copier = new EcoreUtil.Copier();
     EObject _eContainer_1 = state.eContainer();
-    ICompositeNode _node = NodeModelUtils.getNode(_eContainer_1);
-    final String model = _node.getText();
-    int _offset = stateNode.getOffset();
-    final String prefix = model.substring(0, _offset);
-    int _endOffset = stateNode.getEndOffset();
-    final String suffix = model.substring(_endOffset);
-    String _text = stateNode.getText();
-    return Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList(prefix, _text, suffix));
+    final EObject modelCopy = copier.copy(_eContainer_1);
+    copier.copyReferences();
+    final XtextResource dummyResource = new XtextResource();
+    EList<EObject> _contents = dummyResource.getContents();
+    _contents.add(modelCopy);
+    StatemachineUtil.ensureUniqueIds(dummyResource);
+    return copier.get(state);
   }
   
   public State getSelectedState() {

@@ -7,19 +7,16 @@
  *******************************************************************************/
 package org.xtext.example.statemachine.formatting2;
 
-import com.google.inject.Inject;
-import org.eclipse.xtext.formatting2.AbstractFormatter2;
-import org.eclipse.xtext.formatting2.IFormattableDocument;
-import org.xtext.example.statemachine.services.StatemachineGrammarAccess;
-import org.xtext.example.statemachine.statemachine.Command;
-import org.xtext.example.statemachine.statemachine.State;
-import org.xtext.example.statemachine.statemachine.Statemachine;
-import org.xtext.example.statemachine.statemachine.Transition;
+import org.eclipse.xtext.formatting2.AbstractFormatter2
+import org.eclipse.xtext.formatting2.IFormattableDocument
+import org.xtext.example.statemachine.statemachine.State
+import org.xtext.example.statemachine.statemachine.Statemachine
+import org.xtext.example.statemachine.statemachine.Transition
+
+import static org.xtext.example.statemachine.statemachine.StatemachinePackage.Literals.*
 
 class StatemachineFormatter extends AbstractFormatter2 {
 	
-	@Inject extension StatemachineGrammarAccess
-
 	def dispatch void format(Statemachine statemachine, extension IFormattableDocument document) {
 		for (State states : statemachine.getStates()) {
 			format(states, document)
@@ -30,14 +27,19 @@ class StatemachineFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(State state, extension IFormattableDocument document) {
-		state.append[newLines = 1]
-		for (Command actions : state.getActions()) {
-			format(actions, document)
-		}
+		state.append[setNewLines(1, 1, 2)]
+		state.regionForKeyword('state').append[oneSpace]
+		if (state.name.nullOrEmpty)
+			state.regionForFeature(STATE__ID).append[newLines = 1; indent]
+		else
+			state.regionForFeature(STATE__NAME).prepend[oneSpace].append[newLines = 1; indent]
+		state.regionsForKeywords('{').forEach[prepend[oneSpace].append[newLines = 1; indent]]
 	}
-
+	
 	def dispatch void format(Transition transition, extension IFormattableDocument document) {
-		transition.append[newLines = 1]
-		format(transition.getEvent(), document)
+		transition.append[setNewLines(1, 1, 2)]
+		transition.regionsForKeywords('=>', '(', ')').forEach[
+			prepend[oneSpace].append[oneSpace]
+		]
 	}
 }

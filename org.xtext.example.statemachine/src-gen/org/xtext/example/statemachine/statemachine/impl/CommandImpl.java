@@ -18,10 +18,10 @@ import org.xtext.example.statemachine.statemachine.StatemachinePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.CommandImpl#getCode <em>Code</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

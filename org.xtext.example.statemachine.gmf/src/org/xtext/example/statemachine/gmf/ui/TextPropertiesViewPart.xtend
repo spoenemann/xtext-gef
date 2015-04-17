@@ -7,33 +7,36 @@
  *******************************************************************************/
 package org.xtext.example.statemachine.gmf.ui
 
-import com.google.inject.Provider
-import org.eclipse.swt.SWT
+import com.google.inject.Inject
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
 import org.eclipse.xtext.ui.editor.XtextSourceViewer
-import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator
-import org.eclipse.swt.custom.StackLayout
 
 class TextPropertiesViewPart extends ViewPart {
 
-	val EditedResourceProvider resourceProvider = new EditedResourceProvider[refresh(it)]
+	@Inject EditedResourceProvider resourceProvider
 	
-	val Provider<EmbeddedEditorFactory.Builder> builderProvider = [
-		val injector = StatemachineActivator.instance.getInjector('org.xtext.example.statemachine.Statemachine')
-		injector.getInstance(EmbeddedEditorFactory.Builder)
-	]
-	
-	Composite parent
+	@Inject EmbeddedEditorFactory editorFactory
 	
 	XtextSourceViewer viewer
 	
+	EmbeddedEditorModelAccess modelAccess
+	
+	new() {
+		super()
+		val injector = StatemachineActivator.instance.getInjector('org.xtext.example.statemachine.Statemachine')
+		injector.injectMembers(this)
+		resourceProvider.addStateChangeListener[refresh(it)]
+	}
+	
 	override createPartControl(Composite parent) {
-		val container = new Composite(parent, SWT.NONE)
-		container.layout = new StackLayout
-		this.parent = container
+		val editor = editorFactory.newEditor(resourceProvider)
+				.showErrorAndWarningAnnotations()
+				.withParent(parent)
+		modelAccess = editor.createPartialEditor()
+		viewer = editor.viewer
 		refresh(resourceProvider.selectedState)
 	}
 	
@@ -43,27 +46,17 @@ class TextPropertiesViewPart extends ViewPart {
 	}
 	
 	def refresh(State state) {
-		if (viewer != null) {
-			viewer.control.dispose
-			viewer = null
-		}
-		if (state !== null) {
-			val textParts = resourceProvider.createTextParts
-			val editorFactory = new EmbeddedEditorFactory
-			editorFactory.builderProvider = builderProvider
-			val editor = editorFactory.newEditor(resourceProvider)
-					.showErrorAndWarningAnnotations()
-					.withParent(parent)
-			editor.createPartialEditor(textParts.get(0), textParts.get(1), textParts.get(2), true)
-			viewer = editor.viewer;
-			(parent.getLayout as StackLayout).topControl = editor.viewer.control
-			parent.layout()
+		if (state === null) {
+			modelAccess.updateModel('')
+		} else {
+			val stateCopy = resourceProvider.copy(state)
+			modelAccess.updateModel(stateCopy.eContainer, stateCopy)
+			viewer.setSelectedRange(0, 0)
 		}
 	}
 	
 	override setFocus() {
-		if (viewer != null)
-			viewer.control.setFocus
+		viewer.control.setFocus
 	}
 	
 }

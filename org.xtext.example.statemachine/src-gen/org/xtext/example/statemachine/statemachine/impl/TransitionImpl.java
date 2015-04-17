@@ -22,12 +22,12 @@ import org.xtext.example.statemachine.statemachine.Transition;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.TransitionImpl#getSourceState <em>Source State</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.TransitionImpl#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.TransitionImpl#getEvent <em>Event</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

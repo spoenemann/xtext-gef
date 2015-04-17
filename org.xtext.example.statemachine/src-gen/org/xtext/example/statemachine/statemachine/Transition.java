@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.statemachine.statemachine.Transition#getSourceState <em>Source State</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.Transition#getTargetState <em>Target State</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.Transition#getEvent <em>Event</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.xtext.example.statemachine.statemachine.StatemachinePackage#getTransition()
  * @model

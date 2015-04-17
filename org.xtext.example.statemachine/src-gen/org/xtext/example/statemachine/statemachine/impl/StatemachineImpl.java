@@ -27,11 +27,11 @@ import org.xtext.example.statemachine.statemachine.Transition;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StatemachineImpl#getStates <em>States</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StatemachineImpl#getTransitions <em>Transitions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

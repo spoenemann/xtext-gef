@@ -28,12 +28,12 @@ import org.xtext.example.statemachine.statemachine.StatemachinePackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getActions <em>Actions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

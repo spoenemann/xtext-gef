@@ -7,28 +7,25 @@
  */
 package org.xtext.example.statemachine.formatting2;
 
-import com.google.inject.Inject;
 import java.util.Arrays;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
+import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.xtext.example.statemachine.services.StatemachineGrammarAccess;
-import org.xtext.example.statemachine.statemachine.Command;
-import org.xtext.example.statemachine.statemachine.Event;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.Statemachine;
+import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 import org.xtext.example.statemachine.statemachine.Transition;
 
 @SuppressWarnings("all")
 public class StatemachineFormatter extends AbstractFormatter2 {
-  @Inject
-  @Extension
-  private StatemachineGrammarAccess _statemachineGrammarAccess;
-  
   protected void _format(final Statemachine statemachine, @Extension final IFormattableDocument document) {
     EList<State> _states = statemachine.getStates();
     for (final State states : _states) {
@@ -44,26 +41,101 @@ public class StatemachineFormatter extends AbstractFormatter2 {
     final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
-        it.setNewLines(1);
+        it.setNewLines(1, 1, 2);
       }
     };
     document.<State>append(state, _function);
-    EList<Command> _actions = state.getActions();
-    for (final Command actions : _actions) {
-      this.format(actions, document);
+    ISemanticRegion _regionForKeyword = this.regionAccess.regionForKeyword(state, "state");
+    final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
+      @Override
+      public void apply(final IHiddenRegionFormatter it) {
+        it.oneSpace();
+      }
+    };
+    document.append(_regionForKeyword, _function_1);
+    String _name = state.getName();
+    boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(_name);
+    if (_isNullOrEmpty) {
+      ISemanticRegion _regionForFeature = this.regionAccess.regionForFeature(state, StatemachinePackage.Literals.STATE__ID);
+      final Procedure1<IHiddenRegionFormatter> _function_2 = new Procedure1<IHiddenRegionFormatter>() {
+        @Override
+        public void apply(final IHiddenRegionFormatter it) {
+          it.setNewLines(1);
+          it.indent();
+        }
+      };
+      document.append(_regionForFeature, _function_2);
+    } else {
+      ISemanticRegion _regionForFeature_1 = this.regionAccess.regionForFeature(state, StatemachinePackage.Literals.STATE__NAME);
+      final Procedure1<IHiddenRegionFormatter> _function_3 = new Procedure1<IHiddenRegionFormatter>() {
+        @Override
+        public void apply(final IHiddenRegionFormatter it) {
+          it.oneSpace();
+        }
+      };
+      ISemanticRegion _prepend = document.prepend(_regionForFeature_1, _function_3);
+      final Procedure1<IHiddenRegionFormatter> _function_4 = new Procedure1<IHiddenRegionFormatter>() {
+        @Override
+        public void apply(final IHiddenRegionFormatter it) {
+          it.setNewLines(1);
+          it.indent();
+        }
+      };
+      document.append(_prepend, _function_4);
     }
+    List<ISemanticRegion> _regionsForKeywords = this.regionAccess.regionsForKeywords(state, "{");
+    final Procedure1<ISemanticRegion> _function_5 = new Procedure1<ISemanticRegion>() {
+      @Override
+      public void apply(final ISemanticRegion it) {
+        final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
+          @Override
+          public void apply(final IHiddenRegionFormatter it) {
+            it.oneSpace();
+          }
+        };
+        ISemanticRegion _prepend = document.prepend(it, _function);
+        final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
+          @Override
+          public void apply(final IHiddenRegionFormatter it) {
+            it.setNewLines(1);
+            it.indent();
+          }
+        };
+        document.append(_prepend, _function_1);
+      }
+    };
+    IterableExtensions.<ISemanticRegion>forEach(_regionsForKeywords, _function_5);
   }
   
   protected void _format(final Transition transition, @Extension final IFormattableDocument document) {
     final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
-        it.setNewLines(1);
+        it.setNewLines(1, 1, 2);
       }
     };
     document.<Transition>append(transition, _function);
-    Event _event = transition.getEvent();
-    this.format(_event, document);
+    List<ISemanticRegion> _regionsForKeywords = this.regionAccess.regionsForKeywords(transition, "=>", "(", ")");
+    final Procedure1<ISemanticRegion> _function_1 = new Procedure1<ISemanticRegion>() {
+      @Override
+      public void apply(final ISemanticRegion it) {
+        final Procedure1<IHiddenRegionFormatter> _function = new Procedure1<IHiddenRegionFormatter>() {
+          @Override
+          public void apply(final IHiddenRegionFormatter it) {
+            it.oneSpace();
+          }
+        };
+        ISemanticRegion _prepend = document.prepend(it, _function);
+        final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
+          @Override
+          public void apply(final IHiddenRegionFormatter it) {
+            it.oneSpace();
+          }
+        };
+        document.append(_prepend, _function_1);
+      }
+    };
+    IterableExtensions.<ISemanticRegion>forEach(_regionsForKeywords, _function_1);
   }
   
   public void format(final Object state, final IFormattableDocument document) {

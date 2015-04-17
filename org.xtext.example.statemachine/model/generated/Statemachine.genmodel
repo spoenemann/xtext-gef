@@ -4,7 +4,7 @@
     editorDirectory="/org.xtext.example.statemachine.editor/src" modelPluginID="org.xtext.example.statemachine"
     forceOverwrite="true" modelName="Statemachine" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="org.xtext.example.statemachine.edit"
-    editorPluginID="org.xtext.example.statemachine.editor" runtimeVersion="2.10">
+    editorPluginID="org.xtext.example.statemachine.editor" runtimeVersion="2.11">
   <genPackages prefix="Statemachine" basePackage="org.xtext.example.statemachine"
       disposableProviderFactory="true" fileExtensions="statemachine" ecorePackage="Statemachine.ecore#/">
     <genClasses ecoreClass="Statemachine.ecore#//Statemachine">

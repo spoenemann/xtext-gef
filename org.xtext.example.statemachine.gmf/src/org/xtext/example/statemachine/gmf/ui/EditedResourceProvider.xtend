@@ -1,7 +1,8 @@
 package org.xtext.example.statemachine.gmf.ui
 
-import java.util.Collection
+import java.util.ArrayList
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart
 import org.eclipse.jface.viewers.ISelection
 import org.eclipse.jface.viewers.IStructuredSelection
@@ -12,20 +13,26 @@ import org.eclipse.ui.PlatformUI
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider
+import org.xtext.example.statemachine.StatemachineUtil
 import org.xtext.example.statemachine.statemachine.State
+import org.xtext.example.statemachine.statemachine.Statemachine
 import org.xtext.example.statemachine.statemachine.diagram.edit.parts.StateEditPart
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils
 
 class EditedResourceProvider implements IEditedResourceProvider {
 	
 	val selectionListener = new SelectionListener
+
+	XtextResource resource
 	
-	new((State)=>void... stateChangeListeners) {
-		selectionListener.stateChangeListeners = stateChangeListeners
+	new() {
 		val workbenchWindow = PlatformUI.workbench.activeWorkbenchWindow
 		val selectionService = workbenchWindow.selectionService
 		selectionService.addSelectionListener(selectionListener)
 		selectionListener.selectionChanged(workbenchWindow.activePage.activePart, selectionService.selection)
+	}
+	
+	def addStateChangeListener((State)=>void listener) {
+		selectionListener.stateChangeListeners.add(listener)
 	}
 	
 	def dispose() {
@@ -35,21 +42,21 @@ class EditedResourceProvider implements IEditedResourceProvider {
 	
 	override createResource() {
 		val resourceSet = new XtextResourceSet
-		val uri = URI.createURI("embeddedResource.statemachine");
-		val resource = resourceSet.createResource(uri) as XtextResource
+		val uri = URI.createURI("embeddedResource.statemachine")
+		resource = resourceSet.createResource(uri) as XtextResource
 		return resource
 	}
 	
-	def createTextParts() {
-		val state = selectedState
-		if (state === null || state.eContainer === null) {
+	def copy(State state) {
+		if (!(state.eContainer instanceof Statemachine))
 			throw new IllegalStateException
-		}
-		val stateNode = NodeModelUtils.findActualNodeFor(state)
-		val model = NodeModelUtils.getNode(state.eContainer).text
-		val prefix = model.substring(0, stateNode.offset)
-		val suffix = model.substring(stateNode.endOffset)
-		return #[prefix, stateNode.text, suffix]
+		val copier = new Copier
+		val modelCopy = copier.copy(state.eContainer)
+		copier.copyReferences()
+		val dummyResource = new XtextResource
+		dummyResource.contents += modelCopy
+		StatemachineUtil.ensureUniqueIds(dummyResource)
+		return copier.get(state)
 	}
 	
 	def getSelectedState() {
@@ -59,7 +66,7 @@ class EditedResourceProvider implements IEditedResourceProvider {
 	static class SelectionListener implements ISelectionListener {
 		
 		State currentState
-		Collection<(State)=>void> stateChangeListeners
+		val stateChangeListeners = new ArrayList<(State)=>void>
 		
 		override selectionChanged(IWorkbenchPart part, ISelection selection) {
 			if (part instanceof IEditorPart) {
