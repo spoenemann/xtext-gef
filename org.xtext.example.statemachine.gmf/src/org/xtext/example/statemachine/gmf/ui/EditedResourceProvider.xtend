@@ -1,8 +1,15 @@
 package org.xtext.example.statemachine.gmf.ui
 
 import java.util.ArrayList
+import java.util.Collection
+import org.eclipse.emf.common.notify.Adapter
+import org.eclipse.emf.common.notify.Notification
+import org.eclipse.emf.common.notify.impl.AdapterImpl
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier
+import org.eclipse.emf.transaction.RecordingCommand
+import org.eclipse.emf.transaction.TransactionalEditingDomain
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart
 import org.eclipse.jface.viewers.ISelection
 import org.eclipse.jface.viewers.IStructuredSelection
@@ -14,9 +21,6 @@ import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider
 import org.xtext.example.statemachine.StatemachineUtil
-import org.xtext.example.statemachine.statemachine.State
-import org.xtext.example.statemachine.statemachine.Statemachine
-import org.xtext.example.statemachine.statemachine.diagram.edit.parts.StateEditPart
 
 class EditedResourceProvider implements IEditedResourceProvider {
 	
@@ -24,14 +28,15 @@ class EditedResourceProvider implements IEditedResourceProvider {
 
 	XtextResource resource
 	
-	new() {
+	new(Collection<Class<? extends EObject>> types) {
+		selectionListener.types = types
 		val workbenchWindow = PlatformUI.workbench.activeWorkbenchWindow
 		val selectionService = workbenchWindow.selectionService
 		selectionService.addSelectionListener(selectionListener)
 		selectionListener.selectionChanged(workbenchWindow.activePage.activePart, selectionService.selection)
 	}
 	
-	def addStateChangeListener((State)=>void listener) {
+	def addStateChangeListener((EObject, Notification, TransactionalEditingDomain)=>void listener) {
 		selectionListener.stateChangeListeners.add(listener)
 	}
 	
@@ -47,44 +52,96 @@ class EditedResourceProvider implements IEditedResourceProvider {
 		return resource
 	}
 	
-	def copy(State state) {
-		if (!(state.eContainer instanceof Statemachine))
+	def createSerializableCopy(EObject object) {
+		if (object.eContainer === null)
 			throw new IllegalStateException
 		val copier = new Copier
-		val modelCopy = copier.copy(state.eContainer)
+		val modelCopy = copier.copy(object.eContainer)
 		copier.copyReferences()
 		val dummyResource = new XtextResource
 		dummyResource.contents += modelCopy
 		StatemachineUtil.ensureUniqueIds(dummyResource)
-		return copier.get(state)
+		return copier.get(object)
 	}
 	
-	def getSelectedState() {
-		selectionListener.currentState
+	def <T extends EObject> mergeForward(T object, Notification notification) {
+		val uriFragment = object.eResource().getURIFragment(object)
+		val copy = resource.getEObject(uriFragment)
+		if (copy === null || copy.eContainer === null) {
+			return null
+		}
+		try {
+			StatemachineUtil.apply(notification, copy)
+			return copy as T
+		} catch (UnsupportedOperationException uoe) {
+			return null
+		}
+	}
+	
+	def <T extends EObject> mergeBack(T object, TransactionalEditingDomain editingDomain) {
+		val uriFragment = object.eResource().getURIFragment(object)
+		val copy = resource.getEObject(uriFragment)
+		if (copy === null || copy.eContainer === null) {
+			return null
+		}
+		editingDomain.commandStack.execute(new RecordingCommand(editingDomain, 'Text Changes') {
+			override protected doExecute() {
+				StatemachineUtil.copyFeatures(copy, object)
+			}
+		})
+		return copy as T
+	}
+	
+	def getSelectedObject() {
+		selectionListener.currentObject
+	}
+	
+	def getEditingDomain() {
+		selectionListener.editingDomain
 	}
 	
 	static class SelectionListener implements ISelectionListener {
 		
-		State currentState
-		val stateChangeListeners = new ArrayList<(State)=>void>
+		val stateChangeListeners = new ArrayList<(EObject, Notification, TransactionalEditingDomain)=>void>
+		Collection<Class<? extends EObject>> types
+		EObject currentObject
+		TransactionalEditingDomain editingDomain
+		Adapter adapter
 		
 		override selectionChanged(IWorkbenchPart part, ISelection selection) {
 			if (part instanceof IEditorPart) {
 				if (selection instanceof IStructuredSelection) {
 					val element = (selection as IStructuredSelection).firstElement
-					if (element instanceof StateEditPart) {
-						 handleState((element as IGraphicalEditPart).notationView.element as State)
-						 return
+					if (element instanceof IGraphicalEditPart) {
+						val object = element.notationView.element
+						if (types.exists[isInstance(object)]) {
+							handleSelection(object, element.editingDomain)
+							return
+						}
 					}
 				}
-				handleState(null)
+				editingDomain = null
+				handleSelection(null, null)
 			}
 		}
 		
-		private def handleState(State state) {
-			if (state !== currentState) {
-				currentState = state
-				stateChangeListeners.forEach[apply(state)]
+		private def handleSelection(EObject object, TransactionalEditingDomain editingDomain) {
+			if (object !== currentObject) {
+				if (currentObject != null) {
+					currentObject.eAdapters -= adapter
+				}
+				currentObject = object
+				stateChangeListeners.forEach[apply(object, null, editingDomain)]
+				if (object !== null) {
+					 adapter = new AdapterImpl {
+						override notifyChanged(Notification msg) {
+							if (msg.eventType != Notification.REMOVING_ADAPTER) {
+								stateChangeListeners.forEach[apply(object, msg, editingDomain)]
+							}
+						}
+					}
+					object.eAdapters += adapter
+				}
 			}
 		}
 		

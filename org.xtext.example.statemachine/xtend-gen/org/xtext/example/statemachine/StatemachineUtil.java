@@ -11,14 +11,19 @@ import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.util.HashSet;
 import java.util.Set;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.xtext.example.statemachine.statemachine.Command;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.Statemachine;
+import org.xtext.example.statemachine.statemachine.StatemachineFactory;
+import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 import org.xtext.example.statemachine.statemachine.Transition;
 
 @SuppressWarnings("all")
@@ -107,6 +112,81 @@ public final class StatemachineUtil {
         String _id_4 = state.getId();
         assignedIds.add(_id_4);
       }
+    }
+  }
+  
+  public static void copyFeatures(final EObject source, final EObject destination) {
+    EClass _eClass = source.eClass();
+    EClass _eClass_1 = destination.eClass();
+    boolean _notEquals = (!Objects.equal(_eClass, _eClass_1));
+    if (_notEquals) {
+      throw new IllegalArgumentException();
+    } else {
+      boolean _and = false;
+      if (!(source instanceof State)) {
+        _and = false;
+      } else {
+        _and = (destination instanceof State);
+      }
+      if (_and) {
+        StatemachineUtil.copyFeatures(((State) source), ((State) destination));
+      } else {
+        EClass _eClass_2 = destination.eClass();
+        String _name = _eClass_2.getName();
+        String _plus = (_name + " not supported");
+        throw new UnsupportedOperationException(_plus);
+      }
+    }
+  }
+  
+  private static void copyFeatures(final State source, final State destination) {
+    String _name = source.getName();
+    destination.setName(_name);
+    EList<Command> _actions = destination.getActions();
+    _actions.clear();
+    EList<Command> _actions_1 = source.getActions();
+    for (final Command sourceCommand : _actions_1) {
+      {
+        final Command newCommand = StatemachineFactory.eINSTANCE.createCommand();
+        String _code = sourceCommand.getCode();
+        newCommand.setCode(_code);
+        EList<Command> _actions_2 = destination.getActions();
+        _actions_2.add(newCommand);
+      }
+    }
+  }
+  
+  public static void apply(final Notification notification, final EObject destination) {
+    if ((destination instanceof State)) {
+      StatemachineUtil.apply(notification, ((State) destination));
+    } else {
+      EClass _eClass = destination.eClass();
+      String _name = _eClass.getName();
+      String _plus = ("Type " + _name);
+      String _plus_1 = (_plus + " not supported");
+      throw new UnsupportedOperationException(_plus_1);
+    }
+  }
+  
+  private static void apply(final Notification notification, final State destination) {
+    Object _feature = notification.getFeature();
+    boolean _matched = false;
+    if (!_matched) {
+      if (Objects.equal(_feature, StatemachinePackage.Literals.STATE__NAME)) {
+        _matched=true;
+        String _newStringValue = notification.getNewStringValue();
+        destination.setName(_newStringValue);
+      }
+    }
+    if (!_matched) {
+      Object _feature_1 = notification.getFeature();
+      String _string = null;
+      if (_feature_1!=null) {
+        _string=_feature_1.toString();
+      }
+      String _plus = ("Feature " + _string);
+      String _plus_1 = (_plus + " not supported");
+      throw new UnsupportedOperationException(_plus_1);
     }
   }
 }
