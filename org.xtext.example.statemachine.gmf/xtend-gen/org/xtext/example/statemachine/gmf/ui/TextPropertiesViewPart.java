@@ -13,10 +13,12 @@ import com.google.inject.Injector;
 import java.util.Collections;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.XtextSourceViewer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.InputOutput;
@@ -34,6 +36,9 @@ public class TextPropertiesViewPart extends ViewPart {
   
   @Inject
   private EmbeddedEditorFactory editorFactory;
+  
+  @Inject
+  private ISerializer serializer;
   
   private XtextSourceViewer viewer;
   
@@ -86,8 +91,11 @@ public class TextPropertiesViewPart extends ViewPart {
       final State mergeResult = this.resourceProvider.<State>mergeForward(state, notification);
       if ((mergeResult != null)) {
         final EObject stateCopy = this.resourceProvider.createSerializableCopy(mergeResult);
+        Resource _eResource = stateCopy.eResource();
+        final String uriFragment = _eResource.getURIFragment(stateCopy);
         EObject _eContainer = stateCopy.eContainer();
-        this.modelAccess.updateModel(_eContainer, stateCopy);
+        String _serialize = this.serializer.serialize(_eContainer);
+        this.modelAccess.updateModel(_serialize, uriFragment);
         String _editablePart = this.modelAccess.getEditablePart();
         this.initialContent = _editablePart;
         return;
@@ -111,8 +119,11 @@ public class TextPropertiesViewPart extends ViewPart {
       this.modelAccess.updateModel("");
     } else {
       final EObject stateCopy_1 = this.resourceProvider.createSerializableCopy(state);
+      Resource _eResource_1 = stateCopy_1.eResource();
+      final String uriFragment_1 = _eResource_1.getURIFragment(stateCopy_1);
       EObject _eContainer_1 = stateCopy_1.eContainer();
-      this.modelAccess.updateModel(_eContainer_1, stateCopy_1);
+      String _serialize_1 = this.serializer.serialize(_eContainer_1);
+      this.modelAccess.updateModel(_serialize_1, uriFragment_1);
       this.viewer.setSelectedRange(0, 0);
       String _editablePart_1 = this.modelAccess.getEditablePart();
       this.initialContent = _editablePart_1;

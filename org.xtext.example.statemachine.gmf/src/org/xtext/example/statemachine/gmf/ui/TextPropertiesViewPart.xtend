@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.transaction.TransactionalEditingDomain
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
+import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.XtextSourceViewer
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator
@@ -21,6 +22,8 @@ class TextPropertiesViewPart extends ViewPart {
 	val resourceProvider =  new EditedResourceProvider(#[State])
 	
 	@Inject EmbeddedEditorFactory editorFactory
+	
+	@Inject ISerializer serializer
 	
 	XtextSourceViewer viewer
 	EmbeddedEditorModelAccess modelAccess
@@ -59,7 +62,8 @@ class TextPropertiesViewPart extends ViewPart {
 			val mergeResult = resourceProvider.mergeForward(state, notification)
 			if (mergeResult !== null) {
 				val stateCopy = resourceProvider.createSerializableCopy(mergeResult)
-				modelAccess.updateModel(stateCopy.eContainer, stateCopy)
+				val uriFragment = stateCopy.eResource.getURIFragment(stateCopy)
+				modelAccess.updateModel(serializer.serialize(stateCopy.eContainer), uriFragment)
 				initialContent = modelAccess.editablePart
 				return
 			}
@@ -82,7 +86,8 @@ class TextPropertiesViewPart extends ViewPart {
 			modelAccess.updateModel('')
 		} else {
 			val stateCopy = resourceProvider.createSerializableCopy(state)
-			modelAccess.updateModel(stateCopy.eContainer, stateCopy)
+			val uriFragment = stateCopy.eResource.getURIFragment(stateCopy)
+			modelAccess.updateModel(serializer.serialize(stateCopy.eContainer), uriFragment)
 			viewer.setSelectedRange(0, 0)
 			initialContent = modelAccess.editablePart
 		}

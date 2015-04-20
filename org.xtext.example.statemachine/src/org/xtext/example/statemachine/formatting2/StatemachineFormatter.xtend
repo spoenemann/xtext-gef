@@ -28,12 +28,20 @@ class StatemachineFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(State state, extension IFormattableDocument document) {
 		state.append[setNewLines(1, 1, 2)]
-		state.regionForKeyword('state').append[oneSpace]
-		if (state.name.nullOrEmpty)
-			state.regionForFeature(STATE__ID).append[newLines = 1; indent]
-		else
-			state.regionForFeature(STATE__NAME).prepend[oneSpace].append[newLines = 1; indent]
-		state.regionsForKeywords('{').forEach[prepend[oneSpace].append[newLines = 1; indent]]
+		interior(
+			state.regionForKeyword('state').append[oneSpace],
+			state.regionForKeyword('end').prepend[newLine],
+			[indent]
+		)
+		if (!state.name.nullOrEmpty)
+			state.regionForFeature(STATE__NAME).prepend[oneSpace]
+		state.regionForKeyword('actions').prepend[newLine].append[oneSpace]
+		interior(
+			state.regionForKeyword('{').append[newLine],
+			state.regionForKeyword('}'),
+			[indent]
+		)
+		state.actions.forEach[append[newLine]]
 	}
 	
 	def dispatch void format(Transition transition, extension IFormattableDocument document) {
