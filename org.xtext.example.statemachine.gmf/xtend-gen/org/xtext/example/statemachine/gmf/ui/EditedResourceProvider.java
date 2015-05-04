@@ -11,7 +11,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -161,23 +160,6 @@ public class EditedResourceProvider implements IEditedResourceProvider {
     Resource _createResource = resourceSet.createResource(uri);
     this.resource = ((XtextResource) _createResource);
     return this.resource;
-  }
-  
-  public EObject createSerializableCopy(final EObject object) {
-    EObject _eContainer = object.eContainer();
-    boolean _tripleEquals = (_eContainer == null);
-    if (_tripleEquals) {
-      throw new IllegalStateException();
-    }
-    final EcoreUtil.Copier copier = new EcoreUtil.Copier();
-    EObject _eContainer_1 = object.eContainer();
-    final EObject modelCopy = copier.copy(_eContainer_1);
-    copier.copyReferences();
-    final XtextResource dummyResource = new XtextResource();
-    EList<EObject> _contents = dummyResource.getContents();
-    _contents.add(modelCopy);
-    StatemachineUtil.ensureUniqueIds(dummyResource);
-    return copier.get(object);
   }
   
   public <T extends EObject> T mergeForward(final T object, final Notification notification) {

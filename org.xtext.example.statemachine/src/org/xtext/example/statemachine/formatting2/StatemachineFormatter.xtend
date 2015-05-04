@@ -18,27 +18,31 @@ import static org.xtext.example.statemachine.statemachine.StatemachinePackage.Li
 class StatemachineFormatter extends AbstractFormatter2 {
 	
 	def dispatch void format(Statemachine statemachine, extension IFormattableDocument document) {
-		for (State states : statemachine.getStates()) {
-			format(states, document)
+		for (State state : statemachine.getStates()) {
+			state.format
 		}
-		for (Transition transitions : statemachine.getTransitions()) {
-			format(transitions, document)
+		for (Transition transition : statemachine.getTransitions()) {
+			transition.format
 		}
 	}
 
 	def dispatch void format(State state, extension IFormattableDocument document) {
 		state.append[setNewLines(1, 1, 2)]
 		interior(
-			state.regionForKeyword('state').append[oneSpace],
-			state.regionForKeyword('end').prepend[newLine],
+			state.regionFor.keyword('state').append[oneSpace],
+			state.regionFor.keyword('end'),
 			[indent]
 		)
-		if (!state.name.nullOrEmpty)
-			state.regionForFeature(STATE__NAME).prepend[oneSpace]
-		state.regionForKeyword('actions').prepend[newLine].append[oneSpace]
+		if (state.name === null) {
+			state.regionFor.feature(STATE__ID).append[newLine]
+		} else {
+			state.regionFor.feature(STATE__ID).append[oneSpace]
+			state.regionFor.feature(STATE__NAME).append[newLine]
+		}
+		state.regionFor.keyword('actions').append[oneSpace]
 		interior(
-			state.regionForKeyword('{').append[newLine],
-			state.regionForKeyword('}'),
+			state.regionFor.keyword('{').append[newLine],
+			state.regionFor.keyword('}').append[newLine],
 			[indent]
 		)
 		state.actions.forEach[append[newLine]]
@@ -46,7 +50,7 @@ class StatemachineFormatter extends AbstractFormatter2 {
 	
 	def dispatch void format(Transition transition, extension IFormattableDocument document) {
 		transition.append[setNewLines(1, 1, 2)]
-		transition.regionsForKeywords('=>', '(', ')').forEach[
+		transition.regionFor.keywords('=>', '(', ')').forEach[
 			prepend[oneSpace].append[oneSpace]
 		]
 	}

@@ -7,7 +7,6 @@ import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.common.notify.impl.AdapterImpl
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.emf.transaction.RecordingCommand
 import org.eclipse.emf.transaction.TransactionalEditingDomain
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart
@@ -50,18 +49,6 @@ class EditedResourceProvider implements IEditedResourceProvider {
 		val uri = URI.createURI("embeddedResource.statemachine")
 		resource = resourceSet.createResource(uri) as XtextResource
 		return resource
-	}
-	
-	def createSerializableCopy(EObject object) {
-		if (object.eContainer === null)
-			throw new IllegalStateException
-		val copier = new Copier
-		val modelCopy = copier.copy(object.eContainer)
-		copier.copyReferences()
-		val dummyResource = new XtextResource
-		dummyResource.contents += modelCopy
-		StatemachineUtil.ensureUniqueIds(dummyResource)
-		return copier.get(object)
 	}
 	
 	def <T extends EObject> mergeForward(T object, Notification notification) {
