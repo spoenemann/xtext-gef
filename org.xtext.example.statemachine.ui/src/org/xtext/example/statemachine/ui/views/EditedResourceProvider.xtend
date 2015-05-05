@@ -1,4 +1,11 @@
-package org.xtext.example.statemachine.gmf.ui
+/*******************************************************************************
+ * Copyright (c) 2015 itemis AG (http://www.itemis.eu) and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *******************************************************************************/
+package org.xtext.example.statemachine.ui.views
 
 import java.util.ArrayList
 import java.util.Collection
@@ -9,7 +16,6 @@ import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.transaction.RecordingCommand
 import org.eclipse.emf.transaction.TransactionalEditingDomain
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart
 import org.eclipse.jface.viewers.ISelection
 import org.eclipse.jface.viewers.IStructuredSelection
 import org.eclipse.ui.IEditorPart
@@ -21,6 +27,7 @@ import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider
 import org.xtext.example.statemachine.StatemachineUtil
+import org.xtext.example.statemachine.ui.FrameworkAdapters
 
 class EditedResourceProvider implements IEditedResourceProvider {
 	
@@ -107,10 +114,11 @@ class EditedResourceProvider implements IEditedResourceProvider {
 				currentEditor = part
 				if (selection instanceof IStructuredSelection) {
 					val element = (selection as IStructuredSelection).firstElement
-					if (element instanceof IGraphicalEditPart) {
-						val object = element.notationView.element
+					val adapter = FrameworkAdapters.getAdapter(element)
+					if (adapter !== null) {
+						val object = adapter.getModel(element)
 						if (types.exists[isInstance(object)]) {
-							handleSelection(object, element.editingDomain)
+							handleSelection(object, adapter.getEditingDomain(element))
 							return
 						}
 					}

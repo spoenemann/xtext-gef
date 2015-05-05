@@ -10,12 +10,14 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.ui.services.marker.MarkerNavigationService;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
@@ -41,6 +43,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.xtext.example.statemachine.statemachine.diagram.navigator.StatemachineNavigatorItem;
+import org.xtext.example.statemachine.ui.FrameworkAdapters;
 
 /**
  * @generated
@@ -59,10 +62,26 @@ public class StatemachineDiagramEditor extends DiagramDocumentEditor implements
 	public static final String CONTEXT_ID = "org.xtext.example.statemachine.statemachine.diagram.ui.diagramContext"; //$NON-NLS-1$
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public StatemachineDiagramEditor() {
 		super(true);
+		FrameworkAdapters.addAdapter(new FrameworkAdapters.IAdapter() {
+			@Override
+			public boolean appliesTo(Object element) {
+				return element instanceof IGraphicalEditPart;
+			}
+			
+			@Override
+			public EObject getModel(Object element) {
+				return ((IGraphicalEditPart) element).getNotationView().getElement();
+			}
+			
+			@Override
+			public TransactionalEditingDomain getEditingDomain(Object element) {
+				return ((IGraphicalEditPart) element).getEditingDomain();
+			}
+		});
 	}
 
 	/**

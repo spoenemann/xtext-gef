@@ -1,4 +1,11 @@
-package org.xtext.example.statemachine.gmf.ui;
+/**
+ * Copyright (c) 2015 itemis AG (http://www.itemis.eu) and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ */
+package org.xtext.example.statemachine.ui.views;
 
 import com.google.common.base.Objects;
 import java.util.ArrayList;
@@ -13,8 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
@@ -37,6 +42,7 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 import org.eclipse.xtext.xbase.lib.Pure;
 import org.xtext.example.statemachine.StatemachineUtil;
+import org.xtext.example.statemachine.ui.FrameworkAdapters;
 
 @SuppressWarnings("all")
 public class EditedResourceProvider implements IEditedResourceProvider {
@@ -59,9 +65,9 @@ public class EditedResourceProvider implements IEditedResourceProvider {
         this.currentEditor = ((IEditorPart)part);
         if ((selection instanceof IStructuredSelection)) {
           final Object element = ((IStructuredSelection) selection).getFirstElement();
-          if ((element instanceof IGraphicalEditPart)) {
-            View _notationView = ((IGraphicalEditPart)element).getNotationView();
-            final EObject object = _notationView.getElement();
+          final FrameworkAdapters.IAdapter adapter = FrameworkAdapters.getAdapter(element);
+          if ((adapter != null)) {
+            final EObject object = adapter.getModel(element);
             final Function1<Class<? extends EObject>, Boolean> _function = new Function1<Class<? extends EObject>, Boolean>() {
               @Override
               public Boolean apply(final Class<? extends EObject> it) {
@@ -70,7 +76,7 @@ public class EditedResourceProvider implements IEditedResourceProvider {
             };
             boolean _exists = IterableExtensions.<Class<? extends EObject>>exists(this.types, _function);
             if (_exists) {
-              TransactionalEditingDomain _editingDomain = ((IGraphicalEditPart)element).getEditingDomain();
+              TransactionalEditingDomain _editingDomain = adapter.getEditingDomain(element);
               this.handleSelection(object, _editingDomain);
               return;
             }

@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.xtext.example.statemachine.gmf.ui;
+package org.xtext.example.statemachine.ui.views;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
@@ -44,9 +44,9 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 import org.xtext.example.statemachine.StatemachineUtil;
-import org.xtext.example.statemachine.gmf.ui.EditedResourceProvider;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator;
+import org.xtext.example.statemachine.ui.views.EditedResourceProvider;
 
 @SuppressWarnings("all")
 public class TextPropertiesViewPart extends ViewPart {
@@ -141,24 +141,23 @@ public class TextPropertiesViewPart extends ViewPart {
         final String content = this.modelAccess.getEditablePart();
         boolean _notEquals = (!Objects.equal(content, this.initialContent));
         if (_notEquals) {
-          boolean _or = false;
-          if ((state == this.currentViewedState)) {
-            _or = true;
+          State mergeSource = null;
+          boolean _and = false;
+          if (!(state != this.currentViewedState)) {
+            _and = false;
           } else {
             XtextResource _resource = this.resourceProvider.getResource();
             IParseResult _parseResult = _resource.getParseResult();
             Iterable<INode> _syntaxErrors = _parseResult.getSyntaxErrors();
             boolean _isEmpty = IterableExtensions.isEmpty(_syntaxErrors);
-            boolean _not = (!_isEmpty);
-            _or = _not;
+            _and = _isEmpty;
           }
-          if (_or) {
+          if (_and) {
+            State _mergeBack = this.resourceProvider.<State>mergeBack(this.currentViewedState, this.editingDomain);
+            mergeSource = _mergeBack;
+          }
+          if ((mergeSource == null)) {
             this.handleDiscardedChanges();
-          } else {
-            final State mergeSource = this.resourceProvider.<State>mergeBack(this.currentViewedState, this.editingDomain);
-            if ((mergeSource == null)) {
-              this.handleDiscardedChanges();
-            }
           }
         }
       }
@@ -253,7 +252,7 @@ public class TextPropertiesViewPart extends ViewPart {
           @Override
           public void apply(final IActionBars it) {
             IStatusLineManager _statusLineManager = it.getStatusLineManager();
-            _statusLineManager.setErrorMessage("Warning: The previous text changes have been discarded.");
+            _statusLineManager.setErrorMessage("Warning: The previous text changes have been discarded due to syntax errors.");
           }
         };
         IterableExtensions.<IActionBars>forEach(actionBars, _function);

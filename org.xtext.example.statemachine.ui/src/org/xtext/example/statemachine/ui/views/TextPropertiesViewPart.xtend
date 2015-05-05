@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine.gmf.ui
+package org.xtext.example.statemachine.ui.views
 
 import com.google.inject.Inject
 import org.eclipse.emf.common.notify.Notification
@@ -86,13 +86,12 @@ class TextPropertiesViewPart extends ViewPart {
 			if (currentViewedState !== null) {
 				val content = modelAccess.editablePart
 				if (content != initialContent) {
-					if (state === currentViewedState || !resourceProvider.resource.parseResult.syntaxErrors.empty) {
-						handleDiscardedChanges()
-					} else {
-						val mergeSource = resourceProvider.mergeBack(currentViewedState, editingDomain)
-						if (mergeSource === null)
-							handleDiscardedChanges()
+					var State mergeSource
+					if (state !== currentViewedState && resourceProvider.resource.parseResult.syntaxErrors.empty) {
+						mergeSource = resourceProvider.mergeBack(currentViewedState, editingDomain)
 					}
+					if (mergeSource === null)
+						handleDiscardedChanges()
 				}
 			}
 			
@@ -141,7 +140,7 @@ class TextPropertiesViewPart extends ViewPart {
 		val actionBars = #[viewSite.actionBars, resourceProvider.editorPart.editorSite.actionBars]
 		display.asyncExec[
 			actionBars.forEach[
-				statusLineManager.errorMessage = 'Warning: The previous text changes have been discarded.'
+				statusLineManager.errorMessage = 'Warning: The previous text changes have been discarded due to syntax errors.'
 			]
 		]
 		clearStatusThread = new Thread[
