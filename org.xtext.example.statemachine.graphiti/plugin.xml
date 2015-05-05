@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension
+      point="org.eclipse.graphiti.ui.diagramTypes">
+    <diagramType
+      description="State Machine Diagram Type"
+      id="org.xtext.example.statemachine.graphiti.StatemachineDiagramType"
+      name="State Machine Diagram Type"
+      type="gr-smachine">
+    </diagramType>
+  </extension>
+
+  <extension
+      point="org.eclipse.graphiti.ui.diagramTypeProviders">
+    <diagramTypeProvider
+      class="org.xtext.example.statemachine.graphiti.StatemachineDiagramTypeProvider"
+      description="State Machine editor based on Graphiti"
+      id="org.xtext.example.statemachine.graphiti.StatemachineDiagramTypeProvider"
+      name="State Machine Editor">
+      <diagramType
+        id="org.xtext.example.statemachine.graphiti.StatemachineDiagramType">
+      </diagramType>
+    </diagramTypeProvider>
+  </extension>
+</plugin>

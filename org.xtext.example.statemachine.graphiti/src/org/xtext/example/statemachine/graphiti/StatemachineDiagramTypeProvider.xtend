@@ -5,18 +5,26 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine;
+package org.xtext.example.statemachine.graphiti
 
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider
 
-/**
- * Use this class to register components to be used at runtime / without the Equinox extension registry.
- */
-public class StatemachineRuntimeModule extends AbstractStatemachineRuntimeModule {
+class StatemachineDiagramTypeProvider extends AbstractDiagramTypeProvider {
 	
-	@Override
-	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return StatemachineQualifiedNameProvider.class;
+	new() {
+		featureProvider = new StatemachineFeatureProvider(this)
+	}
+	
+	override isAutoUpdateAtStartup() {
+		true
+	}
+	
+	override isAutoUpdateAtRuntime() {
+		true
+	}
+	
+	override isAutoUpdateAtReset() {
+		true
 	}
 	
 }
