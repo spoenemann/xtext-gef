@@ -18,6 +18,7 @@ import org.eclipse.graphiti.ui.internal.parts.IPictogramElementEditPart;
 import org.eclipse.graphiti.ui.platform.IConfigurationProvider;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.xtext.example.statemachine.graphiti.StatemachineFeatureProvider;
+import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.ui.FrameworkAdapters;
 
 @SuppressWarnings("all")
@@ -25,7 +26,14 @@ public class StatemachineDiagramTypeProvider extends AbstractDiagramTypeProvider
   public static class GraphitiFrameworkAdapter implements FrameworkAdapters.IAdapter {
     @Override
     public boolean appliesTo(final Object element) {
-      return (element instanceof IPictogramElementEditPart);
+      boolean _and = false;
+      if (!(element instanceof IPictogramElementEditPart)) {
+        _and = false;
+      } else {
+        EObject _model = this.getModel(element);
+        _and = (_model instanceof State);
+      }
+      return _and;
     }
     
     @Override

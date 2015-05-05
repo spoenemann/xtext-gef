@@ -42,6 +42,7 @@ import org.eclipse.ui.navigator.resources.ProjectExplorer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
+import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.diagram.navigator.StatemachineNavigatorItem;
 import org.xtext.example.statemachine.ui.FrameworkAdapters;
 
@@ -69,7 +70,7 @@ public class StatemachineDiagramEditor extends DiagramDocumentEditor implements
 		FrameworkAdapters.addAdapter(new FrameworkAdapters.IAdapter() {
 			@Override
 			public boolean appliesTo(Object element) {
-				return element instanceof IGraphicalEditPart;
+				return element instanceof IGraphicalEditPart && getModel(element) instanceof State;
 			}
 			
 			@Override

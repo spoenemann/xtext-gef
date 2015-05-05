@@ -9,13 +9,14 @@ package org.xtext.example.statemachine.graphiti
 
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider
 import org.eclipse.graphiti.ui.internal.parts.IPictogramElementEditPart
+import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.ui.FrameworkAdapters
 
 class StatemachineDiagramTypeProvider extends AbstractDiagramTypeProvider {
 	
 	static class GraphitiFrameworkAdapter implements FrameworkAdapters.IAdapter {
 		override appliesTo(Object element) {
-			element instanceof IPictogramElementEditPart
+			element instanceof IPictogramElementEditPart && element.model instanceof State
 		}
 		
 		override getModel(Object element) {

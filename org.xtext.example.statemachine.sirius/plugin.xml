@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.sirius.componentization">
+      <component
+            class="org.xtext.example.statemachine.sirius.StatemachineSiriusActivator"
+            id="org.xtext.example.statemachine.sirius"
+            name="statemachine">
+      </component>
+   </extension>
+   <extension
+         point="org.eclipse.sirius.externalJavaAction">
+      <javaActions
+            actionClass="org.xtext.example.statemachine.sirius.EnsureUniqueIdsAction"
+            id="org.xtext.example.statemachine.sirius.ensureUniqueIds">
+      </javaActions>
+   </extension>
+
+</plugin>

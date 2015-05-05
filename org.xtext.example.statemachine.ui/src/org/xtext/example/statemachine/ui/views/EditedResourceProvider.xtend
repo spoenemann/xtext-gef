@@ -8,7 +8,6 @@
 package org.xtext.example.statemachine.ui.views
 
 import java.util.ArrayList
-import java.util.Collection
 import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.common.notify.impl.AdapterImpl
@@ -36,8 +35,7 @@ class EditedResourceProvider implements IEditedResourceProvider {
 	@Accessors(PUBLIC_GETTER)
 	XtextResource resource
 	
-	new(Collection<Class<? extends EObject>> types) {
-		selectionListener.types = types
+	new() {
 		val workbenchWindow = PlatformUI.workbench.activeWorkbenchWindow
 		val selectionService = workbenchWindow.selectionService
 		selectionService.addSelectionListener(selectionListener)
@@ -103,7 +101,6 @@ class EditedResourceProvider implements IEditedResourceProvider {
 	static class SelectionListener implements ISelectionListener {
 		
 		val stateChangeListeners = new ArrayList<(EObject, Notification, TransactionalEditingDomain)=>void>
-		Collection<Class<? extends EObject>> types
 		EObject currentObject
 		IEditorPart currentEditor
 		TransactionalEditingDomain editingDomain
@@ -116,11 +113,8 @@ class EditedResourceProvider implements IEditedResourceProvider {
 					val element = (selection as IStructuredSelection).firstElement
 					val adapter = FrameworkAdapters.getAdapter(element)
 					if (adapter !== null) {
-						val object = adapter.getModel(element)
-						if (types.exists[isInstance(object)]) {
-							handleSelection(object, adapter.getEditingDomain(element))
-							return
-						}
+						handleSelection(adapter.getModel(element), adapter.getEditingDomain(element))
+						return
 					}
 				}
 				editingDomain = null

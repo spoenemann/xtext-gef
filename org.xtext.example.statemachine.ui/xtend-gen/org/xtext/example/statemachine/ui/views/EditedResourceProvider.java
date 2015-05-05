@@ -9,7 +9,6 @@ package org.xtext.example.statemachine.ui.views;
 
 import com.google.common.base.Objects;
 import java.util.ArrayList;
-import java.util.Collection;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -36,7 +35,6 @@ import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
@@ -48,8 +46,6 @@ import org.xtext.example.statemachine.ui.FrameworkAdapters;
 public class EditedResourceProvider implements IEditedResourceProvider {
   public static class SelectionListener implements ISelectionListener {
     private final ArrayList<Procedure3<? super EObject, ? super Notification, ? super TransactionalEditingDomain>> stateChangeListeners = new ArrayList<Procedure3<? super EObject, ? super Notification, ? super TransactionalEditingDomain>>();
-    
-    private Collection<Class<? extends EObject>> types;
     
     private EObject currentObject;
     
@@ -67,19 +63,10 @@ public class EditedResourceProvider implements IEditedResourceProvider {
           final Object element = ((IStructuredSelection) selection).getFirstElement();
           final FrameworkAdapters.IAdapter adapter = FrameworkAdapters.getAdapter(element);
           if ((adapter != null)) {
-            final EObject object = adapter.getModel(element);
-            final Function1<Class<? extends EObject>, Boolean> _function = new Function1<Class<? extends EObject>, Boolean>() {
-              @Override
-              public Boolean apply(final Class<? extends EObject> it) {
-                return Boolean.valueOf(it.isInstance(object));
-              }
-            };
-            boolean _exists = IterableExtensions.<Class<? extends EObject>>exists(this.types, _function);
-            if (_exists) {
-              TransactionalEditingDomain _editingDomain = adapter.getEditingDomain(element);
-              this.handleSelection(object, _editingDomain);
-              return;
-            }
+            EObject _model = adapter.getModel(element);
+            TransactionalEditingDomain _editingDomain = adapter.getEditingDomain(element);
+            this.handleSelection(_model, _editingDomain);
+            return;
           }
         }
         this.editingDomain = null;
@@ -143,8 +130,7 @@ public class EditedResourceProvider implements IEditedResourceProvider {
   @Accessors(AccessorType.PUBLIC_GETTER)
   private XtextResource resource;
   
-  public EditedResourceProvider(final Collection<Class<? extends EObject>> types) {
-    this.selectionListener.types = types;
+  public EditedResourceProvider() {
     IWorkbench _workbench = PlatformUI.getWorkbench();
     final IWorkbenchWindow workbenchWindow = _workbench.getActiveWorkbenchWindow();
     final ISelectionService selectionService = workbenchWindow.getSelectionService();

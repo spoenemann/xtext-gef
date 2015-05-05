@@ -44,13 +44,12 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 import org.xtext.example.statemachine.StatemachineUtil;
-import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator;
 import org.xtext.example.statemachine.ui.views.EditedResourceProvider;
 
 @SuppressWarnings("all")
 public class TextPropertiesViewPart extends ViewPart {
-  private final EditedResourceProvider resourceProvider = new EditedResourceProvider(Collections.<Class<? extends EObject>>unmodifiableList(CollectionLiterals.<Class<? extends EObject>>newArrayList(State.class)));
+  private final EditedResourceProvider resourceProvider = new EditedResourceProvider();
   
   @Inject
   private EmbeddedEditorFactory editorFactory;
@@ -62,7 +61,7 @@ public class TextPropertiesViewPart extends ViewPart {
   
   private EmbeddedEditorModelAccess modelAccess;
   
-  private State currentViewedState;
+  private EObject currentViewedObject;
   
   private TransactionalEditingDomain editingDomain;
   
@@ -82,7 +81,7 @@ public class TextPropertiesViewPart extends ViewPart {
     final Procedure3<EObject, Notification, TransactionalEditingDomain> _function = new Procedure3<EObject, Notification, TransactionalEditingDomain>() {
       @Override
       public void apply(final EObject object, final Notification notification, final TransactionalEditingDomain editingDomain) {
-        TextPropertiesViewPart.this.refresh(((State) object), notification);
+        TextPropertiesViewPart.this.refresh(object, notification);
         TextPropertiesViewPart.this.editingDomain = editingDomain;
       }
     };
@@ -107,7 +106,7 @@ public class TextPropertiesViewPart extends ViewPart {
     XtextSourceViewer _viewer = editor.getViewer();
     this.viewer = _viewer;
     EObject _selectedObject = this.resourceProvider.getSelectedObject();
-    this.refresh(((State) _selectedObject), null);
+    this.refresh(_selectedObject, null);
     TransactionalEditingDomain _editingDomain = this.resourceProvider.getEditingDomain();
     this.editingDomain = _editingDomain;
   }
@@ -118,14 +117,14 @@ public class TextPropertiesViewPart extends ViewPart {
     super.dispose();
   }
   
-  protected void refresh(final State state, final Notification notification) {
+  protected void refresh(final EObject object, final Notification notification) {
     if (this.mergingBack) {
       return;
     }
     this.refreshing = true;
     try {
-      if (((state == this.currentViewedState) && (notification != null))) {
-        final State mergeResult = this.resourceProvider.<State>mergeForward(state, notification);
+      if (((object == this.currentViewedObject) && (notification != null))) {
+        final EObject mergeResult = this.resourceProvider.<EObject>mergeForward(object, notification);
         if ((mergeResult != null)) {
           Resource _eResource = mergeResult.eResource();
           final String uriFragment = _eResource.getURIFragment(mergeResult);
@@ -137,13 +136,13 @@ public class TextPropertiesViewPart extends ViewPart {
           return;
         }
       }
-      if ((this.currentViewedState != null)) {
+      if ((this.currentViewedObject != null)) {
         final String content = this.modelAccess.getEditablePart();
         boolean _notEquals = (!Objects.equal(content, this.initialContent));
         if (_notEquals) {
-          State mergeSource = null;
+          EObject mergeSource = null;
           boolean _and = false;
-          if (!(state != this.currentViewedState)) {
+          if (!(object != this.currentViewedObject)) {
             _and = false;
           } else {
             XtextResource _resource = this.resourceProvider.getResource();
@@ -153,7 +152,7 @@ public class TextPropertiesViewPart extends ViewPart {
             _and = _isEmpty;
           }
           if (_and) {
-            State _mergeBack = this.resourceProvider.<State>mergeBack(this.currentViewedState, this.editingDomain);
+            EObject _mergeBack = this.resourceProvider.<EObject>mergeBack(this.currentViewedObject, this.editingDomain);
             mergeSource = _mergeBack;
           }
           if ((mergeSource == null)) {
@@ -161,10 +160,10 @@ public class TextPropertiesViewPart extends ViewPart {
           }
         }
       }
-      if ((state == null)) {
+      if ((object == null)) {
         this.modelAccess.updateModel("");
       } else {
-        final EObject stateCopy = this.createSerializableCopy(state);
+        final EObject stateCopy = this.createSerializableCopy(object);
         Resource _eResource_1 = stateCopy.eResource();
         final String uriFragment_1 = _eResource_1.getURIFragment(stateCopy);
         EObject _eContainer_1 = stateCopy.eContainer();
@@ -174,7 +173,7 @@ public class TextPropertiesViewPart extends ViewPart {
         String _editablePart_1 = this.modelAccess.getEditablePart();
         this.initialContent = _editablePart_1;
       }
-      this.currentViewedState = state;
+      this.currentViewedObject = object;
     } finally {
       this.refreshing = false;
     }
@@ -197,10 +196,10 @@ public class TextPropertiesViewPart extends ViewPart {
     return copier.get(object);
   }
   
-  protected State documentChanged(final XtextResource resource) {
-    State _xifexpression = null;
+  protected EObject documentChanged(final XtextResource resource) {
+    EObject _xifexpression = null;
     boolean _and = false;
-    if (!((!this.refreshing) && (this.currentViewedState != null))) {
+    if (!((!this.refreshing) && (this.currentViewedObject != null))) {
       _and = false;
     } else {
       IParseResult _parseResult = resource.getParseResult();
@@ -209,12 +208,12 @@ public class TextPropertiesViewPart extends ViewPart {
       _and = _isEmpty;
     }
     if (_and) {
-      State _xblockexpression = null;
+      EObject _xblockexpression = null;
       {
         this.mergingBack = true;
-        State _xtrycatchfinallyexpression = null;
+        EObject _xtrycatchfinallyexpression = null;
         try {
-          _xtrycatchfinallyexpression = this.resourceProvider.<State>mergeBack(this.currentViewedState, this.editingDomain);
+          _xtrycatchfinallyexpression = this.resourceProvider.<EObject>mergeBack(this.currentViewedObject, this.editingDomain);
         } finally {
           this.mergingBack = false;
         }

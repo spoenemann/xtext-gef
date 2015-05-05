@@ -20,12 +20,11 @@ import org.eclipse.xtext.ui.editor.XtextSourceViewer
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess
 import org.xtext.example.statemachine.StatemachineUtil
-import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator
 
 class TextPropertiesViewPart extends ViewPart {
 
-	val resourceProvider =  new EditedResourceProvider(#[State])
+	val resourceProvider =  new EditedResourceProvider()
 	
 	@Inject EmbeddedEditorFactory editorFactory
 	
@@ -34,7 +33,7 @@ class TextPropertiesViewPart extends ViewPart {
 	XtextSourceViewer viewer
 	EmbeddedEditorModelAccess modelAccess
 	
-	State currentViewedState
+	EObject currentViewedObject
 	TransactionalEditingDomain editingDomain
 	String initialContent
 	boolean refreshing
@@ -46,7 +45,7 @@ class TextPropertiesViewPart extends ViewPart {
 		val injector = StatemachineActivator.instance.getInjector('org.xtext.example.statemachine.Statemachine')
 		injector.injectMembers(this)
 		resourceProvider.addStateChangeListener[object, notification, editingDomain |
-			refresh(object as State, notification)
+			refresh(object, notification)
 			this.editingDomain = editingDomain
 		]
 	}
@@ -58,7 +57,7 @@ class TextPropertiesViewPart extends ViewPart {
 		modelAccess = editor.createPartialEditor()
 		editor.document.addModelListener[documentChanged]
 		viewer = editor.viewer
-		refresh(resourceProvider.selectedObject as State, null)
+		refresh(resourceProvider.selectedObject, null)
 		editingDomain = resourceProvider.editingDomain
 	}
 	
@@ -67,14 +66,14 @@ class TextPropertiesViewPart extends ViewPart {
 		super.dispose()
 	}
 	
-	protected def refresh(State state, Notification notification) {
+	protected def refresh(EObject object, Notification notification) {
 		if (mergingBack) {
 			return
 		}
 		refreshing = true
 		try {
-			if (state === currentViewedState && notification !== null) {
-				val mergeResult = resourceProvider.mergeForward(state, notification)
+			if (object === currentViewedObject && notification !== null) {
+				val mergeResult = resourceProvider.mergeForward(object, notification)
 				if (mergeResult !== null) {
 					val uriFragment = mergeResult.eResource.getURIFragment(mergeResult)
 					modelAccess.updateModel(serializer.serialize(mergeResult.eContainer), uriFragment)
@@ -83,28 +82,28 @@ class TextPropertiesViewPart extends ViewPart {
 				}
 			}
 			
-			if (currentViewedState !== null) {
+			if (currentViewedObject !== null) {
 				val content = modelAccess.editablePart
 				if (content != initialContent) {
-					var State mergeSource
-					if (state !== currentViewedState && resourceProvider.resource.parseResult.syntaxErrors.empty) {
-						mergeSource = resourceProvider.mergeBack(currentViewedState, editingDomain)
+					var EObject mergeSource
+					if (object !== currentViewedObject && resourceProvider.resource.parseResult.syntaxErrors.empty) {
+						mergeSource = resourceProvider.mergeBack(currentViewedObject, editingDomain)
 					}
 					if (mergeSource === null)
 						handleDiscardedChanges()
 				}
 			}
 			
-			if (state === null) {
+			if (object === null) {
 				modelAccess.updateModel('')
 			} else {
-				val stateCopy = createSerializableCopy(state)
+				val stateCopy = createSerializableCopy(object)
 				val uriFragment = stateCopy.eResource.getURIFragment(stateCopy)
 				modelAccess.updateModel(serializer.serialize(stateCopy.eContainer), uriFragment)
 				viewer.setSelectedRange(0, 0)
 				initialContent = modelAccess.editablePart
 			}
-			currentViewedState = state
+			currentViewedObject = object
 		} finally {
 			refreshing = false
 		}
@@ -123,10 +122,10 @@ class TextPropertiesViewPart extends ViewPart {
 	}
 	
 	protected def documentChanged(XtextResource resource) {
-		if (!refreshing && currentViewedState !== null && resource.parseResult.syntaxErrors.empty) {
+		if (!refreshing && currentViewedObject !== null && resource.parseResult.syntaxErrors.empty) {
 			mergingBack = true
 			try {
-				resourceProvider.mergeBack(currentViewedState, editingDomain)
+				resourceProvider.mergeBack(currentViewedObject, editingDomain)
 			} finally {
 				mergingBack = false
 			}
