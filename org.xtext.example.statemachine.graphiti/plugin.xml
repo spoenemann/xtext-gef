@@ -7,7 +7,7 @@
       description="State Machine Diagram Type"
       id="org.xtext.example.statemachine.graphiti.StatemachineDiagramType"
       name="State Machine Diagram Type"
-      type="gr-smachine">
+      type="statemachine">
     </diagramType>
   </extension>
 
@@ -22,5 +22,13 @@
         id="org.xtext.example.statemachine.graphiti.StatemachineDiagramType">
       </diagramType>
     </diagramTypeProvider>
+  </extension>
+  <extension
+        point="org.eclipse.ui.newWizards">
+     <wizard
+           class="org.xtext.example.statemachine.graphiti.NewStatemachineWizard"
+           id="org.xtext.example.statemachine.graphiti.newStatemachine"
+           name="State Machine">
+     </wizard>
   </extension>
 </plugin>

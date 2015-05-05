@@ -11,6 +11,7 @@ import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.ICreateContext
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature
 import org.eclipse.graphiti.mm.pictograms.Diagram
+import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.statemachine.Statemachine
 import org.xtext.example.statemachine.statemachine.StatemachineFactory
 
@@ -29,10 +30,25 @@ class CreateStateFeature extends AbstractCreateFeature {
 		val statemachine = context.targetContainer.businessObjectForPictogramElement as Statemachine
 		val newState = StatemachineFactory.eINSTANCE.createState()
 		newState.name = ''
+		newState.id = createUniqueStateId(statemachine)
 		statemachine.states += newState
 		addGraphicalRepresentation(context, newState)
 		featureProvider.directEditingInfo.active = true
 		return #[newState]
+	}
+	
+	protected def createUniqueStateId(Statemachine statemachine) {
+		var lastNr = 0
+		for (State state : statemachine.states) {
+			if (state.id.startsWith('_state')) {
+				try {
+					val nr = Integer.parseInt(state.id.substring(6))
+					if (nr > lastNr)
+						lastNr = nr
+				} catch (NumberFormatException nfe) {}
+			}
+		}
+		return '_state' + (lastNr + 1)
 	}
 	
 }

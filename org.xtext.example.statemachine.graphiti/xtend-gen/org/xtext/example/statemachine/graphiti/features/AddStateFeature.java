@@ -62,7 +62,7 @@ public class AddStateFeature extends AbstractAddShapeFeature {
     int _width = context.getWidth();
     boolean _lessEqualsThan = (_width <= 0);
     if (_lessEqualsThan) {
-      _xifexpression = 80;
+      _xifexpression = 50;
     } else {
       int _width_1 = context.getWidth();
       _xifexpression = Math.max(_width_1, 20);
@@ -72,7 +72,7 @@ public class AddStateFeature extends AbstractAddShapeFeature {
     int _height = context.getHeight();
     boolean _lessEqualsThan_1 = (_height <= 0);
     if (_lessEqualsThan_1) {
-      _xifexpression_1 = 80;
+      _xifexpression_1 = 50;
     } else {
       int _height_1 = context.getHeight();
       _xifexpression_1 = Math.max(_height_1, 20);
@@ -83,7 +83,7 @@ public class AddStateFeature extends AbstractAddShapeFeature {
     final Rectangle rectangle = this._iGaService.createRectangle(containerShape);
     Color _manageColor = this.manageColor(IColorConstant.BLACK);
     rectangle.setForeground(_manageColor);
-    Color _manageColor_1 = this.manageColor(IColorConstant.LIGHT_GRAY);
+    Color _manageColor_1 = this.manageColor(IColorConstant.LIGHT_LIGHT_GRAY);
     rectangle.setBackground(_manageColor_1);
     int _x = context.getX();
     int _y = context.getY();
@@ -96,8 +96,8 @@ public class AddStateFeature extends AbstractAddShapeFeature {
     text.setForeground(_manageColor_2);
     text.setHorizontalAlignment(Orientation.ALIGNMENT_CENTER);
     Diagram _diagram = this.getDiagram();
-    Font _manageDefaultFont = this._iGaService.manageDefaultFont(_diagram, false, true);
-    text.setFont(_manageDefaultFont);
+    Font _manageFont = this.manageFont(_diagram, "Arial", 12);
+    text.setFont(_manageFont);
     this._iGaService.setLocationAndSize(text, 0, 0, width, 20);
     this.link(textShape, addedState);
     IFeatureProvider _featureProvider = this.getFeatureProvider();

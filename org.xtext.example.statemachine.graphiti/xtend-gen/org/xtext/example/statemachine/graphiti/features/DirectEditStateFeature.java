@@ -11,8 +11,6 @@ import org.eclipse.graphiti.features.IFeatureProvider;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
 import org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature;
 import org.eclipse.graphiti.func.IDirectEditing;
-import org.eclipse.graphiti.mm.algorithms.GraphicsAlgorithm;
-import org.eclipse.graphiti.mm.algorithms.Text;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
 import org.eclipse.graphiti.mm.pictograms.Shape;
@@ -32,15 +30,8 @@ public class DirectEditStateFeature extends AbstractDirectEditingFeature {
   @Override
   public boolean canDirectEdit(final IDirectEditingContext context) {
     PictogramElement _pictogramElement = context.getPictogramElement();
-    final Object bo = this.getBusinessObjectForPictogramElement(_pictogramElement);
-    boolean _and = false;
-    if (!(bo instanceof State)) {
-      _and = false;
-    } else {
-      GraphicsAlgorithm _graphicsAlgorithm = context.getGraphicsAlgorithm();
-      _and = (_graphicsAlgorithm instanceof Text);
-    }
-    return _and;
+    Object _businessObjectForPictogramElement = this.getBusinessObjectForPictogramElement(_pictogramElement);
+    return (_businessObjectForPictogramElement instanceof State);
   }
   
   @Override
@@ -58,7 +49,13 @@ public class DirectEditStateFeature extends AbstractDirectEditingFeature {
     final State state = ((State) _businessObjectForPictogramElement);
     state.setName(value);
     PictogramElement _pictogramElement_1 = context.getPictogramElement();
-    ContainerShape _container = ((Shape) _pictogramElement_1).getContainer();
-    this.updatePictogramElement(_container);
+    if ((_pictogramElement_1 instanceof Shape)) {
+      PictogramElement _pictogramElement_2 = context.getPictogramElement();
+      ContainerShape _container = ((Shape) _pictogramElement_2).getContainer();
+      this.updatePictogramElement(_container);
+    } else {
+      PictogramElement _pictogramElement_3 = context.getPictogramElement();
+      this.updatePictogramElement(_pictogramElement_3);
+    }
   }
 }

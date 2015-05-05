@@ -14,6 +14,7 @@ import org.eclipse.graphiti.features.context.ICreateContext;
 import org.eclipse.graphiti.features.impl.AbstractCreateFeature;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.Diagram;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.Statemachine;
 import org.xtext.example.statemachine.statemachine.StatemachineFactory;
@@ -45,6 +46,8 @@ public class CreateStateFeature extends AbstractCreateFeature {
     final Statemachine statemachine = ((Statemachine) _businessObjectForPictogramElement);
     final State newState = StatemachineFactory.eINSTANCE.createState();
     newState.setName("");
+    String _createUniqueStateId = this.createUniqueStateId(statemachine);
+    newState.setId(_createUniqueStateId);
     EList<State> _states = statemachine.getStates();
     _states.add(newState);
     this.addGraphicalRepresentation(context, newState);
@@ -52,5 +55,31 @@ public class CreateStateFeature extends AbstractCreateFeature {
     IDirectEditingInfo _directEditingInfo = _featureProvider.getDirectEditingInfo();
     _directEditingInfo.setActive(true);
     return new Object[] { newState };
+  }
+  
+  protected String createUniqueStateId(final Statemachine statemachine) {
+    int lastNr = 0;
+    EList<State> _states = statemachine.getStates();
+    for (final State state : _states) {
+      String _id = state.getId();
+      boolean _startsWith = _id.startsWith("_state");
+      if (_startsWith) {
+        try {
+          String _id_1 = state.getId();
+          String _substring = _id_1.substring(6);
+          final int nr = Integer.parseInt(_substring);
+          if ((nr > lastNr)) {
+            lastNr = nr;
+          }
+        } catch (final Throwable _t) {
+          if (_t instanceof NumberFormatException) {
+            final NumberFormatException nfe = (NumberFormatException)_t;
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+      }
+    }
+    return ("_state" + Integer.valueOf((lastNr + 1)));
   }
 }

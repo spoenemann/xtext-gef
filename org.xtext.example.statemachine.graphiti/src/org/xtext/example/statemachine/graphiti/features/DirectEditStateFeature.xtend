@@ -10,7 +10,6 @@ package org.xtext.example.statemachine.graphiti.features
 import org.eclipse.graphiti.features.IFeatureProvider
 import org.eclipse.graphiti.features.context.IDirectEditingContext
 import org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature
-import org.eclipse.graphiti.mm.algorithms.Text
 import org.eclipse.graphiti.mm.pictograms.Shape
 import org.xtext.example.statemachine.statemachine.State
 
@@ -25,8 +24,7 @@ class DirectEditStateFeature extends AbstractDirectEditingFeature {
 	}
 	
 	override canDirectEdit(IDirectEditingContext context) {
-		val bo = context.pictogramElement.businessObjectForPictogramElement
-		return bo instanceof State && context.graphicsAlgorithm instanceof Text
+		context.pictogramElement.businessObjectForPictogramElement instanceof State
 	}
 	
 	override getInitialValue(IDirectEditingContext context) {
@@ -37,7 +35,10 @@ class DirectEditStateFeature extends AbstractDirectEditingFeature {
 	override setValue(String value, IDirectEditingContext context) {
 		val state = context.pictogramElement.businessObjectForPictogramElement as State
 		state.name = value
-		updatePictogramElement((context.pictogramElement as Shape).container)
+		if (context.pictogramElement instanceof Shape)
+			updatePictogramElement((context.pictogramElement as Shape).container)
+		else
+			updatePictogramElement(context.pictogramElement)
 	}
 	
 }
