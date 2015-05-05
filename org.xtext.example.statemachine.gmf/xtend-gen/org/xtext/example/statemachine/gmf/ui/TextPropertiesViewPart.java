@@ -11,17 +11,25 @@ import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import java.util.Collections;
-import org.eclipse.core.runtime.Status;
+import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.part.ViewPart;
-import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.XtextSourceViewer;
@@ -31,6 +39,9 @@ import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess;
 import org.eclipse.xtext.ui.editor.model.IXtextModelListener;
 import org.eclipse.xtext.ui.editor.model.XtextDocument;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 import org.xtext.example.statemachine.StatemachineUtil;
 import org.xtext.example.statemachine.gmf.ui.EditedResourceProvider;
@@ -60,6 +71,8 @@ public class TextPropertiesViewPart extends ViewPart {
   private boolean refreshing;
   
   private boolean mergingBack;
+  
+  private Thread clearStatusThread;
   
   public TextPropertiesViewPart() {
     super();
@@ -128,7 +141,18 @@ public class TextPropertiesViewPart extends ViewPart {
         final String content = this.modelAccess.getEditablePart();
         boolean _notEquals = (!Objects.equal(content, this.initialContent));
         if (_notEquals) {
+          boolean _or = false;
           if ((state == this.currentViewedState)) {
+            _or = true;
+          } else {
+            XtextResource _resource = this.resourceProvider.getResource();
+            IParseResult _parseResult = _resource.getParseResult();
+            Iterable<INode> _syntaxErrors = _parseResult.getSyntaxErrors();
+            boolean _isEmpty = IterableExtensions.isEmpty(_syntaxErrors);
+            boolean _not = (!_isEmpty);
+            _or = _not;
+          }
+          if (_or) {
             this.handleDiscardedChanges();
           } else {
             final State mergeSource = this.resourceProvider.<State>mergeBack(this.currentViewedState, this.editingDomain);
@@ -176,7 +200,16 @@ public class TextPropertiesViewPart extends ViewPart {
   
   protected State documentChanged(final XtextResource resource) {
     State _xifexpression = null;
-    if (((!this.refreshing) && (this.currentViewedState != null))) {
+    boolean _and = false;
+    if (!((!this.refreshing) && (this.currentViewedState != null))) {
+      _and = false;
+    } else {
+      IParseResult _parseResult = resource.getParseResult();
+      Iterable<INode> _syntaxErrors = _parseResult.getSyntaxErrors();
+      boolean _isEmpty = IterableExtensions.isEmpty(_syntaxErrors);
+      _and = _isEmpty;
+    }
+    if (_and) {
       State _xblockexpression = null;
       {
         this.mergingBack = true;
@@ -194,9 +227,70 @@ public class TextPropertiesViewPart extends ViewPart {
   }
   
   protected void handleDiscardedChanges() {
-    final Status status = new Status(Status.WARNING, "org.xtext.example.statemachine.gmf", "The previous text changes have been discarded.");
-    StatusManager _manager = StatusManager.getManager();
-    _manager.handle(status);
+    boolean _and = false;
+    if (!(this.clearStatusThread != null)) {
+      _and = false;
+    } else {
+      boolean _isAlive = this.clearStatusThread.isAlive();
+      _and = _isAlive;
+    }
+    if (_and) {
+      this.clearStatusThread.interrupt();
+    }
+    IViewSite _viewSite = this.getViewSite();
+    Shell _shell = _viewSite.getShell();
+    final Display display = _shell.getDisplay();
+    IViewSite _viewSite_1 = this.getViewSite();
+    IActionBars _actionBars = _viewSite_1.getActionBars();
+    IEditorPart _editorPart = this.resourceProvider.getEditorPart();
+    IEditorSite _editorSite = _editorPart.getEditorSite();
+    IActionBars _actionBars_1 = _editorSite.getActionBars();
+    final List<IActionBars> actionBars = Collections.<IActionBars>unmodifiableList(CollectionLiterals.<IActionBars>newArrayList(_actionBars, _actionBars_1));
+    final Runnable _function = new Runnable() {
+      @Override
+      public void run() {
+        final Procedure1<IActionBars> _function = new Procedure1<IActionBars>() {
+          @Override
+          public void apply(final IActionBars it) {
+            IStatusLineManager _statusLineManager = it.getStatusLineManager();
+            _statusLineManager.setErrorMessage("Warning: The previous text changes have been discarded.");
+          }
+        };
+        IterableExtensions.<IActionBars>forEach(actionBars, _function);
+      }
+    };
+    display.asyncExec(_function);
+    final Runnable _function_1 = new Runnable() {
+      @Override
+      public void run() {
+        try {
+          Thread.sleep(5000);
+          final Runnable _function = new Runnable() {
+            @Override
+            public void run() {
+              final Procedure1<IActionBars> _function = new Procedure1<IActionBars>() {
+                @Override
+                public void apply(final IActionBars it) {
+                  IStatusLineManager _statusLineManager = it.getStatusLineManager();
+                  _statusLineManager.setErrorMessage(null);
+                }
+              };
+              IterableExtensions.<IActionBars>forEach(actionBars, _function);
+            }
+          };
+          display.syncExec(_function);
+        } catch (final Throwable _t) {
+          if (_t instanceof InterruptedException) {
+            final InterruptedException exception = (InterruptedException)_t;
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+      }
+    };
+    Thread _thread = new Thread(_function_1);
+    this.clearStatusThread = _thread;
+    this.clearStatusThread.start();
   }
   
   @Override

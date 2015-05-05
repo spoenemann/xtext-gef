@@ -8,20 +8,17 @@
 package org.xtext.example.statemachine.gmf.ui
 
 import com.google.inject.Inject
-import org.eclipse.core.runtime.Status
 import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.emf.transaction.TransactionalEditingDomain
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
-import org.eclipse.ui.statushandlers.StatusManager
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.XtextSourceViewer
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess
-import org.eclipse.xtext.ui.editor.model.XtextDocument
 import org.xtext.example.statemachine.StatemachineUtil
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator
@@ -42,6 +39,7 @@ class TextPropertiesViewPart extends ViewPart {
 	String initialContent
 	boolean refreshing
 	boolean mergingBack
+	Thread clearStatusThread
 	
 	new() {
 		super()
@@ -88,7 +86,7 @@ class TextPropertiesViewPart extends ViewPart {
 			if (currentViewedState !== null) {
 				val content = modelAccess.editablePart
 				if (content != initialContent) {
-					if (state === currentViewedState) {
+					if (state === currentViewedState || !resourceProvider.resource.parseResult.syntaxErrors.empty) {
 						handleDiscardedChanges()
 					} else {
 						val mergeSource = resourceProvider.mergeBack(currentViewedState, editingDomain)
@@ -126,7 +124,7 @@ class TextPropertiesViewPart extends ViewPart {
 	}
 	
 	protected def documentChanged(XtextResource resource) {
-		if (!refreshing && currentViewedState !== null) {
+		if (!refreshing && currentViewedState !== null && resource.parseResult.syntaxErrors.empty) {
 			mergingBack = true
 			try {
 				resourceProvider.mergeBack(currentViewedState, editingDomain)
@@ -137,8 +135,26 @@ class TextPropertiesViewPart extends ViewPart {
 	}
 	
 	protected def handleDiscardedChanges() {
-		val status = new Status(Status.WARNING, 'org.xtext.example.statemachine.gmf', 'The previous text changes have been discarded.')
-		StatusManager.manager.handle(status)
+		if (clearStatusThread !== null && clearStatusThread.alive)
+			clearStatusThread.interrupt()
+		val display = viewSite.shell.display
+		val actionBars = #[viewSite.actionBars, resourceProvider.editorPart.editorSite.actionBars]
+		display.asyncExec[
+			actionBars.forEach[
+				statusLineManager.errorMessage = 'Warning: The previous text changes have been discarded.'
+			]
+		]
+		clearStatusThread = new Thread[
+			try {
+				Thread.sleep(5000)
+				display.syncExec[
+					actionBars.forEach[
+						statusLineManager.errorMessage = null
+					]
+				]
+			} catch (InterruptedException exception) {}
+		]
+		clearStatusThread.start
 	}
 	
 	override setFocus() {

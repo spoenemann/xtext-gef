@@ -26,7 +26,7 @@
   <extension
         point="org.eclipse.ui.newWizards">
      <wizard
-           class="org.xtext.example.statemachine.graphiti.NewStatemachineWizard"
+           class="org.xtext.example.statemachine.graphiti.ui.NewStatemachineWizard"
            id="org.xtext.example.statemachine.graphiti.newStatemachine"
            name="State Machine">
      </wizard>

@@ -25,6 +25,8 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.xtend.lib.annotations.AccessorType;
+import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider;
@@ -33,6 +35,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
+import org.eclipse.xtext.xbase.lib.Pure;
 import org.xtext.example.statemachine.StatemachineUtil;
 
 @SuppressWarnings("all")
@@ -44,6 +47,8 @@ public class EditedResourceProvider implements IEditedResourceProvider {
     
     private EObject currentObject;
     
+    private IEditorPart currentEditor;
+    
     private TransactionalEditingDomain editingDomain;
     
     private Adapter adapter;
@@ -51,6 +56,7 @@ public class EditedResourceProvider implements IEditedResourceProvider {
     @Override
     public void selectionChanged(final IWorkbenchPart part, final ISelection selection) {
       if ((part instanceof IEditorPart)) {
+        this.currentEditor = ((IEditorPart)part);
         if ((selection instanceof IStructuredSelection)) {
           final Object element = ((IStructuredSelection) selection).getFirstElement();
           if ((element instanceof IGraphicalEditPart)) {
@@ -128,6 +134,7 @@ public class EditedResourceProvider implements IEditedResourceProvider {
   
   private final EditedResourceProvider.SelectionListener selectionListener = new EditedResourceProvider.SelectionListener();
   
+  @Accessors(AccessorType.PUBLIC_GETTER)
   private XtextResource resource;
   
   public EditedResourceProvider(final Collection<Class<? extends EObject>> types) {
@@ -219,7 +226,16 @@ public class EditedResourceProvider implements IEditedResourceProvider {
     return this.selectionListener.currentObject;
   }
   
+  public IEditorPart getEditorPart() {
+    return this.selectionListener.currentEditor;
+  }
+  
   public TransactionalEditingDomain getEditingDomain() {
     return this.selectionListener.editingDomain;
+  }
+  
+  @Pure
+  public XtextResource getResource() {
+    return this.resource;
   }
 }

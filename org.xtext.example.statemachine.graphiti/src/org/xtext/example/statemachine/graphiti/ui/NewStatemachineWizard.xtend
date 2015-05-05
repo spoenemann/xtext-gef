@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine.graphiti
+package org.xtext.example.statemachine.graphiti.ui
 
 import org.eclipse.graphiti.ui.editor.DiagramEditor
 import org.xtext.example.statemachine.statemachine.StatemachineFactory

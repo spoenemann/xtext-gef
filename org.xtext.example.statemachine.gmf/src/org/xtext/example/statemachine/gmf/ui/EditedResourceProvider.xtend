@@ -16,6 +16,7 @@ import org.eclipse.ui.IEditorPart
 import org.eclipse.ui.ISelectionListener
 import org.eclipse.ui.IWorkbenchPart
 import org.eclipse.ui.PlatformUI
+import org.eclipse.xtend.lib.annotations.Accessors
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider
@@ -25,6 +26,7 @@ class EditedResourceProvider implements IEditedResourceProvider {
 	
 	val selectionListener = new SelectionListener
 
+	@Accessors(PUBLIC_GETTER)
 	XtextResource resource
 	
 	new(Collection<Class<? extends EObject>> types) {
@@ -83,6 +85,10 @@ class EditedResourceProvider implements IEditedResourceProvider {
 		selectionListener.currentObject
 	}
 	
+	def getEditorPart() {
+		selectionListener.currentEditor
+	}
+	
 	def getEditingDomain() {
 		selectionListener.editingDomain
 	}
@@ -92,11 +98,13 @@ class EditedResourceProvider implements IEditedResourceProvider {
 		val stateChangeListeners = new ArrayList<(EObject, Notification, TransactionalEditingDomain)=>void>
 		Collection<Class<? extends EObject>> types
 		EObject currentObject
+		IEditorPart currentEditor
 		TransactionalEditingDomain editingDomain
 		Adapter adapter
 		
 		override selectionChanged(IWorkbenchPart part, ISelection selection) {
 			if (part instanceof IEditorPart) {
+				currentEditor = part
 				if (selection instanceof IStructuredSelection) {
 					val element = (selection as IStructuredSelection).firstElement
 					if (element instanceof IGraphicalEditPart) {
