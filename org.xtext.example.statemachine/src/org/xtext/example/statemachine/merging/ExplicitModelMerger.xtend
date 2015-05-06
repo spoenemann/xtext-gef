@@ -14,16 +14,30 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.xtext.example.statemachine.statemachine.Command
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.statemachine.StatePropertyExpression
+import org.xtext.example.statemachine.statemachine.Statemachine
 
 import static org.xtext.example.statemachine.statemachine.StatemachinePackage.Literals.*
 
 class ExplicitModelMerger implements IModelMerger {
 	
+	override findMatchingObject(EObject model, EObject object) {
+		if (!(model instanceof Statemachine))
+			throw new UnsupportedOperationException('Model ' + model.eClass.name + ' not supported')
+		else if (object instanceof State)
+			findMatchingState(model as Statemachine, object)
+		else
+			throw new UnsupportedOperationException('Type ' + object.eClass.name + ' not supported')
+	}
+	
+	protected def findMatchingState(Statemachine statemachine, State state) {
+		statemachine.states.findFirst[id == state.id]
+	}
+	
 	override merge(EObject source, EObject destination) {
 		if (source.eClass != destination.eClass)
 			throw new IllegalArgumentException
 		else if (destination instanceof State)
-			merge(source as State, destination as State)
+			merge(source as State, destination)
 		else
 			throw new UnsupportedOperationException('Type ' + destination.eClass.name + ' not supported')
 	}
@@ -36,22 +50,22 @@ class ExplicitModelMerger implements IModelMerger {
 		for (sourceCommand : source.actions) {
 			val copier = new Copier
 			val newCommand = copier.copy(sourceCommand) as Command
+			link(sourceCommand, copier, destination.eContainer as Statemachine)
 			destination.actions += newCommand
-			link(sourceCommand, copier)
 		}
 	}
 	
-	protected def link(EObject object, Map<EObject, EObject> copyMap) {
+	protected def link(EObject object, Map<EObject, EObject> copyMap, Statemachine destinationModel) {
 		object.eAllContents.filter(StatePropertyExpression).filter[state !== null].forEach[ expression |
-			val uriFragment = object.eResource.getURIFragment(expression.state)
+			val stateId = expression.state.id
 			val newExpression = copyMap.get(expression) as StatePropertyExpression
-			newExpression.state = newExpression.eResource.getEObject(uriFragment) as State
+			newExpression.state = destinationModel.states.findFirst[id == stateId]
 		]
 	}
 	
 	override apply(Notification notification, EObject destination) {
 		if (destination instanceof State)
-			apply(notification, destination as State)
+			apply(notification, destination)
 		else
 			throw new UnsupportedOperationException('Type ' + destination.eClass.name + ' not supported')
 	}

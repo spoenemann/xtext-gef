@@ -8,9 +8,13 @@
 package org.xtext.example.statemachine.ui.views
 
 import com.google.inject.Inject
+import java.util.ArrayList
 import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.transaction.RecordingCommand
 import org.eclipse.emf.transaction.TransactionalEditingDomain
+import org.eclipse.swt.graphics.Font
+import org.eclipse.swt.graphics.Resource
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
 import org.eclipse.xtext.resource.XtextResource
@@ -18,16 +22,22 @@ import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.XtextSourceViewer
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess
+import org.xtext.example.statemachine.merging.IModelMerger
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator
 
 class TextPropertiesViewPart extends ViewPart {
 
 	@Inject EditedResourceProvider resourceProvider
 	
+	@Inject IModelMerger modelMerger
+	
 	@Inject EmbeddedEditorFactory editorFactory
 	
 	@Inject ISerializer serializer
 	
+	val swtResources = new ArrayList<Resource>
+	
+	EObjectSelectionListener selectionListener
 	XtextSourceViewer viewer
 	EmbeddedEditorModelAccess modelAccess
 	
@@ -42,10 +52,6 @@ class TextPropertiesViewPart extends ViewPart {
 		super()
 		val injector = StatemachineActivator.instance.getInjector('org.xtext.example.statemachine.Statemachine')
 		injector.injectMembers(this)
-		resourceProvider.addStateChangeListener[object, notification, editingDomain |
-			refresh(object, notification)
-			this.editingDomain = editingDomain
-		]
 	}
 	
 	override createPartControl(Composite parent) {
@@ -55,12 +61,27 @@ class TextPropertiesViewPart extends ViewPart {
 		modelAccess = editor.createPartialEditor()
 		editor.document.addModelListener[documentChanged]
 		viewer = editor.viewer
-		refresh(resourceProvider.selectedObject, null)
-		editingDomain = resourceProvider.editingDomain
+		viewer.textWidget.font = font
+
+		selectionListener = new EObjectSelectionListener
+		selectionListener.addStateChangeListener[object, notification, editingDomain |
+			refresh(object, notification)
+			this.editingDomain = editingDomain
+		]		
+		refresh(selectionListener.selectedObject, null)
+		editingDomain = selectionListener.editingDomain
+	}
+	
+	protected def getFont() {
+		val font = new Font(viewSite.shell.display, 'Courier', 14, 0)
+		swtResources += font
+		return font
 	}
 	
 	override dispose() {
-		resourceProvider.dispose
+		selectionListener?.dispose()
+		swtResources.forEach[dispose()]
+		swtResources.clear()
 		super.dispose()
 	}
 	
@@ -71,7 +92,7 @@ class TextPropertiesViewPart extends ViewPart {
 		refreshing = true
 		try {
 			if (object === currentViewedObject && notification !== null) {
-				val mergeResult = resourceProvider.mergeForward(object, notification)
+				val mergeResult = mergeForward(object, notification)
 				if (mergeResult !== null) {
 					val uriFragment = mergeResult.eResource.getURIFragment(mergeResult)
 					modelAccess.updateModel(serializer.serialize(mergeResult.eContainer), uriFragment)
@@ -85,7 +106,7 @@ class TextPropertiesViewPart extends ViewPart {
 				if (content != lastMergedContent) {
 					var EObject mergeSource
 					if (object !== currentViewedObject && resourceProvider.resource.parseResult.syntaxErrors.empty) {
-						mergeSource = resourceProvider.mergeBack(currentViewedObject, editingDomain)
+						mergeSource = mergeBack(currentViewedObject, editingDomain)
 					}
 					if (mergeSource === null)
 						handleDiscardedChanges()
@@ -111,19 +132,48 @@ class TextPropertiesViewPart extends ViewPart {
 		if (!refreshing && !mergingBack && currentViewedObject !== null && resource.parseResult.syntaxErrors.empty) {
 			mergingBack = true
 			try {
-				resourceProvider.mergeBack(currentViewedObject, editingDomain)
-				lastMergedContent = modelAccess.editablePart
+				val mergeSource = mergeBack(currentViewedObject, editingDomain)
+				if (mergeSource !== null)
+					lastMergedContent = modelAccess.editablePart
 			} finally {
 				mergingBack = false
 			}
 		}
 	}
 	
+	protected def <T extends EObject> mergeForward(T object, Notification notification) {
+		val modelCopy = resourceProvider.resource.parseResult.rootASTElement
+		val copy = modelMerger.findMatchingObject(modelCopy, object)
+		if (copy === null || copy.eContainer === null) {
+			return null
+		}
+		try {
+			modelMerger.apply(notification, copy)
+			return copy as T
+		} catch (UnsupportedOperationException uoe) {
+			return null
+		}
+	}
+	
+	protected def mergeBack(EObject object, TransactionalEditingDomain editingDomain) {
+		val modelCopy = resourceProvider.resource.parseResult.rootASTElement
+		val copy = modelMerger.findMatchingObject(modelCopy, object)
+		if (copy === null || copy.eContainer === null) {
+			return null
+		}
+		editingDomain.commandStack.execute(new RecordingCommand(editingDomain, 'Text Changes') {
+			override protected doExecute() {
+				modelMerger.merge(copy, object)
+			}
+		})
+		return copy
+	}
+	
 	protected def handleDiscardedChanges() {
 		if (clearStatusThread !== null && clearStatusThread.alive)
 			clearStatusThread.interrupt()
 		val display = viewSite.shell.display
-		val actionBars = #[viewSite.actionBars, resourceProvider.editorPart.editorSite.actionBars]
+		val actionBars = #[viewSite.actionBars, selectionListener.currentEditor.editorSite.actionBars]
 		display.asyncExec[
 			actionBars.forEach[
 				statusLineManager.errorMessage = 'Warning: The previous text changes have been discarded due to syntax errors.'

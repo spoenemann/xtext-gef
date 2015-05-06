@@ -15,6 +15,8 @@ import org.xtext.example.statemachine.merging.ExplicitModelMerger;
 @ImplementedBy(ExplicitModelMerger.class)
 @SuppressWarnings("all")
 public interface IModelMerger {
+  public abstract EObject findMatchingObject(final EObject model, final EObject object);
+  
   public abstract void merge(final EObject source, final EObject destination);
   
   public abstract void apply(final Notification notification, final EObject destination);

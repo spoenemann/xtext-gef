@@ -14,6 +14,8 @@ import org.eclipse.emf.ecore.EObject
 @ImplementedBy(ExplicitModelMerger)
 interface IModelMerger {
 	
+	def EObject findMatchingObject(EObject model, EObject object)
+	
 	def void merge(EObject source, EObject destination)
 	
 	def void apply(Notification notification, EObject destination)

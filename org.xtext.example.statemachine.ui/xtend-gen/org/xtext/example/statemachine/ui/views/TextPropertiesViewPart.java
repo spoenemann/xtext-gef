@@ -10,13 +10,18 @@ package org.xtext.example.statemachine.ui.views;
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IStatusLineManager;
+import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.graphics.Resource;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -41,7 +46,9 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
+import org.xtext.example.statemachine.merging.IModelMerger;
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator;
+import org.xtext.example.statemachine.ui.views.EObjectSelectionListener;
 import org.xtext.example.statemachine.ui.views.EditedResourceProvider;
 
 @SuppressWarnings("all")
@@ -50,10 +57,17 @@ public class TextPropertiesViewPart extends ViewPart {
   private EditedResourceProvider resourceProvider;
   
   @Inject
+  private IModelMerger modelMerger;
+  
+  @Inject
   private EmbeddedEditorFactory editorFactory;
   
   @Inject
   private ISerializer serializer;
+  
+  private final ArrayList<Resource> swtResources = new ArrayList<Resource>();
+  
+  private EObjectSelectionListener selectionListener;
   
   private XtextSourceViewer viewer;
   
@@ -76,14 +90,6 @@ public class TextPropertiesViewPart extends ViewPart {
     StatemachineActivator _instance = StatemachineActivator.getInstance();
     final Injector injector = _instance.getInjector("org.xtext.example.statemachine.Statemachine");
     injector.injectMembers(this);
-    final Procedure3<EObject, Notification, TransactionalEditingDomain> _function = new Procedure3<EObject, Notification, TransactionalEditingDomain>() {
-      @Override
-      public void apply(final EObject object, final Notification notification, final TransactionalEditingDomain editingDomain) {
-        TextPropertiesViewPart.this.refresh(object, notification);
-        TextPropertiesViewPart.this.editingDomain = editingDomain;
-      }
-    };
-    this.resourceProvider.addStateChangeListener(_function);
   }
   
   @Override
@@ -103,15 +109,47 @@ public class TextPropertiesViewPart extends ViewPart {
     _document.addModelListener(_function);
     XtextSourceViewer _viewer = editor.getViewer();
     this.viewer = _viewer;
-    EObject _selectedObject = this.resourceProvider.getSelectedObject();
+    StyledText _textWidget = this.viewer.getTextWidget();
+    Font _font = this.getFont();
+    _textWidget.setFont(_font);
+    EObjectSelectionListener _eObjectSelectionListener = new EObjectSelectionListener();
+    this.selectionListener = _eObjectSelectionListener;
+    final Procedure3<EObject, Notification, TransactionalEditingDomain> _function_1 = new Procedure3<EObject, Notification, TransactionalEditingDomain>() {
+      @Override
+      public void apply(final EObject object, final Notification notification, final TransactionalEditingDomain editingDomain) {
+        TextPropertiesViewPart.this.refresh(object, notification);
+        TextPropertiesViewPart.this.editingDomain = editingDomain;
+      }
+    };
+    this.selectionListener.addStateChangeListener(_function_1);
+    EObject _selectedObject = this.selectionListener.getSelectedObject();
     this.refresh(_selectedObject, null);
-    TransactionalEditingDomain _editingDomain = this.resourceProvider.getEditingDomain();
+    TransactionalEditingDomain _editingDomain = this.selectionListener.getEditingDomain();
     this.editingDomain = _editingDomain;
+  }
+  
+  protected Font getFont() {
+    IViewSite _viewSite = this.getViewSite();
+    Shell _shell = _viewSite.getShell();
+    Display _display = _shell.getDisplay();
+    final Font font = new Font(_display, "Courier", 14, 0);
+    this.swtResources.add(font);
+    return font;
   }
   
   @Override
   public void dispose() {
-    this.resourceProvider.dispose();
+    if (this.selectionListener!=null) {
+      this.selectionListener.dispose();
+    }
+    final Procedure1<Resource> _function = new Procedure1<Resource>() {
+      @Override
+      public void apply(final Resource it) {
+        it.dispose();
+      }
+    };
+    IterableExtensions.<Resource>forEach(this.swtResources, _function);
+    this.swtResources.clear();
     super.dispose();
   }
   
@@ -128,9 +166,9 @@ public class TextPropertiesViewPart extends ViewPart {
     this.refreshing = true;
     try {
       if (((object == this.currentViewedObject) && (notification != null))) {
-        final EObject mergeResult = this.resourceProvider.<EObject>mergeForward(object, notification);
+        final EObject mergeResult = this.<EObject>mergeForward(object, notification);
         if ((mergeResult != null)) {
-          Resource _eResource = mergeResult.eResource();
+          org.eclipse.emf.ecore.resource.Resource _eResource = mergeResult.eResource();
           final String uriFragment = _eResource.getURIFragment(mergeResult);
           EObject _eContainer = mergeResult.eContainer();
           String _serialize = this.serializer.serialize(_eContainer);
@@ -156,7 +194,7 @@ public class TextPropertiesViewPart extends ViewPart {
             _and = _isEmpty;
           }
           if (_and) {
-            EObject _mergeBack = this.resourceProvider.<EObject>mergeBack(this.currentViewedObject, this.editingDomain);
+            EObject _mergeBack = this.mergeBack(this.currentViewedObject, this.editingDomain);
             mergeSource = _mergeBack;
           }
           if ((mergeSource == null)) {
@@ -168,7 +206,7 @@ public class TextPropertiesViewPart extends ViewPart {
         this.lastMergedContent = "";
         this.modelAccess.updateModel(this.lastMergedContent);
       } else {
-        Resource _eResource_1 = object.eResource();
+        org.eclipse.emf.ecore.resource.Resource _eResource_1 = object.eResource();
         final String uriFragment_1 = _eResource_1.getURIFragment(object);
         EObject _eContainer_1 = object.eContainer();
         String _serialize_1 = this.serializer.serialize(_eContainer_1);
@@ -202,9 +240,13 @@ public class TextPropertiesViewPart extends ViewPart {
         try {
           String _xblockexpression_1 = null;
           {
-            this.resourceProvider.<EObject>mergeBack(this.currentViewedObject, this.editingDomain);
-            String _editablePart = this.modelAccess.getEditablePart();
-            _xblockexpression_1 = this.lastMergedContent = _editablePart;
+            final EObject mergeSource = this.mergeBack(this.currentViewedObject, this.editingDomain);
+            String _xifexpression_1 = null;
+            if ((mergeSource != null)) {
+              String _editablePart = this.modelAccess.getEditablePart();
+              _xifexpression_1 = this.lastMergedContent = _editablePart;
+            }
+            _xblockexpression_1 = _xifexpression_1;
           }
           _xtrycatchfinallyexpression = _xblockexpression_1;
         } finally {
@@ -215,6 +257,61 @@ public class TextPropertiesViewPart extends ViewPart {
       _xifexpression = _xblockexpression;
     }
     return _xifexpression;
+  }
+  
+  protected <T extends EObject> T mergeForward(final T object, final Notification notification) {
+    XtextResource _resource = this.resourceProvider.getResource();
+    IParseResult _parseResult = _resource.getParseResult();
+    final EObject modelCopy = _parseResult.getRootASTElement();
+    final EObject copy = this.modelMerger.findMatchingObject(modelCopy, object);
+    boolean _or = false;
+    if ((copy == null)) {
+      _or = true;
+    } else {
+      EObject _eContainer = copy.eContainer();
+      boolean _tripleEquals = (_eContainer == null);
+      _or = _tripleEquals;
+    }
+    if (_or) {
+      return null;
+    }
+    try {
+      this.modelMerger.apply(notification, copy);
+      return ((T) copy);
+    } catch (final Throwable _t) {
+      if (_t instanceof UnsupportedOperationException) {
+        final UnsupportedOperationException uoe = (UnsupportedOperationException)_t;
+        return null;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
+  
+  protected EObject mergeBack(final EObject object, final TransactionalEditingDomain editingDomain) {
+    XtextResource _resource = this.resourceProvider.getResource();
+    IParseResult _parseResult = _resource.getParseResult();
+    final EObject modelCopy = _parseResult.getRootASTElement();
+    final EObject copy = this.modelMerger.findMatchingObject(modelCopy, object);
+    boolean _or = false;
+    if ((copy == null)) {
+      _or = true;
+    } else {
+      EObject _eContainer = copy.eContainer();
+      boolean _tripleEquals = (_eContainer == null);
+      _or = _tripleEquals;
+    }
+    if (_or) {
+      return null;
+    }
+    CommandStack _commandStack = editingDomain.getCommandStack();
+    _commandStack.execute(new RecordingCommand(editingDomain, "Text Changes") {
+      @Override
+      protected void doExecute() {
+        TextPropertiesViewPart.this.modelMerger.merge(copy, object);
+      }
+    });
+    return copy;
   }
   
   protected void handleDiscardedChanges() {
@@ -233,8 +330,8 @@ public class TextPropertiesViewPart extends ViewPart {
     final Display display = _shell.getDisplay();
     IViewSite _viewSite_1 = this.getViewSite();
     IActionBars _actionBars = _viewSite_1.getActionBars();
-    IEditorPart _editorPart = this.resourceProvider.getEditorPart();
-    IEditorSite _editorSite = _editorPart.getEditorSite();
+    IEditorPart _currentEditor = this.selectionListener.getCurrentEditor();
+    IEditorSite _editorSite = _currentEditor.getEditorSite();
     IActionBars _actionBars_1 = _editorSite.getActionBars();
     final List<IActionBars> actionBars = Collections.<IActionBars>unmodifiableList(CollectionLiterals.<IActionBars>newArrayList(_actionBars, _actionBars_1));
     final Runnable _function = new Runnable() {
