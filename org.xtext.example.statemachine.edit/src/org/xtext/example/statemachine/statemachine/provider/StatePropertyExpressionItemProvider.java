@@ -8,13 +8,10 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.xtext.example.statemachine.statemachine.Property;
 import org.xtext.example.statemachine.statemachine.StatePropertyExpression;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 
@@ -115,8 +112,7 @@ public class StatePropertyExpressionItemProvider extends ExpressionItemProvider 
 	 */
 	@Override
 	public String getText(Object object) {
-		Property labelValue = ((StatePropertyExpression)object).getProperty();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((StatePropertyExpression)object).getProperty();
 		return label == null || label.length() == 0 ?
 			getString("_UI_StatePropertyExpression_type") :
 			getString("_UI_StatePropertyExpression_type") + " " + label;

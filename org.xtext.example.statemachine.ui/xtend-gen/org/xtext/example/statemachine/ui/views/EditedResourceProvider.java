@@ -8,6 +8,7 @@
 package org.xtext.example.statemachine.ui.views;
 
 import com.google.common.base.Objects;
+import com.google.inject.Inject;
 import java.util.ArrayList;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Adapter;
@@ -39,7 +40,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 import org.eclipse.xtext.xbase.lib.Pure;
-import org.xtext.example.statemachine.StatemachineUtil;
+import org.xtext.example.statemachine.merging.IModelMerger;
 import org.xtext.example.statemachine.ui.FrameworkAdapters;
 
 @SuppressWarnings("all")
@@ -125,6 +126,9 @@ public class EditedResourceProvider implements IEditedResourceProvider {
     }
   }
   
+  @Inject
+  private IModelMerger modelMerger;
+  
   private final EditedResourceProvider.SelectionListener selectionListener = new EditedResourceProvider.SelectionListener();
   
   @Accessors(AccessorType.PUBLIC_GETTER)
@@ -177,7 +181,7 @@ public class EditedResourceProvider implements IEditedResourceProvider {
       return null;
     }
     try {
-      StatemachineUtil.apply(notification, copy);
+      this.modelMerger.apply(notification, copy);
       return ((T) copy);
     } catch (final Throwable _t) {
       if (_t instanceof UnsupportedOperationException) {
@@ -208,7 +212,7 @@ public class EditedResourceProvider implements IEditedResourceProvider {
     _commandStack.execute(new RecordingCommand(editingDomain, "Text Changes") {
       @Override
       protected void doExecute() {
-        StatemachineUtil.copyFeatures(copy, object);
+        EditedResourceProvider.this.modelMerger.merge(copy, object);
       }
     });
     return ((T) copy);

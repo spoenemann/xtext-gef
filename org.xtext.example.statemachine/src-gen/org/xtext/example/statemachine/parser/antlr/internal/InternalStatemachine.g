@@ -28,7 +28,6 @@ import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
@@ -695,19 +694,19 @@ ruleStatePropertyExpression returns [EObject current=null]
     }
 (
 (
-		{ 
-	        newCompositeNode(grammarAccess.getStatePropertyExpressionAccess().getPropertyPropertyEnumRuleCall_2_0()); 
-	    }
-		lv_property_2_0=ruleProperty		{
+		lv_property_2_0=RULE_ID
+		{
+			newLeafNode(lv_property_2_0, grammarAccess.getStatePropertyExpressionAccess().getPropertyIDTerminalRuleCall_2_0()); 
+		}
+		{
 	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getStatePropertyExpressionRule());
+	            $current = createModelElement(grammarAccess.getStatePropertyExpressionRule());
 	        }
-       		set(
+       		setWithLastConsumed(
        			$current, 
        			"property",
         		lv_property_2_0, 
-        		"Property");
-	        afterParserOrEnumRuleCall();
+        		"ID");
 	    }
 
 )
@@ -715,25 +714,6 @@ ruleStatePropertyExpression returns [EObject current=null]
 ;
 
 
-
-
-
-// Rule Property
-ruleProperty returns [Enumerator current=null] 
-    @init { enterRule(); }
-    @after { leaveRule(); }:
-((	enumLiteral_0='name' 
-	{
-        $current = grammarAccess.getPropertyAccess().getNameEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_0, grammarAccess.getPropertyAccess().getNameEnumLiteralDeclaration_0()); 
-    }
-)
-    |(	enumLiteral_1='output' 
-	{
-        $current = grammarAccess.getPropertyAccess().getOutputEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        newLeafNode(enumLiteral_1, grammarAccess.getPropertyAccess().getOutputEnumLiteralDeclaration_1()); 
-    }
-));
 
 
 

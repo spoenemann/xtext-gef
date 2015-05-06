@@ -40,13 +40,10 @@ class StatemachineFormatter extends AbstractFormatter2 {
 			state.regionFor.keyword('end'),
 			[indent]
 		)
-		if (state.name === null) {
-			state.regionFor.feature(STATE__ID).append[newLine]
-		} else {
-			state.regionFor.feature(STATE__ID).append[oneSpace]
-			state.regionFor.feature(STATE__NAME).append[newLine]
+		if (state.name !== null) {
+			state.regionFor.feature(STATE__NAME).prepend[oneSpace]
 		}
-		state.regionFor.keyword('actions').append[oneSpace]
+		state.regionFor.keyword('actions').prepend[newLine].append[oneSpace]
 		interior(
 			state.regionFor.keyword('{').append[newLine],
 			state.regionFor.keyword('}').append[newLine],

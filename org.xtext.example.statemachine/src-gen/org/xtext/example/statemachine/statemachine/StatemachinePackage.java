@@ -4,7 +4,6 @@ package org.xtext.example.statemachine.statemachine;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -409,16 +408,6 @@ public interface StatemachinePackage extends EPackage
    */
   int STATE_PROPERTY_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
-  /**
-   * The meta object id for the '{@link org.xtext.example.statemachine.statemachine.Property <em>Property</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.xtext.example.statemachine.statemachine.Property
-   * @see org.xtext.example.statemachine.statemachine.impl.StatemachinePackageImpl#getProperty()
-   * @generated
-   */
-  int PROPERTY = 10;
-
 
   /**
    * Returns the meta object for class '{@link org.xtext.example.statemachine.statemachine.Statemachine <em>Statemachine</em>}'.
@@ -719,16 +708,6 @@ public interface StatemachinePackage extends EPackage
   EAttribute getStatePropertyExpression_Property();
 
   /**
-   * Returns the meta object for enum '{@link org.xtext.example.statemachine.statemachine.Property <em>Property</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Property</em>'.
-   * @see org.xtext.example.statemachine.statemachine.Property
-   * @generated
-   */
-  EEnum getProperty();
-
-  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -994,16 +973,6 @@ public interface StatemachinePackage extends EPackage
      * @generated
      */
     EAttribute STATE_PROPERTY_EXPRESSION__PROPERTY = eINSTANCE.getStatePropertyExpression_Property();
-
-    /**
-     * The meta object literal for the '{@link org.xtext.example.statemachine.statemachine.Property <em>Property</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.xtext.example.statemachine.statemachine.Property
-     * @see org.xtext.example.statemachine.statemachine.impl.StatemachinePackageImpl#getProperty()
-     * @generated
-     */
-    EEnum PROPERTY = eINSTANCE.getProperty();
 
   }
 

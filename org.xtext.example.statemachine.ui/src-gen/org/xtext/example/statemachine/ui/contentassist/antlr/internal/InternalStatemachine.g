@@ -341,25 +341,6 @@ finally {
 
 
 
-// Rule Property
-ruleProperty
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getPropertyAccess().getAlternatives()); }
-(rule__Property__Alternatives)
-{ after(grammarAccess.getPropertyAccess().getAlternatives()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 rule__Statemachine__Alternatives_1
     @init {
 		int stackSize = keepStackSize();
@@ -425,30 +406,6 @@ rule__Expression__Alternatives
 { before(grammarAccess.getExpressionAccess().getStatePropertyExpressionParserRuleCall_1()); }
 	ruleStatePropertyExpression
 { after(grammarAccess.getExpressionAccess().getStatePropertyExpressionParserRuleCall_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Property__Alternatives
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getPropertyAccess().getNameEnumLiteralDeclaration_0()); }
-(	'name' 
-)
-{ after(grammarAccess.getPropertyAccess().getNameEnumLiteralDeclaration_0()); }
-)
-
-    |(
-{ before(grammarAccess.getPropertyAccess().getOutputEnumLiteralDeclaration_1()); }
-(	'output' 
-)
-{ after(grammarAccess.getPropertyAccess().getOutputEnumLiteralDeclaration_1()); }
 )
 
 ;
@@ -1964,8 +1921,8 @@ rule__StatePropertyExpression__PropertyAssignment_2
     }
 :
 (
-{ before(grammarAccess.getStatePropertyExpressionAccess().getPropertyPropertyEnumRuleCall_2_0()); }
-	ruleProperty{ after(grammarAccess.getStatePropertyExpressionAccess().getPropertyPropertyEnumRuleCall_2_0()); }
+{ before(grammarAccess.getStatePropertyExpressionAccess().getPropertyIDTerminalRuleCall_2_0()); }
+	RULE_ID{ after(grammarAccess.getStatePropertyExpressionAccess().getPropertyIDTerminalRuleCall_2_0()); }
 )
 
 ;

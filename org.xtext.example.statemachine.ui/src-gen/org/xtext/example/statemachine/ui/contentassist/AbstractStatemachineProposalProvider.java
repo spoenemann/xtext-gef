@@ -105,7 +105,4 @@ public class AbstractStatemachineProposalProvider extends org.eclipse.xtext.comm
 	public void complete_StatePropertyExpression(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
-	public void complete_Property(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// subclasses may override
-	}
 }

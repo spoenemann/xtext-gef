@@ -382,13 +382,13 @@ public class StatemachineGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cStateStateIDTerminalRuleCall_0_0_1 = (RuleCall)cStateStateCrossReference_0_0.eContents().get(1);
 		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cPropertyAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cPropertyPropertyEnumRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
+		private final RuleCall cPropertyIDTerminalRuleCall_2_0 = (RuleCall)cPropertyAssignment_2.eContents().get(0);
 		
 		//StatePropertyExpression:
-		//	state=[State] "." property=Property;
+		//	state=[State] "." property=ID;
 		@Override public ParserRule getRule() { return rule; }
 
-		//state=[State] "." property=Property
+		//state=[State] "." property=ID
 		public Group getGroup() { return cGroup; }
 
 		//state=[State]
@@ -403,41 +403,13 @@ public class StatemachineGrammarAccess extends AbstractGrammarElementFinder {
 		//"."
 		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
 
-		//property=Property
+		//property=ID
 		public Assignment getPropertyAssignment_2() { return cPropertyAssignment_2; }
 
-		//Property
-		public RuleCall getPropertyPropertyEnumRuleCall_2_0() { return cPropertyPropertyEnumRuleCall_2_0; }
+		//ID
+		public RuleCall getPropertyIDTerminalRuleCall_2_0() { return cPropertyIDTerminalRuleCall_2_0; }
 	}
 	
-	
-	public class PropertyElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "Property");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cNameEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cNameNameKeyword_0_0 = (Keyword)cNameEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cOutputEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cOutputOutputKeyword_1_0 = (Keyword)cOutputEnumLiteralDeclaration_1.eContents().get(0);
-		
-		//enum Property:
-		//	name | output;
-		public EnumRule getRule() { return rule; }
-
-		//name | output
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//name
-		public EnumLiteralDeclaration getNameEnumLiteralDeclaration_0() { return cNameEnumLiteralDeclaration_0; }
-
-		//"name"
-		public Keyword getNameNameKeyword_0_0() { return cNameNameKeyword_0_0; }
-
-		//output
-		public EnumLiteralDeclaration getOutputEnumLiteralDeclaration_1() { return cOutputEnumLiteralDeclaration_1; }
-
-		//"output"
-		public Keyword getOutputOutputKeyword_1_0() { return cOutputOutputKeyword_1_0; }
-	}
 	
 	private final StatemachineElements pStatemachine;
 	private final StateElements pState;
@@ -449,7 +421,6 @@ public class StatemachineGrammarAccess extends AbstractGrammarElementFinder {
 	private final ExpressionElements pExpression;
 	private final VerbatimExpressionElements pVerbatimExpression;
 	private final StatePropertyExpressionElements pStatePropertyExpression;
-	private final PropertyElements unknownRuleProperty;
 	
 	private final Grammar grammar;
 
@@ -470,7 +441,6 @@ public class StatemachineGrammarAccess extends AbstractGrammarElementFinder {
 		this.pExpression = new ExpressionElements();
 		this.pVerbatimExpression = new VerbatimExpressionElements();
 		this.pStatePropertyExpression = new StatePropertyExpressionElements();
-		this.unknownRuleProperty = new PropertyElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -591,23 +561,13 @@ public class StatemachineGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StatePropertyExpression:
-	//	state=[State] "." property=Property;
+	//	state=[State] "." property=ID;
 	public StatePropertyExpressionElements getStatePropertyExpressionAccess() {
 		return pStatePropertyExpression;
 	}
 	
 	public ParserRule getStatePropertyExpressionRule() {
 		return getStatePropertyExpressionAccess().getRule();
-	}
-
-	//enum Property:
-	//	name | output;
-	public PropertyElements getPropertyAccess() {
-		return unknownRuleProperty;
-	}
-	
-	public EnumRule getPropertyRule() {
-		return getPropertyAccess().getRule();
 	}
 
 	//terminal ID:

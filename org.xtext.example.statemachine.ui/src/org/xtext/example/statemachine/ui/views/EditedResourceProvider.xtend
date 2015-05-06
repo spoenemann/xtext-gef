@@ -7,6 +7,7 @@
  *******************************************************************************/
 package org.xtext.example.statemachine.ui.views
 
+import com.google.inject.Inject
 import java.util.ArrayList
 import org.eclipse.emf.common.notify.Adapter
 import org.eclipse.emf.common.notify.Notification
@@ -26,9 +27,12 @@ import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider
 import org.xtext.example.statemachine.StatemachineUtil
+import org.xtext.example.statemachine.merging.IModelMerger
 import org.xtext.example.statemachine.ui.FrameworkAdapters
 
 class EditedResourceProvider implements IEditedResourceProvider {
+	
+	@Inject IModelMerger modelMerger
 	
 	val selectionListener = new SelectionListener
 
@@ -65,7 +69,7 @@ class EditedResourceProvider implements IEditedResourceProvider {
 			return null
 		}
 		try {
-			StatemachineUtil.apply(notification, copy)
+			modelMerger.apply(notification, copy)
 			return copy as T
 		} catch (UnsupportedOperationException uoe) {
 			return null
@@ -80,7 +84,7 @@ class EditedResourceProvider implements IEditedResourceProvider {
 		}
 		editingDomain.commandStack.execute(new RecordingCommand(editingDomain, 'Text Changes') {
 			override protected doExecute() {
-				StatemachineUtil.copyFeatures(copy, object)
+				modelMerger.merge(copy, object)
 			}
 		})
 		return copy as T

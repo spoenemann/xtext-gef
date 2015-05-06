@@ -9,13 +9,9 @@ package org.xtext.example.statemachine
 
 import java.util.HashSet
 import java.util.Set
-import org.eclipse.emf.common.notify.Notification
-import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.util.EcoreUtil
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.statemachine.Statemachine
-import org.xtext.example.statemachine.statemachine.StatemachinePackage
 
 final class StatemachineUtil {
 	
@@ -53,42 +49,6 @@ final class StatemachineUtil {
 				state.id = state.id + '_' + context.lastNr
 			}
 			assignedIds.add(state.id)
-		}
-	}
-	
-	static def copyFeatures(EObject source, EObject destination) {
-		if (source.eClass != destination.eClass)
-			throw new IllegalArgumentException
-		else if (source instanceof State && destination instanceof State)
-			copyFeatures(source as State, destination as State)
-		else
-			throw new UnsupportedOperationException(destination.eClass.name + ' not supported')
-	}
-	
-	private static def copyFeatures(State source, State destination) {
-		destination.name = source.name
-		destination.initial = source.initial
-		destination.final = source.final
-		destination.actions.clear
-		for (sourceCommand : source.actions) {
-			val newCommand = EcoreUtil.copy(sourceCommand)
-			destination.actions += newCommand
-		}
-	}
-	
-	static def apply(Notification notification, EObject destination) {
-		if (destination instanceof State)
-			apply(notification, destination as State)
-		else
-			throw new UnsupportedOperationException('Type ' + destination.eClass.name + ' not supported')
-	}
-	
-	private static def apply(Notification notification, State destination) {
-		switch notification.feature {
-			case StatemachinePackage.Literals.STATE__NAME:
-				destination.name = notification.newStringValue
-			default:
-				throw new UnsupportedOperationException('Feature ' + notification.feature?.toString + ' not supported')
 		}
 	}
 	

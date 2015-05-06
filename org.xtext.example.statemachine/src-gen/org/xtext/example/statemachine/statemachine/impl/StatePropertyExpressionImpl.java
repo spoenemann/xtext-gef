@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.xtext.example.statemachine.statemachine.Property;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.StatePropertyExpression;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
@@ -48,7 +47,7 @@ public class StatePropertyExpressionImpl extends ExpressionImpl implements State
    * @generated
    * @ordered
    */
-  protected static final Property PROPERTY_EDEFAULT = Property.NAME;
+  protected static final String PROPERTY_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getProperty() <em>Property</em>}' attribute.
@@ -58,7 +57,7 @@ public class StatePropertyExpressionImpl extends ExpressionImpl implements State
    * @generated
    * @ordered
    */
-  protected Property property = PROPERTY_EDEFAULT;
+  protected String property = PROPERTY_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -129,7 +128,7 @@ public class StatePropertyExpressionImpl extends ExpressionImpl implements State
    * <!-- end-user-doc -->
    * @generated
    */
-  public Property getProperty()
+  public String getProperty()
   {
     return property;
   }
@@ -139,10 +138,10 @@ public class StatePropertyExpressionImpl extends ExpressionImpl implements State
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProperty(Property newProperty)
+  public void setProperty(String newProperty)
   {
-    Property oldProperty = property;
-    property = newProperty == null ? PROPERTY_EDEFAULT : newProperty;
+    String oldProperty = property;
+    property = newProperty;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, StatemachinePackage.STATE_PROPERTY_EXPRESSION__PROPERTY, oldProperty, property));
   }
@@ -180,7 +179,7 @@ public class StatePropertyExpressionImpl extends ExpressionImpl implements State
         setState((State)newValue);
         return;
       case StatemachinePackage.STATE_PROPERTY_EXPRESSION__PROPERTY:
-        setProperty((Property)newValue);
+        setProperty((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -219,7 +218,7 @@ public class StatePropertyExpressionImpl extends ExpressionImpl implements State
       case StatemachinePackage.STATE_PROPERTY_EXPRESSION__STATE:
         return state != null;
       case StatemachinePackage.STATE_PROPERTY_EXPRESSION__PROPERTY:
-        return property != PROPERTY_EDEFAULT;
+        return PROPERTY_EDEFAULT == null ? property != null : !PROPERTY_EDEFAULT.equals(property);
     }
     return super.eIsSet(featureID);
   }

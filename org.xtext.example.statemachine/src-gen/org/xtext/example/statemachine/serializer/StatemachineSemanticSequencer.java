@@ -114,7 +114,7 @@ public class StatemachineSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (state=[State|ID] property=Property)
+	 *     (state=[State|ID] property=ID)
 	 */
 	protected void sequence_StatePropertyExpression(EObject context, StatePropertyExpression semanticObject) {
 		if(errorAcceptor != null) {
@@ -126,7 +126,7 @@ public class StatemachineSemanticSequencer extends AbstractDelegatingSemanticSeq
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
 		feeder.accept(grammarAccess.getStatePropertyExpressionAccess().getStateStateIDTerminalRuleCall_0_0_1(), semanticObject.getState());
-		feeder.accept(grammarAccess.getStatePropertyExpressionAccess().getPropertyPropertyEnumRuleCall_2_0(), semanticObject.getProperty());
+		feeder.accept(grammarAccess.getStatePropertyExpressionAccess().getPropertyIDTerminalRuleCall_2_0(), semanticObject.getProperty());
 		feeder.finish();
 	}
 	

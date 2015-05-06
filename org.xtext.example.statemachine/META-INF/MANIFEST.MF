@@ -18,13 +18,13 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.xtext.example.statemachine,
- org.xtext.example.statemachine.formatting,
+ org.xtext.example.statemachine.merging,
+ org.xtext.example.statemachine.parser.antlr,
+ org.xtext.example.statemachine.parser.antlr.internal,
  org.xtext.example.statemachine.scoping,
- org.xtext.example.statemachine.validation,
+ org.xtext.example.statemachine.serializer,
  org.xtext.example.statemachine.services,
  org.xtext.example.statemachine.statemachine,
  org.xtext.example.statemachine.statemachine.impl,
  org.xtext.example.statemachine.statemachine.util,
- org.xtext.example.statemachine.serializer,
- org.xtext.example.statemachine.parser.antlr,
- org.xtext.example.statemachine.parser.antlr.internal
+ org.xtext.example.statemachine.validation

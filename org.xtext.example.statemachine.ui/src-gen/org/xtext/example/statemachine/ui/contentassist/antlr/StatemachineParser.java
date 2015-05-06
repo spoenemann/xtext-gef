@@ -44,7 +44,6 @@ public class StatemachineParser extends AbstractPartialContentAssistParser {
 					put(grammarAccess.getStatemachineAccess().getAlternatives_1(), "rule__Statemachine__Alternatives_1");
 					put(grammarAccess.getCommandAccess().getAlternatives(), "rule__Command__Alternatives");
 					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
-					put(grammarAccess.getPropertyAccess().getAlternatives(), "rule__Property__Alternatives");
 					put(grammarAccess.getStatemachineAccess().getGroup(), "rule__Statemachine__Group__0");
 					put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
 					put(grammarAccess.getStateAccess().getGroup_5(), "rule__State__Group_5__0");

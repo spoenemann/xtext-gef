@@ -7,10 +7,6 @@
     editorPluginID="org.xtext.example.statemachine.editor" runtimeVersion="2.11">
   <genPackages prefix="Statemachine" basePackage="org.xtext.example.statemachine"
       disposableProviderFactory="true" fileExtensions="statemachine" ecorePackage="Statemachine.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Statemachine.ecore#//Property">
-      <genEnumLiterals ecoreEnumLiteral="Statemachine.ecore#//Property/name"/>
-      <genEnumLiterals ecoreEnumLiteral="Statemachine.ecore#//Property/output"/>
-    </genEnums>
     <genClasses ecoreClass="Statemachine.ecore#//Statemachine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Statemachine.ecore#//Statemachine/states"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Statemachine.ecore#//Statemachine/transitions"/>

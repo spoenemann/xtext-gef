@@ -116,7 +116,13 @@ public class TextPropertiesViewPart extends ViewPart {
   }
   
   protected void refresh(final EObject object, final Notification notification) {
-    if (this.mergingBack) {
+    boolean _or = false;
+    if (this.refreshing) {
+      _or = true;
+    } else {
+      _or = this.mergingBack;
+    }
+    if (_or) {
       return;
     }
     this.refreshing = true;
@@ -180,7 +186,7 @@ public class TextPropertiesViewPart extends ViewPart {
   protected String documentChanged(final XtextResource resource) {
     String _xifexpression = null;
     boolean _and = false;
-    if (!((!this.refreshing) && (this.currentViewedObject != null))) {
+    if (!(((!this.refreshing) && (!this.mergingBack)) && (this.currentViewedObject != null))) {
       _and = false;
     } else {
       IParseResult _parseResult = resource.getParseResult();

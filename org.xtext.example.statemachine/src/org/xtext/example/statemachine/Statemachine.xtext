@@ -40,7 +40,4 @@ VerbatimExpression:
 	code=STRING;
 
 StatePropertyExpression:
-	state=[State|ID] '.' property=Property;
-
-enum Property:
-	name | output;
+	state=[State|ID] '.' property=ID;

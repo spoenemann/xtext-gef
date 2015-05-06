@@ -65,7 +65,7 @@ class TextPropertiesViewPart extends ViewPart {
 	}
 	
 	protected def refresh(EObject object, Notification notification) {
-		if (mergingBack) {
+		if (refreshing || mergingBack) {
 			return
 		}
 		refreshing = true
@@ -108,7 +108,7 @@ class TextPropertiesViewPart extends ViewPart {
 	}
 	
 	protected def documentChanged(XtextResource resource) {
-		if (!refreshing && currentViewedObject !== null && resource.parseResult.syntaxErrors.empty) {
+		if (!refreshing && !mergingBack && currentViewedObject !== null && resource.parseResult.syntaxErrors.empty) {
 			mergingBack = true
 			try {
 				resourceProvider.mergeBack(currentViewedObject, editingDomain)

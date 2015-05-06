@@ -4,7 +4,6 @@ package org.xtext.example.statemachine.statemachine.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -14,7 +13,6 @@ import org.xtext.example.statemachine.statemachine.Command;
 import org.xtext.example.statemachine.statemachine.ExecuteCommand;
 import org.xtext.example.statemachine.statemachine.Expression;
 import org.xtext.example.statemachine.statemachine.PrintCommand;
-import org.xtext.example.statemachine.statemachine.Property;
 import org.xtext.example.statemachine.statemachine.SetCommand;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.StatePropertyExpression;
@@ -101,13 +99,6 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
    * @generated
    */
   private EClass statePropertyExpressionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum propertyEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -457,16 +448,6 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
-  public EEnum getProperty()
-  {
-    return propertyEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public StatemachineFactory getStatemachineFactory()
   {
     return (StatemachineFactory)getEFactoryInstance();
@@ -529,9 +510,6 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
     statePropertyExpressionEClass = createEClass(STATE_PROPERTY_EXPRESSION);
     createEReference(statePropertyExpressionEClass, STATE_PROPERTY_EXPRESSION__STATE);
     createEAttribute(statePropertyExpressionEClass, STATE_PROPERTY_EXPRESSION__PROPERTY);
-
-    // Create enums
-    propertyEEnum = createEEnum(PROPERTY);
   }
 
   /**
@@ -606,12 +584,7 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
 
     initEClass(statePropertyExpressionEClass, StatePropertyExpression.class, "StatePropertyExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getStatePropertyExpression_State(), this.getState(), null, "state", null, 0, 1, StatePropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getStatePropertyExpression_Property(), this.getProperty(), "property", null, 0, 1, StatePropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    // Initialize enums and add enum literals
-    initEEnum(propertyEEnum, Property.class, "Property");
-    addEEnumLiteral(propertyEEnum, Property.NAME);
-    addEEnumLiteral(propertyEEnum, Property.OUTPUT);
+    initEAttribute(getStatePropertyExpression_Property(), ecorePackage.getEString(), "property", null, 0, 1, StatePropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

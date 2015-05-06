@@ -43,10 +43,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StatePropertyExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="state" eType="#//State"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="#//Property"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Property">
-    <eLiterals name="name" literal="name"/>
-    <eLiterals name="output" value="1" literal="output"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -87,78 +87,66 @@ public class StatemachineFormatter extends AbstractFormatter2 {
     };
     document.<ISemanticRegion, ISemanticRegion>interior(_append, _keyword_3, _function_3);
     String _name = state.getName();
-    boolean _tripleEquals = (_name == null);
-    if (_tripleEquals) {
+    boolean _tripleNotEquals = (_name != null);
+    if (_tripleNotEquals) {
       ISemanticRegionsFinder _regionFor_4 = this.textRegionExtensions.regionFor(state);
-      ISemanticRegion _feature = _regionFor_4.feature(StatemachinePackage.Literals.STATE__ID);
+      ISemanticRegion _feature = _regionFor_4.feature(StatemachinePackage.Literals.STATE__NAME);
       final Procedure1<IHiddenRegionFormatter> _function_4 = new Procedure1<IHiddenRegionFormatter>() {
-        @Override
-        public void apply(final IHiddenRegionFormatter it) {
-          it.newLine();
-        }
-      };
-      document.append(_feature, _function_4);
-    } else {
-      ISemanticRegionsFinder _regionFor_5 = this.textRegionExtensions.regionFor(state);
-      ISemanticRegion _feature_1 = _regionFor_5.feature(StatemachinePackage.Literals.STATE__ID);
-      final Procedure1<IHiddenRegionFormatter> _function_5 = new Procedure1<IHiddenRegionFormatter>() {
         @Override
         public void apply(final IHiddenRegionFormatter it) {
           it.oneSpace();
         }
       };
-      document.append(_feature_1, _function_5);
-      ISemanticRegionsFinder _regionFor_6 = this.textRegionExtensions.regionFor(state);
-      ISemanticRegion _feature_2 = _regionFor_6.feature(StatemachinePackage.Literals.STATE__NAME);
-      final Procedure1<IHiddenRegionFormatter> _function_6 = new Procedure1<IHiddenRegionFormatter>() {
-        @Override
-        public void apply(final IHiddenRegionFormatter it) {
-          it.newLine();
-        }
-      };
-      document.append(_feature_2, _function_6);
+      document.prepend(_feature, _function_4);
     }
-    ISemanticRegionsFinder _regionFor_7 = this.textRegionExtensions.regionFor(state);
-    ISemanticRegion _keyword_4 = _regionFor_7.keyword("actions");
-    final Procedure1<IHiddenRegionFormatter> _function_7 = new Procedure1<IHiddenRegionFormatter>() {
+    ISemanticRegionsFinder _regionFor_5 = this.textRegionExtensions.regionFor(state);
+    ISemanticRegion _keyword_4 = _regionFor_5.keyword("actions");
+    final Procedure1<IHiddenRegionFormatter> _function_5 = new Procedure1<IHiddenRegionFormatter>() {
+      @Override
+      public void apply(final IHiddenRegionFormatter it) {
+        it.newLine();
+      }
+    };
+    ISemanticRegion _prepend = document.prepend(_keyword_4, _function_5);
+    final Procedure1<IHiddenRegionFormatter> _function_6 = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.oneSpace();
       }
     };
-    document.append(_keyword_4, _function_7);
-    ISemanticRegionsFinder _regionFor_8 = this.textRegionExtensions.regionFor(state);
-    ISemanticRegion _keyword_5 = _regionFor_8.keyword("{");
+    document.append(_prepend, _function_6);
+    ISemanticRegionsFinder _regionFor_6 = this.textRegionExtensions.regionFor(state);
+    ISemanticRegion _keyword_5 = _regionFor_6.keyword("{");
+    final Procedure1<IHiddenRegionFormatter> _function_7 = new Procedure1<IHiddenRegionFormatter>() {
+      @Override
+      public void apply(final IHiddenRegionFormatter it) {
+        it.newLine();
+      }
+    };
+    ISemanticRegion _append_1 = document.append(_keyword_5, _function_7);
+    ISemanticRegionsFinder _regionFor_7 = this.textRegionExtensions.regionFor(state);
+    ISemanticRegion _keyword_6 = _regionFor_7.keyword("}");
     final Procedure1<IHiddenRegionFormatter> _function_8 = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.newLine();
       }
     };
-    ISemanticRegion _append_1 = document.append(_keyword_5, _function_8);
-    ISemanticRegionsFinder _regionFor_9 = this.textRegionExtensions.regionFor(state);
-    ISemanticRegion _keyword_6 = _regionFor_9.keyword("}");
+    ISemanticRegion _append_2 = document.append(_keyword_6, _function_8);
     final Procedure1<IHiddenRegionFormatter> _function_9 = new Procedure1<IHiddenRegionFormatter>() {
-      @Override
-      public void apply(final IHiddenRegionFormatter it) {
-        it.newLine();
-      }
-    };
-    ISemanticRegion _append_2 = document.append(_keyword_6, _function_9);
-    final Procedure1<IHiddenRegionFormatter> _function_10 = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.indent();
       }
     };
-    document.<ISemanticRegion, ISemanticRegion>interior(_append_1, _append_2, _function_10);
-    final Procedure1<IHiddenRegionFormatter> _function_11 = new Procedure1<IHiddenRegionFormatter>() {
+    document.<ISemanticRegion, ISemanticRegion>interior(_append_1, _append_2, _function_9);
+    final Procedure1<IHiddenRegionFormatter> _function_10 = new Procedure1<IHiddenRegionFormatter>() {
       @Override
       public void apply(final IHiddenRegionFormatter it) {
         it.setNewLines(1, 1, 2);
       }
     };
-    document.<State>append(state, _function_11);
+    document.<State>append(state, _function_10);
     EList<Command> _actions = state.getActions();
     for (final Command command : _actions) {
       document.<Command>format(command);
