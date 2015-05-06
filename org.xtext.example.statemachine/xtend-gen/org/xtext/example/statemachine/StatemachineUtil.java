@@ -43,20 +43,36 @@ public final class StatemachineUtil {
         final Procedure1<Transition> _function = new Procedure1<Transition>() {
           @Override
           public void apply(final Transition it) {
+            boolean _and = false;
             State _sourceState = it.getSourceState();
-            Resource _eResource = _sourceState.eResource();
-            boolean _notEquals = (!Objects.equal(_eResource, resource));
-            if (_notEquals) {
+            boolean _tripleNotEquals = (_sourceState != null);
+            if (!_tripleNotEquals) {
+              _and = false;
+            } else {
               State _sourceState_1 = it.getSourceState();
-              String _id = _sourceState_1.getId();
+              Resource _eResource = _sourceState_1.eResource();
+              boolean _notEquals = (!Objects.equal(_eResource, resource));
+              _and = _notEquals;
+            }
+            if (_and) {
+              State _sourceState_2 = it.getSourceState();
+              String _id = _sourceState_2.getId();
               assignedIds.add(_id);
             }
+            boolean _and_1 = false;
             State _targetState = it.getTargetState();
-            Resource _eResource_1 = _targetState.eResource();
-            boolean _notEquals_1 = (!Objects.equal(_eResource_1, resource));
-            if (_notEquals_1) {
+            boolean _tripleNotEquals_1 = (_targetState != null);
+            if (!_tripleNotEquals_1) {
+              _and_1 = false;
+            } else {
               State _targetState_1 = it.getTargetState();
-              String _id_1 = _targetState_1.getId();
+              Resource _eResource_1 = _targetState_1.eResource();
+              boolean _notEquals_1 = (!Objects.equal(_eResource_1, resource));
+              _and_1 = _notEquals_1;
+            }
+            if (_and_1) {
+              State _targetState_2 = it.getTargetState();
+              String _id_1 = _targetState_2.getId();
               assignedIds.add(_id_1);
             }
           }

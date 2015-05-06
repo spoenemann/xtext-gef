@@ -35,7 +35,7 @@ class TextPropertiesViewPart extends ViewPart {
 	
 	EObject currentViewedObject
 	TransactionalEditingDomain editingDomain
-	String initialContent
+	String lastMergedContent
 	boolean refreshing
 	boolean mergingBack
 	Thread clearStatusThread
@@ -77,14 +77,14 @@ class TextPropertiesViewPart extends ViewPart {
 				if (mergeResult !== null) {
 					val uriFragment = mergeResult.eResource.getURIFragment(mergeResult)
 					modelAccess.updateModel(serializer.serialize(mergeResult.eContainer), uriFragment)
-					initialContent = modelAccess.editablePart
+					lastMergedContent = modelAccess.editablePart
 					return
 				}
 			}
 			
 			if (currentViewedObject !== null) {
 				val content = modelAccess.editablePart
-				if (content != initialContent) {
+				if (content != lastMergedContent) {
 					var EObject mergeSource
 					if (object !== currentViewedObject && resourceProvider.resource.parseResult.syntaxErrors.empty) {
 						mergeSource = resourceProvider.mergeBack(currentViewedObject, editingDomain)
@@ -95,13 +95,14 @@ class TextPropertiesViewPart extends ViewPart {
 			}
 			
 			if (object === null) {
-				modelAccess.updateModel('')
+				lastMergedContent = ''
+				modelAccess.updateModel(lastMergedContent)
 			} else {
 				val stateCopy = createSerializableCopy(object)
 				val uriFragment = stateCopy.eResource.getURIFragment(stateCopy)
 				modelAccess.updateModel(serializer.serialize(stateCopy.eContainer), uriFragment)
 				viewer.setSelectedRange(0, 0)
-				initialContent = modelAccess.editablePart
+				lastMergedContent = modelAccess.editablePart
 			}
 			currentViewedObject = object
 		} finally {
@@ -126,6 +127,7 @@ class TextPropertiesViewPart extends ViewPart {
 			mergingBack = true
 			try {
 				resourceProvider.mergeBack(currentViewedObject, editingDomain)
+				lastMergedContent = modelAccess.editablePart
 			} finally {
 				mergingBack = false
 			}

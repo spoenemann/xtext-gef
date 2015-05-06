@@ -26,9 +26,9 @@ final class StatemachineUtil {
 	static def void ensureUniqueIds(Resource resource) {
 		val assignedIds = new HashSet<String>
 		resource.contents.filter(Statemachine).forEach[transitions.forEach[
-			if (sourceState.eResource != resource)
+			if (sourceState !== null && sourceState.eResource != resource)
 				assignedIds.add(sourceState.id)
-			if (targetState.eResource != resource)
+			if (targetState !== null && targetState.eResource != resource)
 				assignedIds.add(targetState.id)
 		]]
 		val context = new Context

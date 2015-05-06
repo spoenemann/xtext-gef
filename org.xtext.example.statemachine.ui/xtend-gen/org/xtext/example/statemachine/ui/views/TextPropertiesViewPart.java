@@ -65,7 +65,7 @@ public class TextPropertiesViewPart extends ViewPart {
   
   private TransactionalEditingDomain editingDomain;
   
-  private String initialContent;
+  private String lastMergedContent;
   
   private boolean refreshing;
   
@@ -132,13 +132,13 @@ public class TextPropertiesViewPart extends ViewPart {
           String _serialize = this.serializer.serialize(_eContainer);
           this.modelAccess.updateModel(_serialize, uriFragment);
           String _editablePart = this.modelAccess.getEditablePart();
-          this.initialContent = _editablePart;
+          this.lastMergedContent = _editablePart;
           return;
         }
       }
       if ((this.currentViewedObject != null)) {
         final String content = this.modelAccess.getEditablePart();
-        boolean _notEquals = (!Objects.equal(content, this.initialContent));
+        boolean _notEquals = (!Objects.equal(content, this.lastMergedContent));
         if (_notEquals) {
           EObject mergeSource = null;
           boolean _and = false;
@@ -161,7 +161,8 @@ public class TextPropertiesViewPart extends ViewPart {
         }
       }
       if ((object == null)) {
-        this.modelAccess.updateModel("");
+        this.lastMergedContent = "";
+        this.modelAccess.updateModel(this.lastMergedContent);
       } else {
         final EObject stateCopy = this.createSerializableCopy(object);
         Resource _eResource_1 = stateCopy.eResource();
@@ -171,7 +172,7 @@ public class TextPropertiesViewPart extends ViewPart {
         this.modelAccess.updateModel(_serialize_1, uriFragment_1);
         this.viewer.setSelectedRange(0, 0);
         String _editablePart_1 = this.modelAccess.getEditablePart();
-        this.initialContent = _editablePart_1;
+        this.lastMergedContent = _editablePart_1;
       }
       this.currentViewedObject = object;
     } finally {
@@ -196,8 +197,8 @@ public class TextPropertiesViewPart extends ViewPart {
     return copier.get(object);
   }
   
-  protected EObject documentChanged(final XtextResource resource) {
-    EObject _xifexpression = null;
+  protected String documentChanged(final XtextResource resource) {
+    String _xifexpression = null;
     boolean _and = false;
     if (!((!this.refreshing) && (this.currentViewedObject != null))) {
       _and = false;
@@ -208,12 +209,18 @@ public class TextPropertiesViewPart extends ViewPart {
       _and = _isEmpty;
     }
     if (_and) {
-      EObject _xblockexpression = null;
+      String _xblockexpression = null;
       {
         this.mergingBack = true;
-        EObject _xtrycatchfinallyexpression = null;
+        String _xtrycatchfinallyexpression = null;
         try {
-          _xtrycatchfinallyexpression = this.resourceProvider.<EObject>mergeBack(this.currentViewedObject, this.editingDomain);
+          String _xblockexpression_1 = null;
+          {
+            this.resourceProvider.<EObject>mergeBack(this.currentViewedObject, this.editingDomain);
+            String _editablePart = this.modelAccess.getEditablePart();
+            _xblockexpression_1 = this.lastMergedContent = _editablePart;
+          }
+          _xtrycatchfinallyexpression = _xblockexpression_1;
         } finally {
           this.mergingBack = false;
         }
