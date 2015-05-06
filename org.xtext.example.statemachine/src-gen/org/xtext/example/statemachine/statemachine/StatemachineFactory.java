@@ -50,15 +50,6 @@ public interface StatemachineFactory extends EFactory
   Transition createTransition();
 
   /**
-   * Returns a new object of class '<em>Event</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Event</em>'.
-   * @generated
-   */
-  Event createEvent();
-
-  /**
    * Returns a new object of class '<em>Command</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -66,6 +57,60 @@ public interface StatemachineFactory extends EFactory
    * @generated
    */
   Command createCommand();
+
+  /**
+   * Returns a new object of class '<em>Set Command</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Set Command</em>'.
+   * @generated
+   */
+  SetCommand createSetCommand();
+
+  /**
+   * Returns a new object of class '<em>Execute Command</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Execute Command</em>'.
+   * @generated
+   */
+  ExecuteCommand createExecuteCommand();
+
+  /**
+   * Returns a new object of class '<em>Print Command</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Print Command</em>'.
+   * @generated
+   */
+  PrintCommand createPrintCommand();
+
+  /**
+   * Returns a new object of class '<em>Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression</em>'.
+   * @generated
+   */
+  Expression createExpression();
+
+  /**
+   * Returns a new object of class '<em>Verbatim Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Verbatim Expression</em>'.
+   * @generated
+   */
+  VerbatimExpression createVerbatimExpression();
+
+  /**
+   * Returns a new object of class '<em>State Property Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>State Property Expression</em>'.
+   * @generated
+   */
+  StatePropertyExpression createStatePropertyExpression();
 
   /**
    * Returns the package supported by this factory.

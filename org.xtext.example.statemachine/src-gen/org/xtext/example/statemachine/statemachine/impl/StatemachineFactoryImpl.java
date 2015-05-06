@@ -3,6 +3,7 @@
 package org.xtext.example.statemachine.statemachine.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -67,10 +68,49 @@ public class StatemachineFactoryImpl extends EFactoryImpl implements Statemachin
       case StatemachinePackage.STATEMACHINE: return createStatemachine();
       case StatemachinePackage.STATE: return createState();
       case StatemachinePackage.TRANSITION: return createTransition();
-      case StatemachinePackage.EVENT: return createEvent();
       case StatemachinePackage.COMMAND: return createCommand();
+      case StatemachinePackage.SET_COMMAND: return createSetCommand();
+      case StatemachinePackage.EXECUTE_COMMAND: return createExecuteCommand();
+      case StatemachinePackage.PRINT_COMMAND: return createPrintCommand();
+      case StatemachinePackage.EXPRESSION: return createExpression();
+      case StatemachinePackage.VERBATIM_EXPRESSION: return createVerbatimExpression();
+      case StatemachinePackage.STATE_PROPERTY_EXPRESSION: return createStatePropertyExpression();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case StatemachinePackage.PROPERTY:
+        return createPropertyFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case StatemachinePackage.PROPERTY:
+        return convertPropertyToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -112,10 +152,10 @@ public class StatemachineFactoryImpl extends EFactoryImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
-  public Event createEvent()
+  public Command createCommand()
   {
-    EventImpl event = new EventImpl();
-    return event;
+    CommandImpl command = new CommandImpl();
+    return command;
   }
 
   /**
@@ -123,10 +163,87 @@ public class StatemachineFactoryImpl extends EFactoryImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
-  public Command createCommand()
+  public SetCommand createSetCommand()
   {
-    CommandImpl command = new CommandImpl();
-    return command;
+    SetCommandImpl setCommand = new SetCommandImpl();
+    return setCommand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ExecuteCommand createExecuteCommand()
+  {
+    ExecuteCommandImpl executeCommand = new ExecuteCommandImpl();
+    return executeCommand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PrintCommand createPrintCommand()
+  {
+    PrintCommandImpl printCommand = new PrintCommandImpl();
+    return printCommand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Expression createExpression()
+  {
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public VerbatimExpression createVerbatimExpression()
+  {
+    VerbatimExpressionImpl verbatimExpression = new VerbatimExpressionImpl();
+    return verbatimExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StatePropertyExpression createStatePropertyExpression()
+  {
+    StatePropertyExpressionImpl statePropertyExpression = new StatePropertyExpressionImpl();
+    return statePropertyExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Property createPropertyFromString(EDataType eDataType, String initialValue)
+  {
+    Property result = Property.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertPropertyToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

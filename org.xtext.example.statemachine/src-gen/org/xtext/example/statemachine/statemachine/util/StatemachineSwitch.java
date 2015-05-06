@@ -93,17 +93,57 @@ public class StatemachineSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case StatemachinePackage.EVENT:
-      {
-        Event event = (Event)theEObject;
-        T result = caseEvent(event);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case StatemachinePackage.COMMAND:
       {
         Command command = (Command)theEObject;
         T result = caseCommand(command);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StatemachinePackage.SET_COMMAND:
+      {
+        SetCommand setCommand = (SetCommand)theEObject;
+        T result = caseSetCommand(setCommand);
+        if (result == null) result = caseCommand(setCommand);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StatemachinePackage.EXECUTE_COMMAND:
+      {
+        ExecuteCommand executeCommand = (ExecuteCommand)theEObject;
+        T result = caseExecuteCommand(executeCommand);
+        if (result == null) result = caseCommand(executeCommand);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StatemachinePackage.PRINT_COMMAND:
+      {
+        PrintCommand printCommand = (PrintCommand)theEObject;
+        T result = casePrintCommand(printCommand);
+        if (result == null) result = caseCommand(printCommand);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StatemachinePackage.EXPRESSION:
+      {
+        Expression expression = (Expression)theEObject;
+        T result = caseExpression(expression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StatemachinePackage.VERBATIM_EXPRESSION:
+      {
+        VerbatimExpression verbatimExpression = (VerbatimExpression)theEObject;
+        T result = caseVerbatimExpression(verbatimExpression);
+        if (result == null) result = caseExpression(verbatimExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case StatemachinePackage.STATE_PROPERTY_EXPRESSION:
+      {
+        StatePropertyExpression statePropertyExpression = (StatePropertyExpression)theEObject;
+        T result = caseStatePropertyExpression(statePropertyExpression);
+        if (result == null) result = caseExpression(statePropertyExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -160,22 +200,6 @@ public class StatemachineSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Event</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Event</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseEvent(Event object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Command</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -187,6 +211,102 @@ public class StatemachineSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCommand(Command object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Set Command</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Set Command</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSetCommand(SetCommand object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Execute Command</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Execute Command</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExecuteCommand(ExecuteCommand object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Print Command</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Print Command</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePrintCommand(PrintCommand object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpression(Expression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Verbatim Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Verbatim Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVerbatimExpression(VerbatimExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>State Property Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>State Property Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStatePropertyExpression(StatePropertyExpression object)
   {
     return null;
   }

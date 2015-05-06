@@ -25,13 +25,13 @@ import org.xtext.example.statemachine.services.StatemachineGrammarAccess;
 public class StatemachineSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected StatemachineGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_State___ActionsKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q;
+	protected AbstractElementAlias match_State___ActionsKeyword_5_0_LeftCurlyBracketKeyword_5_1_RightCurlyBracketKeyword_5_3__q;
 	protected AbstractElementAlias match_Transition___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (StatemachineGrammarAccess) access;
-		match_State___ActionsKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getStateAccess().getActionsKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_3_1()), new TokenAlias(false, false, grammarAccess.getStateAccess().getRightCurlyBracketKeyword_3_3()));
+		match_State___ActionsKeyword_5_0_LeftCurlyBracketKeyword_5_1_RightCurlyBracketKeyword_5_3__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getStateAccess().getActionsKeyword_5_0()), new TokenAlias(false, false, grammarAccess.getStateAccess().getLeftCurlyBracketKeyword_5_1()), new TokenAlias(false, false, grammarAccess.getStateAccess().getRightCurlyBracketKeyword_5_3()));
 		match_Transition___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q = new GroupAlias(false, true, new TokenAlias(false, false, grammarAccess.getTransitionAccess().getLeftParenthesisKeyword_3_0()), new TokenAlias(false, false, grammarAccess.getTransitionAccess().getRightParenthesisKeyword_3_2()));
 	}
 	
@@ -47,8 +47,8 @@ public class StatemachineSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if(match_State___ActionsKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q.equals(syntax))
-				emit_State___ActionsKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if(match_State___ActionsKeyword_5_0_LeftCurlyBracketKeyword_5_1_RightCurlyBracketKeyword_5_3__q.equals(syntax))
+				emit_State___ActionsKeyword_5_0_LeftCurlyBracketKeyword_5_1_RightCurlyBracketKeyword_5_3__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if(match_Transition___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q.equals(syntax))
 				emit_Transition___LeftParenthesisKeyword_3_0_RightParenthesisKeyword_3_2__q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -63,7 +63,7 @@ public class StatemachineSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     id=ID (ambiguity) 'end' (rule end)
 	 *     name=STRING (ambiguity) 'end' (rule end)
 	 */
-	protected void emit_State___ActionsKeyword_3_0_LeftCurlyBracketKeyword_3_1_RightCurlyBracketKeyword_3_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_State___ActionsKeyword_5_0_LeftCurlyBracketKeyword_5_1_RightCurlyBracketKeyword_5_3__q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.statemachine.statemachine.State#isInitial <em>Initial</em>}</li>
+ *   <li>{@link org.xtext.example.statemachine.statemachine.State#isFinal <em>Final</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.State#getId <em>Id</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.State#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.State#getActions <em>Actions</em>}</li>
@@ -26,6 +28,58 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface State extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Initial</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Initial</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Initial</em>' attribute.
+   * @see #setInitial(boolean)
+   * @see org.xtext.example.statemachine.statemachine.StatemachinePackage#getState_Initial()
+   * @model
+   * @generated
+   */
+  boolean isInitial();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.statemachine.statemachine.State#isInitial <em>Initial</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Initial</em>' attribute.
+   * @see #isInitial()
+   * @generated
+   */
+  void setInitial(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Final</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Final</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Final</em>' attribute.
+   * @see #setFinal(boolean)
+   * @see org.xtext.example.statemachine.statemachine.StatemachinePackage#getState_Final()
+   * @model
+   * @generated
+   */
+  boolean isFinal();
+
+  /**
+   * Sets the value of the '{@link org.xtext.example.statemachine.statemachine.State#isFinal <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Final</em>' attribute.
+   * @see #isFinal()
+   * @generated
+   */
+  void setFinal(boolean value);
+
   /**
    * Returns the value of the '<em><b>Id</b></em>' attribute.
    * <!-- begin-user-doc -->

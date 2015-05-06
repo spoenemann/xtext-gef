@@ -9,12 +9,12 @@ package org.xtext.example.statemachine
 
 import java.util.HashSet
 import java.util.Set
+import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.statemachine.Statemachine
-import org.xtext.example.statemachine.statemachine.StatemachineFactory
-import org.eclipse.emf.common.notify.Notification
 import org.xtext.example.statemachine.statemachine.StatemachinePackage
 
 final class StatemachineUtil {
@@ -37,11 +37,15 @@ final class StatemachineUtil {
 	
 	private static def void ensureUniqueIds(Statemachine model, Context context, Set<String> assignedIds) {
 		for (State state : model.states) {
-			if (state.id.nullOrEmpty || state.id.startsWith('_state')) {
+			if (state.id.nullOrEmpty || state.id.startsWith('_state') && assignedIds.contains(state.id)) {
 				do {
 					context.lastNr++
 				} while (assignedIds.contains('_state' + context.lastNr))
 				state.id = '_state' + context.lastNr
+			} else if (state.id.startsWith('_state')) {
+				try {
+					context.lastNr = Integer.parseInt(state.id.substring(6))
+				} catch (NumberFormatException nfe) {}
 			} else if (assignedIds.contains(state.id)) {
 				do {
 					context.lastNr++
@@ -63,10 +67,11 @@ final class StatemachineUtil {
 	
 	private static def copyFeatures(State source, State destination) {
 		destination.name = source.name
+		destination.initial = source.initial
+		destination.final = source.final
 		destination.actions.clear
 		for (sourceCommand : source.actions) {
-			val newCommand = StatemachineFactory.eINSTANCE.createCommand
-			newCommand.code = sourceCommand.code
+			val newCommand = EcoreUtil.copy(sourceCommand)
 			destination.actions += newCommand
 		}
 	}

@@ -13,7 +13,7 @@ import org.xtext.example.statemachine.statemachine.StatemachineFactory
 class NewStatemachineWizard extends GraphitiNewWizard {
 	
 	new() {
-		super('State Machine', 'statemachine_graphiti', 'statemachine', 'statemachine', DiagramEditor.DIAGRAM_EDITOR_ID)
+		super('State Machine Graphiti', 'statemachine_graphiti', 'statemachine', 'statemachine', DiagramEditor.DIAGRAM_EDITOR_ID)
 	}
 	
 	override protected createModel(String name) {

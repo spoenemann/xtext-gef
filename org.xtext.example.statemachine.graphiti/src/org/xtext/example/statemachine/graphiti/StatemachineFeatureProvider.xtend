@@ -10,6 +10,7 @@ package org.xtext.example.statemachine.graphiti
 import org.eclipse.graphiti.dt.IDiagramTypeProvider
 import org.eclipse.graphiti.features.context.IAddContext
 import org.eclipse.graphiti.features.context.IDirectEditingContext
+import org.eclipse.graphiti.features.context.ILayoutContext
 import org.eclipse.graphiti.features.context.IUpdateContext
 import org.eclipse.graphiti.mm.pictograms.ContainerShape
 import org.eclipse.graphiti.ui.features.DefaultFeatureProvider
@@ -18,6 +19,7 @@ import org.xtext.example.statemachine.graphiti.features.AddTransitionFeature
 import org.xtext.example.statemachine.graphiti.features.CreateStateFeature
 import org.xtext.example.statemachine.graphiti.features.CreateTransitionFeature
 import org.xtext.example.statemachine.graphiti.features.DirectEditStateFeature
+import org.xtext.example.statemachine.graphiti.features.LayoutStateFeature
 import org.xtext.example.statemachine.graphiti.features.UpdateStateFeature
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.statemachine.Transition
@@ -46,12 +48,18 @@ class StatemachineFeatureProvider extends DefaultFeatureProvider {
 	
 	override getUpdateFeature(IUpdateContext context) {
 		val pictogramElement = context.pictogramElement
-		if (pictogramElement instanceof ContainerShape) {
-			val bo = pictogramElement.businessObjectForPictogramElement
-			if (bo instanceof State)
-				return new UpdateStateFeature(this)
-		}
+		if (pictogramElement instanceof ContainerShape
+				&& pictogramElement.businessObjectForPictogramElement instanceof State)
+			return new UpdateStateFeature(this)
 		super.getUpdateFeature(context)
+	}
+	
+	override getLayoutFeature(ILayoutContext context) {
+		val pictogramElement = context.pictogramElement
+		if (pictogramElement instanceof ContainerShape
+				&& pictogramElement.businessObjectForPictogramElement instanceof State)
+			return new LayoutStateFeature(this)
+		super.getLayoutFeature(context)
 	}
 	
 	override getDirectEditingFeature(IDirectEditingContext context) {

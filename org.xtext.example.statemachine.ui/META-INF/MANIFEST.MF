@@ -24,5 +24,6 @@ Export-Package: org.xtext.example.statemachine.ui,
  org.xtext.example.statemachine.ui.contentassist,
  org.xtext.example.statemachine.ui.contentassist.antlr,
  org.xtext.example.statemachine.ui.internal,
- org.xtext.example.statemachine.ui.quickfix
+ org.xtext.example.statemachine.ui.quickfix,
+ org.xtext.example.statemachine.ui.contentassist.antlr.internal
 Bundle-Activator: org.xtext.example.statemachine.ui.internal.StatemachineActivator

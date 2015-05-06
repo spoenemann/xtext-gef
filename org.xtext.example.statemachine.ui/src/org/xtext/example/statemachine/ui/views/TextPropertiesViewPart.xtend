@@ -10,7 +10,6 @@ package org.xtext.example.statemachine.ui.views
 import com.google.inject.Inject
 import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.ecore.util.EcoreUtil.Copier
 import org.eclipse.emf.transaction.TransactionalEditingDomain
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
@@ -19,12 +18,11 @@ import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.XtextSourceViewer
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess
-import org.xtext.example.statemachine.StatemachineUtil
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator
 
 class TextPropertiesViewPart extends ViewPart {
 
-	val resourceProvider =  new EditedResourceProvider()
+	@Inject EditedResourceProvider resourceProvider
 	
 	@Inject EmbeddedEditorFactory editorFactory
 	
@@ -98,9 +96,8 @@ class TextPropertiesViewPart extends ViewPart {
 				lastMergedContent = ''
 				modelAccess.updateModel(lastMergedContent)
 			} else {
-				val stateCopy = createSerializableCopy(object)
-				val uriFragment = stateCopy.eResource.getURIFragment(stateCopy)
-				modelAccess.updateModel(serializer.serialize(stateCopy.eContainer), uriFragment)
+				val uriFragment = object.eResource.getURIFragment(object)
+				modelAccess.updateModel(serializer.serialize(object.eContainer), uriFragment)
 				viewer.setSelectedRange(0, 0)
 				lastMergedContent = modelAccess.editablePart
 			}
@@ -108,18 +105,6 @@ class TextPropertiesViewPart extends ViewPart {
 		} finally {
 			refreshing = false
 		}
-	}
-	
-	protected def createSerializableCopy(EObject object) {
-		if (object.eContainer === null)
-			throw new IllegalStateException
-		val copier = new Copier
-		val modelCopy = copier.copy(object.eContainer)
-		copier.copyReferences()
-		val dummyResource = new XtextResource
-		dummyResource.contents += modelCopy
-		StatemachineUtil.ensureUniqueIds(dummyResource)
-		return copier.get(object)
 	}
 	
 	protected def documentChanged(XtextResource resource) {

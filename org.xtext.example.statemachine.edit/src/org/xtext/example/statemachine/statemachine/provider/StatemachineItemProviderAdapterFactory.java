@@ -141,29 +141,6 @@ public class StatemachineItemProviderAdapterFactory extends StatemachineAdapterF
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.xtext.example.statemachine.statemachine.Event} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected EventItemProvider eventItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.xtext.example.statemachine.statemachine.Event}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createEventAdapter() {
-		if (eventItemProvider == null) {
-			eventItemProvider = new EventItemProvider(this);
-		}
-
-		return eventItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.xtext.example.statemachine.statemachine.Command} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -184,6 +161,144 @@ public class StatemachineItemProviderAdapterFactory extends StatemachineAdapterF
 		}
 
 		return commandItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.xtext.example.statemachine.statemachine.SetCommand} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SetCommandItemProvider setCommandItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.xtext.example.statemachine.statemachine.SetCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSetCommandAdapter() {
+		if (setCommandItemProvider == null) {
+			setCommandItemProvider = new SetCommandItemProvider(this);
+		}
+
+		return setCommandItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.xtext.example.statemachine.statemachine.ExecuteCommand} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExecuteCommandItemProvider executeCommandItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.xtext.example.statemachine.statemachine.ExecuteCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExecuteCommandAdapter() {
+		if (executeCommandItemProvider == null) {
+			executeCommandItemProvider = new ExecuteCommandItemProvider(this);
+		}
+
+		return executeCommandItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.xtext.example.statemachine.statemachine.PrintCommand} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PrintCommandItemProvider printCommandItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.xtext.example.statemachine.statemachine.PrintCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPrintCommandAdapter() {
+		if (printCommandItemProvider == null) {
+			printCommandItemProvider = new PrintCommandItemProvider(this);
+		}
+
+		return printCommandItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.xtext.example.statemachine.statemachine.Expression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpressionItemProvider expressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.xtext.example.statemachine.statemachine.Expression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExpressionAdapter() {
+		if (expressionItemProvider == null) {
+			expressionItemProvider = new ExpressionItemProvider(this);
+		}
+
+		return expressionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.xtext.example.statemachine.statemachine.VerbatimExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VerbatimExpressionItemProvider verbatimExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.xtext.example.statemachine.statemachine.VerbatimExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVerbatimExpressionAdapter() {
+		if (verbatimExpressionItemProvider == null) {
+			verbatimExpressionItemProvider = new VerbatimExpressionItemProvider(this);
+		}
+
+		return verbatimExpressionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.xtext.example.statemachine.statemachine.StatePropertyExpression} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StatePropertyExpressionItemProvider statePropertyExpressionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.xtext.example.statemachine.statemachine.StatePropertyExpression}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStatePropertyExpressionAdapter() {
+		if (statePropertyExpressionItemProvider == null) {
+			statePropertyExpressionItemProvider = new StatePropertyExpressionItemProvider(this);
+		}
+
+		return statePropertyExpressionItemProvider;
 	}
 
 	/**
@@ -288,8 +403,13 @@ public class StatemachineItemProviderAdapterFactory extends StatemachineAdapterF
 		if (statemachineItemProvider != null) statemachineItemProvider.dispose();
 		if (stateItemProvider != null) stateItemProvider.dispose();
 		if (transitionItemProvider != null) transitionItemProvider.dispose();
-		if (eventItemProvider != null) eventItemProvider.dispose();
 		if (commandItemProvider != null) commandItemProvider.dispose();
+		if (setCommandItemProvider != null) setCommandItemProvider.dispose();
+		if (executeCommandItemProvider != null) executeCommandItemProvider.dispose();
+		if (printCommandItemProvider != null) printCommandItemProvider.dispose();
+		if (expressionItemProvider != null) expressionItemProvider.dispose();
+		if (verbatimExpressionItemProvider != null) verbatimExpressionItemProvider.dispose();
+		if (statePropertyExpressionItemProvider != null) statePropertyExpressionItemProvider.dispose();
 	}
 
 }

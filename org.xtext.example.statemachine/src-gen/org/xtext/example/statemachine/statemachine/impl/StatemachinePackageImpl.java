@@ -4,18 +4,25 @@ package org.xtext.example.statemachine.statemachine.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.xtext.example.statemachine.statemachine.Command;
-import org.xtext.example.statemachine.statemachine.Event;
+import org.xtext.example.statemachine.statemachine.ExecuteCommand;
+import org.xtext.example.statemachine.statemachine.Expression;
+import org.xtext.example.statemachine.statemachine.PrintCommand;
+import org.xtext.example.statemachine.statemachine.Property;
+import org.xtext.example.statemachine.statemachine.SetCommand;
 import org.xtext.example.statemachine.statemachine.State;
+import org.xtext.example.statemachine.statemachine.StatePropertyExpression;
 import org.xtext.example.statemachine.statemachine.Statemachine;
 import org.xtext.example.statemachine.statemachine.StatemachineFactory;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 import org.xtext.example.statemachine.statemachine.Transition;
+import org.xtext.example.statemachine.statemachine.VerbatimExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,14 +58,56 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass eventEClass = null;
+  private EClass commandEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass commandEClass = null;
+  private EClass setCommandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass executeCommandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass printCommandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass verbatimExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass statePropertyExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum propertyEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -168,7 +217,7 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getState_Id()
+  public EAttribute getState_Initial()
   {
     return (EAttribute)stateEClass.getEStructuralFeatures().get(0);
   }
@@ -178,7 +227,7 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getState_Name()
+  public EAttribute getState_Final()
   {
     return (EAttribute)stateEClass.getEStructuralFeatures().get(1);
   }
@@ -188,9 +237,29 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getState_Id()
+  {
+    return (EAttribute)stateEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getState_Name()
+  {
+    return (EAttribute)stateEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getState_Actions()
   {
-    return (EReference)stateEClass.getEStructuralFeatures().get(2);
+    return (EReference)stateEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -238,26 +307,6 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getEvent()
-  {
-    return eventEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getEvent_Code()
-  {
-    return (EAttribute)eventEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getCommand()
   {
     return commandEClass;
@@ -268,9 +317,149 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getCommand_Code()
+  public EClass getSetCommand()
   {
-    return (EAttribute)commandEClass.getEStructuralFeatures().get(0);
+    return setCommandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getSetCommand_Signal()
+  {
+    return (EAttribute)setCommandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getSetCommand_Value()
+  {
+    return (EReference)setCommandEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExecuteCommand()
+  {
+    return executeCommandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExecuteCommand_Operation()
+  {
+    return (EAttribute)executeCommandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExecuteCommand_Arguments()
+  {
+    return (EReference)executeCommandEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getPrintCommand()
+  {
+    return printCommandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getPrintCommand_Value()
+  {
+    return (EReference)printCommandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getExpression()
+  {
+    return expressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getVerbatimExpression()
+  {
+    return verbatimExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getVerbatimExpression_Code()
+  {
+    return (EAttribute)verbatimExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getStatePropertyExpression()
+  {
+    return statePropertyExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getStatePropertyExpression_State()
+  {
+    return (EReference)statePropertyExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStatePropertyExpression_Property()
+  {
+    return (EAttribute)statePropertyExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getProperty()
+  {
+    return propertyEEnum;
   }
 
   /**
@@ -308,6 +497,8 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
     createEReference(statemachineEClass, STATEMACHINE__TRANSITIONS);
 
     stateEClass = createEClass(STATE);
+    createEAttribute(stateEClass, STATE__INITIAL);
+    createEAttribute(stateEClass, STATE__FINAL);
     createEAttribute(stateEClass, STATE__ID);
     createEAttribute(stateEClass, STATE__NAME);
     createEReference(stateEClass, STATE__ACTIONS);
@@ -317,11 +508,30 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
     createEReference(transitionEClass, TRANSITION__TARGET_STATE);
     createEReference(transitionEClass, TRANSITION__EVENT);
 
-    eventEClass = createEClass(EVENT);
-    createEAttribute(eventEClass, EVENT__CODE);
-
     commandEClass = createEClass(COMMAND);
-    createEAttribute(commandEClass, COMMAND__CODE);
+
+    setCommandEClass = createEClass(SET_COMMAND);
+    createEAttribute(setCommandEClass, SET_COMMAND__SIGNAL);
+    createEReference(setCommandEClass, SET_COMMAND__VALUE);
+
+    executeCommandEClass = createEClass(EXECUTE_COMMAND);
+    createEAttribute(executeCommandEClass, EXECUTE_COMMAND__OPERATION);
+    createEReference(executeCommandEClass, EXECUTE_COMMAND__ARGUMENTS);
+
+    printCommandEClass = createEClass(PRINT_COMMAND);
+    createEReference(printCommandEClass, PRINT_COMMAND__VALUE);
+
+    expressionEClass = createEClass(EXPRESSION);
+
+    verbatimExpressionEClass = createEClass(VERBATIM_EXPRESSION);
+    createEAttribute(verbatimExpressionEClass, VERBATIM_EXPRESSION__CODE);
+
+    statePropertyExpressionEClass = createEClass(STATE_PROPERTY_EXPRESSION);
+    createEReference(statePropertyExpressionEClass, STATE_PROPERTY_EXPRESSION__STATE);
+    createEAttribute(statePropertyExpressionEClass, STATE_PROPERTY_EXPRESSION__PROPERTY);
+
+    // Create enums
+    propertyEEnum = createEEnum(PROPERTY);
   }
 
   /**
@@ -353,6 +563,11 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    setCommandEClass.getESuperTypes().add(this.getCommand());
+    executeCommandEClass.getESuperTypes().add(this.getCommand());
+    printCommandEClass.getESuperTypes().add(this.getCommand());
+    verbatimExpressionEClass.getESuperTypes().add(this.getExpression());
+    statePropertyExpressionEClass.getESuperTypes().add(this.getExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(statemachineEClass, Statemachine.class, "Statemachine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -360,6 +575,8 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
     initEReference(getStatemachine_Transitions(), this.getTransition(), null, "transitions", null, 0, -1, Statemachine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getState_Initial(), ecorePackage.getEBoolean(), "initial", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getState_Final(), ecorePackage.getEBoolean(), "final", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getState_Id(), ecorePackage.getEString(), "id", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getState_Name(), ecorePackage.getEString(), "name", null, 0, 1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getState_Actions(), this.getCommand(), null, "actions", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -367,13 +584,34 @@ public class StatemachinePackageImpl extends EPackageImpl implements Statemachin
     initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTransition_SourceState(), this.getState(), null, "sourceState", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getTransition_TargetState(), this.getState(), null, "targetState", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getTransition_Event(), this.getEvent(), null, "event", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getEvent_Code(), ecorePackage.getEString(), "code", null, 0, 1, Event.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTransition_Event(), this.getExpression(), null, "event", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(commandEClass, Command.class, "Command", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCommand_Code(), ecorePackage.getEString(), "code", null, 0, 1, Command.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(setCommandEClass, SetCommand.class, "SetCommand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSetCommand_Signal(), ecorePackage.getEString(), "signal", null, 0, 1, SetCommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSetCommand_Value(), this.getExpression(), null, "value", null, 0, 1, SetCommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(executeCommandEClass, ExecuteCommand.class, "ExecuteCommand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExecuteCommand_Operation(), ecorePackage.getEString(), "operation", null, 0, 1, ExecuteCommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExecuteCommand_Arguments(), this.getExpression(), null, "arguments", null, 0, -1, ExecuteCommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(printCommandEClass, PrintCommand.class, "PrintCommand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPrintCommand_Value(), this.getExpression(), null, "value", null, 0, 1, PrintCommand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(verbatimExpressionEClass, VerbatimExpression.class, "VerbatimExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getVerbatimExpression_Code(), ecorePackage.getEString(), "code", null, 0, 1, VerbatimExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(statePropertyExpressionEClass, StatePropertyExpression.class, "StatePropertyExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStatePropertyExpression_State(), this.getState(), null, "state", null, 0, 1, StatePropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStatePropertyExpression_Property(), this.getProperty(), "property", null, 0, 1, StatePropertyExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    // Initialize enums and add enum literals
+    initEEnum(propertyEEnum, Property.class, "Property");
+    addEEnumLiteral(propertyEEnum, Property.NAME);
+    addEEnumLiteral(propertyEEnum, Property.OUTPUT);
 
     // Create resource
     createResource(eNS_URI);

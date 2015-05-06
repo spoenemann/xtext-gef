@@ -9,43 +9,29 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.xtext.example.statemachine.statemachine.Event;
+import org.xtext.example.statemachine.statemachine.Property;
+import org.xtext.example.statemachine.statemachine.StatePropertyExpression;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 
 /**
- * This is the item provider adapter for a {@link org.xtext.example.statemachine.statemachine.Event} object.
+ * This is the item provider adapter for a {@link org.xtext.example.statemachine.statemachine.StatePropertyExpression} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventItemProvider 
-	extends ItemProviderAdapter
-	implements
-		IEditingDomainItemProvider,
-		IStructuredItemContentProvider,
-		ITreeItemContentProvider,
-		IItemLabelProvider,
-		IItemPropertySource {
+public class StatePropertyExpressionItemProvider extends ExpressionItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventItemProvider(AdapterFactory adapterFactory) {
+	public StatePropertyExpressionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -60,25 +46,48 @@ public class EventItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCodePropertyDescriptor(object);
+			addStatePropertyDescriptor(object);
+			addPropertyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Code feature.
+	 * This adds a property descriptor for the State feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCodePropertyDescriptor(Object object) {
+	protected void addStatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Event_code_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Event_code_feature", "_UI_Event_type"),
-				 StatemachinePackage.Literals.EVENT__CODE,
+				 getString("_UI_StatePropertyExpression_state_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StatePropertyExpression_state_feature", "_UI_StatePropertyExpression_type"),
+				 StatemachinePackage.Literals.STATE_PROPERTY_EXPRESSION__STATE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Property feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addPropertyPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_StatePropertyExpression_property_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_StatePropertyExpression_property_feature", "_UI_StatePropertyExpression_type"),
+				 StatemachinePackage.Literals.STATE_PROPERTY_EXPRESSION__PROPERTY,
 				 true,
 				 false,
 				 false,
@@ -88,14 +97,14 @@ public class EventItemProvider
 	}
 
 	/**
-	 * This returns Event.gif.
+	 * This returns StatePropertyExpression.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Event"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/StatePropertyExpression"));
 	}
 
 	/**
@@ -106,10 +115,11 @@ public class EventItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Event)object).getCode();
+		Property labelValue = ((StatePropertyExpression)object).getProperty();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Event_type") :
-			getString("_UI_Event_type") + " " + label;
+			getString("_UI_StatePropertyExpression_type") :
+			getString("_UI_StatePropertyExpression_type") + " " + label;
 	}
 	
 
@@ -124,8 +134,8 @@ public class EventItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Event.class)) {
-			case StatemachinePackage.EVENT__CODE:
+		switch (notification.getFeatureID(StatePropertyExpression.class)) {
+			case StatemachinePackage.STATE_PROPERTY_EXPRESSION__PROPERTY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -142,17 +152,6 @@ public class EventItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return StatemachineEditPlugin.INSTANCE;
 	}
 
 }

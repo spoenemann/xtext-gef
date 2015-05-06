@@ -11,23 +11,36 @@ generate statemachine "http://xtext.org/example/Statemachine"
 
 Statemachine :
     {Statemachine}
-	(states+=State | transitions+=Transition)*
-;
+	(states+=State | transitions+=Transition)*;
 
 State:
-	'state' id=ID name=STRING?
+	initial?='initial'? final?='final'? 'state' id=ID name=STRING?
 		('actions' '{' actions+=Command* '}')?
-	'end'
-;
+	'end';
 
 Transition:
-	sourceState=[State|ID] '=>' targetState=[State|ID] ('(' event=Event? ')')?
-;
-
-Event:
-	code=STRING
-;
+	sourceState=[State|ID] '=>' targetState=[State|ID] ('(' event=Expression? ')')?;
 
 Command:
-	code=STRING
-;
+	SetCommand | ExecuteCommand | PrintCommand;
+
+SetCommand:
+	'set' signal=ID '=' value=Expression;
+
+ExecuteCommand:
+	'execute' operation=ID '(' (arguments+=Expression (',' arguments+=Expression)*)? ')';
+
+PrintCommand:
+	'print' value=Expression;
+
+Expression:
+	VerbatimExpression | StatePropertyExpression;
+
+VerbatimExpression:
+	code=STRING;
+
+StatePropertyExpression:
+	state=[State|ID] '.' property=Property;
+
+enum Property:
+	name | output;

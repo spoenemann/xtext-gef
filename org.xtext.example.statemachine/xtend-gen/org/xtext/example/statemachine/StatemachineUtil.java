@@ -16,13 +16,14 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.xtext.example.statemachine.statemachine.Command;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.Statemachine;
-import org.xtext.example.statemachine.statemachine.StatemachineFactory;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 import org.xtext.example.statemachine.statemachine.Transition;
 
@@ -103,9 +104,17 @@ public final class StatemachineUtil {
         if (_isNullOrEmpty) {
           _or = true;
         } else {
+          boolean _and = false;
           String _id_1 = state.getId();
           boolean _startsWith = _id_1.startsWith("_state");
-          _or = _startsWith;
+          if (!_startsWith) {
+            _and = false;
+          } else {
+            String _id_2 = state.getId();
+            boolean _contains = assignedIds.contains(_id_2);
+            _and = _contains;
+          }
+          _or = _and;
         }
         if (_or) {
           do {
@@ -113,20 +122,37 @@ public final class StatemachineUtil {
           } while(assignedIds.contains(("_state" + Integer.valueOf(context.lastNr))));
           state.setId(("_state" + Integer.valueOf(context.lastNr)));
         } else {
-          String _id_2 = state.getId();
-          boolean _contains = assignedIds.contains(_id_2);
-          if (_contains) {
-            do {
-              context.lastNr++;
-            } while(assignedIds.contains(((state.getId() + "_") + Integer.valueOf(context.lastNr))));
-            String _id_3 = state.getId();
-            String _plus = (_id_3 + "_");
-            String _plus_1 = (_plus + Integer.valueOf(context.lastNr));
-            state.setId(_plus_1);
+          String _id_3 = state.getId();
+          boolean _startsWith_1 = _id_3.startsWith("_state");
+          if (_startsWith_1) {
+            try {
+              String _id_4 = state.getId();
+              String _substring = _id_4.substring(6);
+              int _parseInt = Integer.parseInt(_substring);
+              context.lastNr = _parseInt;
+            } catch (final Throwable _t) {
+              if (_t instanceof NumberFormatException) {
+                final NumberFormatException nfe = (NumberFormatException)_t;
+              } else {
+                throw Exceptions.sneakyThrow(_t);
+              }
+            }
+          } else {
+            String _id_5 = state.getId();
+            boolean _contains_1 = assignedIds.contains(_id_5);
+            if (_contains_1) {
+              do {
+                context.lastNr++;
+              } while(assignedIds.contains(((state.getId() + "_") + Integer.valueOf(context.lastNr))));
+              String _id_6 = state.getId();
+              String _plus = (_id_6 + "_");
+              String _plus_1 = (_plus + Integer.valueOf(context.lastNr));
+              state.setId(_plus_1);
+            }
           }
         }
-        String _id_4 = state.getId();
-        assignedIds.add(_id_4);
+        String _id_7 = state.getId();
+        assignedIds.add(_id_7);
       }
     }
   }
@@ -158,14 +184,16 @@ public final class StatemachineUtil {
   private static void copyFeatures(final State source, final State destination) {
     String _name = source.getName();
     destination.setName(_name);
+    boolean _isInitial = source.isInitial();
+    destination.setInitial(_isInitial);
+    boolean _isFinal = source.isFinal();
+    destination.setFinal(_isFinal);
     EList<Command> _actions = destination.getActions();
     _actions.clear();
     EList<Command> _actions_1 = source.getActions();
     for (final Command sourceCommand : _actions_1) {
       {
-        final Command newCommand = StatemachineFactory.eINSTANCE.createCommand();
-        String _code = sourceCommand.getCode();
-        newCommand.setCode(_code);
+        final Command newCommand = EcoreUtil.<Command>copy(sourceCommand);
         EList<Command> _actions_2 = destination.getActions();
         _actions_2.add(newCommand);
       }

@@ -2,25 +2,24 @@
  */
 package org.xtext.example.statemachine.statemachine;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Event</b></em>'.
+ * A representation of the model object '<em><b>Verbatim Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.statemachine.statemachine.Event#getCode <em>Code</em>}</li>
+ *   <li>{@link org.xtext.example.statemachine.statemachine.VerbatimExpression#getCode <em>Code</em>}</li>
  * </ul>
  *
- * @see org.xtext.example.statemachine.statemachine.StatemachinePackage#getEvent()
+ * @see org.xtext.example.statemachine.statemachine.StatemachinePackage#getVerbatimExpression()
  * @model
  * @generated
  */
-public interface Event extends EObject
+public interface VerbatimExpression extends Expression
 {
   /**
    * Returns the value of the '<em><b>Code</b></em>' attribute.
@@ -32,14 +31,14 @@ public interface Event extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Code</em>' attribute.
    * @see #setCode(String)
-   * @see org.xtext.example.statemachine.statemachine.StatemachinePackage#getEvent_Code()
+   * @see org.xtext.example.statemachine.statemachine.StatemachinePackage#getVerbatimExpression_Code()
    * @model
    * @generated
    */
   String getCode();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.statemachine.statemachine.Event#getCode <em>Code</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.statemachine.statemachine.VerbatimExpression#getCode <em>Code</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Code</em>' attribute.
@@ -48,4 +47,4 @@ public interface Event extends EObject
    */
   void setCode(String value);
 
-} // Event
+} // VerbatimExpression

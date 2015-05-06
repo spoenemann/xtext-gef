@@ -12,9 +12,11 @@ import org.eclipse.graphiti.features.IAddFeature;
 import org.eclipse.graphiti.features.ICreateConnectionFeature;
 import org.eclipse.graphiti.features.ICreateFeature;
 import org.eclipse.graphiti.features.IDirectEditingFeature;
+import org.eclipse.graphiti.features.ILayoutFeature;
 import org.eclipse.graphiti.features.IUpdateFeature;
 import org.eclipse.graphiti.features.context.IAddContext;
 import org.eclipse.graphiti.features.context.IDirectEditingContext;
+import org.eclipse.graphiti.features.context.ILayoutContext;
 import org.eclipse.graphiti.features.context.IUpdateContext;
 import org.eclipse.graphiti.mm.pictograms.ContainerShape;
 import org.eclipse.graphiti.mm.pictograms.PictogramElement;
@@ -24,6 +26,7 @@ import org.xtext.example.statemachine.graphiti.features.AddTransitionFeature;
 import org.xtext.example.statemachine.graphiti.features.CreateStateFeature;
 import org.xtext.example.statemachine.graphiti.features.CreateTransitionFeature;
 import org.xtext.example.statemachine.graphiti.features.DirectEditStateFeature;
+import org.xtext.example.statemachine.graphiti.features.LayoutStateFeature;
 import org.xtext.example.statemachine.graphiti.features.UpdateStateFeature;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.Transition;
@@ -74,13 +77,37 @@ public class StatemachineFeatureProvider extends DefaultFeatureProvider {
     IUpdateFeature _xblockexpression = null;
     {
       final PictogramElement pictogramElement = context.getPictogramElement();
-      if ((pictogramElement instanceof ContainerShape)) {
-        final Object bo = this.getBusinessObjectForPictogramElement(pictogramElement);
-        if ((bo instanceof State)) {
-          return new UpdateStateFeature(this);
-        }
+      boolean _and = false;
+      if (!(pictogramElement instanceof ContainerShape)) {
+        _and = false;
+      } else {
+        Object _businessObjectForPictogramElement = this.getBusinessObjectForPictogramElement(pictogramElement);
+        _and = (_businessObjectForPictogramElement instanceof State);
+      }
+      if (_and) {
+        return new UpdateStateFeature(this);
       }
       _xblockexpression = super.getUpdateFeature(context);
+    }
+    return _xblockexpression;
+  }
+  
+  @Override
+  public ILayoutFeature getLayoutFeature(final ILayoutContext context) {
+    ILayoutFeature _xblockexpression = null;
+    {
+      final PictogramElement pictogramElement = context.getPictogramElement();
+      boolean _and = false;
+      if (!(pictogramElement instanceof ContainerShape)) {
+        _and = false;
+      } else {
+        Object _businessObjectForPictogramElement = this.getBusinessObjectForPictogramElement(pictogramElement);
+        _and = (_businessObjectForPictogramElement instanceof State);
+      }
+      if (_and) {
+        return new LayoutStateFeature(this);
+      }
+      _xblockexpression = super.getLayoutFeature(context);
     }
     return _xblockexpression;
   }

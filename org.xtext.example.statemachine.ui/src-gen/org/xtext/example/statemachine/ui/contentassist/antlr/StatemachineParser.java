@@ -42,21 +42,39 @@ public class StatemachineParser extends AbstractPartialContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getStatemachineAccess().getAlternatives_1(), "rule__Statemachine__Alternatives_1");
+					put(grammarAccess.getCommandAccess().getAlternatives(), "rule__Command__Alternatives");
+					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
+					put(grammarAccess.getPropertyAccess().getAlternatives(), "rule__Property__Alternatives");
 					put(grammarAccess.getStatemachineAccess().getGroup(), "rule__Statemachine__Group__0");
 					put(grammarAccess.getStateAccess().getGroup(), "rule__State__Group__0");
-					put(grammarAccess.getStateAccess().getGroup_3(), "rule__State__Group_3__0");
+					put(grammarAccess.getStateAccess().getGroup_5(), "rule__State__Group_5__0");
 					put(grammarAccess.getTransitionAccess().getGroup(), "rule__Transition__Group__0");
 					put(grammarAccess.getTransitionAccess().getGroup_3(), "rule__Transition__Group_3__0");
+					put(grammarAccess.getSetCommandAccess().getGroup(), "rule__SetCommand__Group__0");
+					put(grammarAccess.getExecuteCommandAccess().getGroup(), "rule__ExecuteCommand__Group__0");
+					put(grammarAccess.getExecuteCommandAccess().getGroup_3(), "rule__ExecuteCommand__Group_3__0");
+					put(grammarAccess.getExecuteCommandAccess().getGroup_3_1(), "rule__ExecuteCommand__Group_3_1__0");
+					put(grammarAccess.getPrintCommandAccess().getGroup(), "rule__PrintCommand__Group__0");
+					put(grammarAccess.getStatePropertyExpressionAccess().getGroup(), "rule__StatePropertyExpression__Group__0");
 					put(grammarAccess.getStatemachineAccess().getStatesAssignment_1_0(), "rule__Statemachine__StatesAssignment_1_0");
 					put(grammarAccess.getStatemachineAccess().getTransitionsAssignment_1_1(), "rule__Statemachine__TransitionsAssignment_1_1");
-					put(grammarAccess.getStateAccess().getIdAssignment_1(), "rule__State__IdAssignment_1");
-					put(grammarAccess.getStateAccess().getNameAssignment_2(), "rule__State__NameAssignment_2");
-					put(grammarAccess.getStateAccess().getActionsAssignment_3_2(), "rule__State__ActionsAssignment_3_2");
+					put(grammarAccess.getStateAccess().getInitialAssignment_0(), "rule__State__InitialAssignment_0");
+					put(grammarAccess.getStateAccess().getFinalAssignment_1(), "rule__State__FinalAssignment_1");
+					put(grammarAccess.getStateAccess().getIdAssignment_3(), "rule__State__IdAssignment_3");
+					put(grammarAccess.getStateAccess().getNameAssignment_4(), "rule__State__NameAssignment_4");
+					put(grammarAccess.getStateAccess().getActionsAssignment_5_2(), "rule__State__ActionsAssignment_5_2");
 					put(grammarAccess.getTransitionAccess().getSourceStateAssignment_0(), "rule__Transition__SourceStateAssignment_0");
 					put(grammarAccess.getTransitionAccess().getTargetStateAssignment_2(), "rule__Transition__TargetStateAssignment_2");
 					put(grammarAccess.getTransitionAccess().getEventAssignment_3_1(), "rule__Transition__EventAssignment_3_1");
-					put(grammarAccess.getEventAccess().getCodeAssignment(), "rule__Event__CodeAssignment");
-					put(grammarAccess.getCommandAccess().getCodeAssignment(), "rule__Command__CodeAssignment");
+					put(grammarAccess.getSetCommandAccess().getSignalAssignment_1(), "rule__SetCommand__SignalAssignment_1");
+					put(grammarAccess.getSetCommandAccess().getValueAssignment_3(), "rule__SetCommand__ValueAssignment_3");
+					put(grammarAccess.getExecuteCommandAccess().getOperationAssignment_1(), "rule__ExecuteCommand__OperationAssignment_1");
+					put(grammarAccess.getExecuteCommandAccess().getArgumentsAssignment_3_0(), "rule__ExecuteCommand__ArgumentsAssignment_3_0");
+					put(grammarAccess.getExecuteCommandAccess().getArgumentsAssignment_3_1_1(), "rule__ExecuteCommand__ArgumentsAssignment_3_1_1");
+					put(grammarAccess.getPrintCommandAccess().getValueAssignment_1(), "rule__PrintCommand__ValueAssignment_1");
+					put(grammarAccess.getVerbatimExpressionAccess().getCodeAssignment(), "rule__VerbatimExpression__CodeAssignment");
+					put(grammarAccess.getStatePropertyExpressionAccess().getStateAssignment_0(), "rule__StatePropertyExpression__StateAssignment_0");
+					put(grammarAccess.getStatePropertyExpressionAccess().getPropertyAssignment_2(), "rule__StatePropertyExpression__PropertyAssignment_2");
 				}
 			};
 		}

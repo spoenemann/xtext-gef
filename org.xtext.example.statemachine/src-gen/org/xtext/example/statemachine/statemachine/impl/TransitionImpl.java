@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.statemachine.statemachine.Event;
+import org.xtext.example.statemachine.statemachine.Expression;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 import org.xtext.example.statemachine.statemachine.Transition;
@@ -61,7 +61,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * @generated
    * @ordered
    */
-  protected Event event;
+  protected Expression event;
 
   /**
    * <!-- begin-user-doc -->
@@ -175,7 +175,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * <!-- end-user-doc -->
    * @generated
    */
-  public Event getEvent()
+  public Expression getEvent()
   {
     return event;
   }
@@ -185,9 +185,9 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetEvent(Event newEvent, NotificationChain msgs)
+  public NotificationChain basicSetEvent(Expression newEvent, NotificationChain msgs)
   {
-    Event oldEvent = event;
+    Expression oldEvent = event;
     event = newEvent;
     if (eNotificationRequired())
     {
@@ -202,7 +202,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEvent(Event newEvent)
+  public void setEvent(Expression newEvent)
   {
     if (newEvent != event)
     {
@@ -273,7 +273,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
         setTargetState((State)newValue);
         return;
       case StatemachinePackage.TRANSITION__EVENT:
-        setEvent((Event)newValue);
+        setEvent((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -296,7 +296,7 @@ public class TransitionImpl extends MinimalEObjectImpl.Container implements Tran
         setTargetState((State)null);
         return;
       case StatemachinePackage.TRANSITION__EVENT:
-        setEvent((Event)null);
+        setEvent((Expression)null);
         return;
     }
     super.eUnset(featureID);

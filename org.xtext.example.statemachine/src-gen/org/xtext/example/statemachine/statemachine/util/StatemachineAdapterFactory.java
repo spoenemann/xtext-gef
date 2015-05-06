@@ -90,14 +90,39 @@ public class StatemachineAdapterFactory extends AdapterFactoryImpl
         return createTransitionAdapter();
       }
       @Override
-      public Adapter caseEvent(Event object)
-      {
-        return createEventAdapter();
-      }
-      @Override
       public Adapter caseCommand(Command object)
       {
         return createCommandAdapter();
+      }
+      @Override
+      public Adapter caseSetCommand(SetCommand object)
+      {
+        return createSetCommandAdapter();
+      }
+      @Override
+      public Adapter caseExecuteCommand(ExecuteCommand object)
+      {
+        return createExecuteCommandAdapter();
+      }
+      @Override
+      public Adapter casePrintCommand(PrintCommand object)
+      {
+        return createPrintCommandAdapter();
+      }
+      @Override
+      public Adapter caseExpression(Expression object)
+      {
+        return createExpressionAdapter();
+      }
+      @Override
+      public Adapter caseVerbatimExpression(VerbatimExpression object)
+      {
+        return createVerbatimExpressionAdapter();
+      }
+      @Override
+      public Adapter caseStatePropertyExpression(StatePropertyExpression object)
+      {
+        return createStatePropertyExpressionAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -167,21 +192,6 @@ public class StatemachineAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.xtext.example.statemachine.statemachine.Event <em>Event</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.xtext.example.statemachine.statemachine.Event
-   * @generated
-   */
-  public Adapter createEventAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.xtext.example.statemachine.statemachine.Command <em>Command</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -192,6 +202,96 @@ public class StatemachineAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCommandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statemachine.statemachine.SetCommand <em>Set Command</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.statemachine.statemachine.SetCommand
+   * @generated
+   */
+  public Adapter createSetCommandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statemachine.statemachine.ExecuteCommand <em>Execute Command</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.statemachine.statemachine.ExecuteCommand
+   * @generated
+   */
+  public Adapter createExecuteCommandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statemachine.statemachine.PrintCommand <em>Print Command</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.statemachine.statemachine.PrintCommand
+   * @generated
+   */
+  public Adapter createPrintCommandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statemachine.statemachine.Expression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.statemachine.statemachine.Expression
+   * @generated
+   */
+  public Adapter createExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statemachine.statemachine.VerbatimExpression <em>Verbatim Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.statemachine.statemachine.VerbatimExpression
+   * @generated
+   */
+  public Adapter createVerbatimExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.statemachine.statemachine.StatePropertyExpression <em>State Property Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.statemachine.statemachine.StatePropertyExpression
+   * @generated
+   */
+  public Adapter createStatePropertyExpressionAdapter()
   {
     return null;
   }

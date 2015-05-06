@@ -13,10 +13,8 @@ import com.google.inject.Injector;
 import java.util.Collections;
 import java.util.List;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IStatusLineManager;
 import org.eclipse.swt.widgets.Composite;
@@ -43,13 +41,13 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
-import org.xtext.example.statemachine.StatemachineUtil;
 import org.xtext.example.statemachine.ui.internal.StatemachineActivator;
 import org.xtext.example.statemachine.ui.views.EditedResourceProvider;
 
 @SuppressWarnings("all")
 public class TextPropertiesViewPart extends ViewPart {
-  private final EditedResourceProvider resourceProvider = new EditedResourceProvider();
+  @Inject
+  private EditedResourceProvider resourceProvider;
   
   @Inject
   private EmbeddedEditorFactory editorFactory;
@@ -164,10 +162,9 @@ public class TextPropertiesViewPart extends ViewPart {
         this.lastMergedContent = "";
         this.modelAccess.updateModel(this.lastMergedContent);
       } else {
-        final EObject stateCopy = this.createSerializableCopy(object);
-        Resource _eResource_1 = stateCopy.eResource();
-        final String uriFragment_1 = _eResource_1.getURIFragment(stateCopy);
-        EObject _eContainer_1 = stateCopy.eContainer();
+        Resource _eResource_1 = object.eResource();
+        final String uriFragment_1 = _eResource_1.getURIFragment(object);
+        EObject _eContainer_1 = object.eContainer();
         String _serialize_1 = this.serializer.serialize(_eContainer_1);
         this.modelAccess.updateModel(_serialize_1, uriFragment_1);
         this.viewer.setSelectedRange(0, 0);
@@ -178,23 +175,6 @@ public class TextPropertiesViewPart extends ViewPart {
     } finally {
       this.refreshing = false;
     }
-  }
-  
-  protected EObject createSerializableCopy(final EObject object) {
-    EObject _eContainer = object.eContainer();
-    boolean _tripleEquals = (_eContainer == null);
-    if (_tripleEquals) {
-      throw new IllegalStateException();
-    }
-    final EcoreUtil.Copier copier = new EcoreUtil.Copier();
-    EObject _eContainer_1 = object.eContainer();
-    final EObject modelCopy = copier.copy(_eContainer_1);
-    copier.copyReferences();
-    final XtextResource dummyResource = new XtextResource();
-    EList<EObject> _contents = dummyResource.getContents();
-    _contents.add(modelCopy);
-    StatemachineUtil.ensureUniqueIds(dummyResource);
-    return copier.get(object);
   }
   
   protected String documentChanged(final XtextResource resource) {

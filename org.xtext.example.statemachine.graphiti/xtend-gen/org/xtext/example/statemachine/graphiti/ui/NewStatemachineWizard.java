@@ -15,7 +15,7 @@ import org.xtext.example.statemachine.statemachine.StatemachineFactory;
 @SuppressWarnings("all")
 public class NewStatemachineWizard extends GraphitiNewWizard {
   public NewStatemachineWizard() {
-    super("State Machine", "statemachine_graphiti", "statemachine", "statemachine", DiagramEditor.DIAGRAM_EDITOR_ID);
+    super("State Machine Graphiti", "statemachine_graphiti", "statemachine", "statemachine", DiagramEditor.DIAGRAM_EDITOR_ID);
   }
   
   @Override

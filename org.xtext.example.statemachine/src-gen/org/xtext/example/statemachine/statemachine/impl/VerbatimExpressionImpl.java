@@ -7,25 +7,24 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.xtext.example.statemachine.statemachine.Event;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
+import org.xtext.example.statemachine.statemachine.VerbatimExpression;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Event</b></em>'.
+ * An implementation of the model object '<em><b>Verbatim Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.statemachine.statemachine.impl.EventImpl#getCode <em>Code</em>}</li>
+ *   <li>{@link org.xtext.example.statemachine.statemachine.impl.VerbatimExpressionImpl#getCode <em>Code</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EventImpl extends MinimalEObjectImpl.Container implements Event
+public class VerbatimExpressionImpl extends ExpressionImpl implements VerbatimExpression
 {
   /**
    * The default value of the '{@link #getCode() <em>Code</em>}' attribute.
@@ -52,7 +51,7 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EventImpl()
+  protected VerbatimExpressionImpl()
   {
     super();
   }
@@ -65,7 +64,7 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event
   @Override
   protected EClass eStaticClass()
   {
-    return StatemachinePackage.Literals.EVENT;
+    return StatemachinePackage.Literals.VERBATIM_EXPRESSION;
   }
 
   /**
@@ -88,7 +87,7 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event
     String oldCode = code;
     code = newCode;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, StatemachinePackage.EVENT__CODE, oldCode, code));
+      eNotify(new ENotificationImpl(this, Notification.SET, StatemachinePackage.VERBATIM_EXPRESSION__CODE, oldCode, code));
   }
 
   /**
@@ -101,7 +100,7 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event
   {
     switch (featureID)
     {
-      case StatemachinePackage.EVENT__CODE:
+      case StatemachinePackage.VERBATIM_EXPRESSION__CODE:
         return getCode();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -117,7 +116,7 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event
   {
     switch (featureID)
     {
-      case StatemachinePackage.EVENT__CODE:
+      case StatemachinePackage.VERBATIM_EXPRESSION__CODE:
         setCode((String)newValue);
         return;
     }
@@ -134,7 +133,7 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event
   {
     switch (featureID)
     {
-      case StatemachinePackage.EVENT__CODE:
+      case StatemachinePackage.VERBATIM_EXPRESSION__CODE:
         setCode(CODE_EDEFAULT);
         return;
     }
@@ -151,7 +150,7 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event
   {
     switch (featureID)
     {
-      case StatemachinePackage.EVENT__CODE:
+      case StatemachinePackage.VERBATIM_EXPRESSION__CODE:
         return CODE_EDEFAULT == null ? code != null : !CODE_EDEFAULT.equals(code);
     }
     return super.eIsSet(featureID);
@@ -174,4 +173,4 @@ public class EventImpl extends MinimalEObjectImpl.Container implements Event
     return result.toString();
   }
 
-} //EventImpl
+} //VerbatimExpressionImpl

@@ -85,12 +85,12 @@ public interface Transition extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Event</em>' containment reference.
-   * @see #setEvent(Event)
+   * @see #setEvent(Expression)
    * @see org.xtext.example.statemachine.statemachine.StatemachinePackage#getTransition_Event()
    * @model containment="true"
    * @generated
    */
-  Event getEvent();
+  Expression getEvent();
 
   /**
    * Sets the value of the '{@link org.xtext.example.statemachine.statemachine.Transition#getEvent <em>Event</em>}' containment reference.
@@ -100,6 +100,6 @@ public interface Transition extends EObject
    * @see #getEvent()
    * @generated
    */
-  void setEvent(Event value);
+  void setEvent(Expression value);
 
 } // Transition

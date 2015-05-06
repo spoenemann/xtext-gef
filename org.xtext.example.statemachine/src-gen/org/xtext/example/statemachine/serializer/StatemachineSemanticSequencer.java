@@ -21,12 +21,15 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.xtext.example.statemachine.services.StatemachineGrammarAccess;
-import org.xtext.example.statemachine.statemachine.Command;
-import org.xtext.example.statemachine.statemachine.Event;
+import org.xtext.example.statemachine.statemachine.ExecuteCommand;
+import org.xtext.example.statemachine.statemachine.PrintCommand;
+import org.xtext.example.statemachine.statemachine.SetCommand;
 import org.xtext.example.statemachine.statemachine.State;
+import org.xtext.example.statemachine.statemachine.StatePropertyExpression;
 import org.xtext.example.statemachine.statemachine.Statemachine;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 import org.xtext.example.statemachine.statemachine.Transition;
+import org.xtext.example.statemachine.statemachine.VerbatimExpression;
 
 @SuppressWarnings("all")
 public class StatemachineSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -37,14 +40,20 @@ public class StatemachineSemanticSequencer extends AbstractDelegatingSemanticSeq
 	@Override
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == StatemachinePackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
-			case StatemachinePackage.COMMAND:
-				sequence_Command(context, (Command) semanticObject); 
+			case StatemachinePackage.EXECUTE_COMMAND:
+				sequence_ExecuteCommand(context, (ExecuteCommand) semanticObject); 
 				return; 
-			case StatemachinePackage.EVENT:
-				sequence_Event(context, (Event) semanticObject); 
+			case StatemachinePackage.PRINT_COMMAND:
+				sequence_PrintCommand(context, (PrintCommand) semanticObject); 
+				return; 
+			case StatemachinePackage.SET_COMMAND:
+				sequence_SetCommand(context, (SetCommand) semanticObject); 
 				return; 
 			case StatemachinePackage.STATE:
 				sequence_State(context, (State) semanticObject); 
+				return; 
+			case StatemachinePackage.STATE_PROPERTY_EXPRESSION:
+				sequence_StatePropertyExpression(context, (StatePropertyExpression) semanticObject); 
 				return; 
 			case StatemachinePackage.STATEMACHINE:
 				sequence_Statemachine(context, (Statemachine) semanticObject); 
@@ -52,45 +61,79 @@ public class StatemachineSemanticSequencer extends AbstractDelegatingSemanticSeq
 			case StatemachinePackage.TRANSITION:
 				sequence_Transition(context, (Transition) semanticObject); 
 				return; 
+			case StatemachinePackage.VERBATIM_EXPRESSION:
+				sequence_VerbatimExpression(context, (VerbatimExpression) semanticObject); 
+				return; 
 			}
 		if (errorAcceptor != null) errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
 	
 	/**
 	 * Constraint:
-	 *     code=STRING
+	 *     (operation=ID (arguments+=Expression arguments+=Expression*)?)
 	 */
-	protected void sequence_Command(EObject context, Command semanticObject) {
+	protected void sequence_ExecuteCommand(EObject context, ExecuteCommand semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     value=Expression
+	 */
+	protected void sequence_PrintCommand(EObject context, PrintCommand semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, StatemachinePackage.Literals.COMMAND__CODE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StatemachinePackage.Literals.COMMAND__CODE));
+			if(transientValues.isValueTransient(semanticObject, StatemachinePackage.Literals.PRINT_COMMAND__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StatemachinePackage.Literals.PRINT_COMMAND__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getCommandAccess().getCodeSTRINGTerminalRuleCall_0(), semanticObject.getCode());
+		feeder.accept(grammarAccess.getPrintCommandAccess().getValueExpressionParserRuleCall_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     code=STRING
+	 *     (signal=ID value=Expression)
 	 */
-	protected void sequence_Event(EObject context, Event semanticObject) {
+	protected void sequence_SetCommand(EObject context, SetCommand semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, StatemachinePackage.Literals.EVENT__CODE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StatemachinePackage.Literals.EVENT__CODE));
+			if(transientValues.isValueTransient(semanticObject, StatemachinePackage.Literals.SET_COMMAND__SIGNAL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StatemachinePackage.Literals.SET_COMMAND__SIGNAL));
+			if(transientValues.isValueTransient(semanticObject, StatemachinePackage.Literals.SET_COMMAND__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StatemachinePackage.Literals.SET_COMMAND__VALUE));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getEventAccess().getCodeSTRINGTerminalRuleCall_0(), semanticObject.getCode());
+		feeder.accept(grammarAccess.getSetCommandAccess().getSignalIDTerminalRuleCall_1_0(), semanticObject.getSignal());
+		feeder.accept(grammarAccess.getSetCommandAccess().getValueExpressionParserRuleCall_3_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (id=ID name=STRING? actions+=Command*)
+	 *     (state=[State|ID] property=Property)
+	 */
+	protected void sequence_StatePropertyExpression(EObject context, StatePropertyExpression semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, StatemachinePackage.Literals.STATE_PROPERTY_EXPRESSION__STATE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StatemachinePackage.Literals.STATE_PROPERTY_EXPRESSION__STATE));
+			if(transientValues.isValueTransient(semanticObject, StatemachinePackage.Literals.STATE_PROPERTY_EXPRESSION__PROPERTY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StatemachinePackage.Literals.STATE_PROPERTY_EXPRESSION__PROPERTY));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getStatePropertyExpressionAccess().getStateStateIDTerminalRuleCall_0_0_1(), semanticObject.getState());
+		feeder.accept(grammarAccess.getStatePropertyExpressionAccess().getPropertyPropertyEnumRuleCall_2_0(), semanticObject.getProperty());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     (initial?='initial'? final?='final'? id=ID name=STRING? actions+=Command*)
 	 */
 	protected void sequence_State(EObject context, State semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -108,9 +151,25 @@ public class StatemachineSemanticSequencer extends AbstractDelegatingSemanticSeq
 	
 	/**
 	 * Constraint:
-	 *     (sourceState=[State|ID] targetState=[State|ID] event=Event?)
+	 *     (sourceState=[State|ID] targetState=[State|ID] event=Expression?)
 	 */
 	protected void sequence_Transition(EObject context, Transition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     code=STRING
+	 */
+	protected void sequence_VerbatimExpression(EObject context, VerbatimExpression semanticObject) {
+		if(errorAcceptor != null) {
+			if(transientValues.isValueTransient(semanticObject, StatemachinePackage.Literals.VERBATIM_EXPRESSION__CODE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, StatemachinePackage.Literals.VERBATIM_EXPRESSION__CODE));
+		}
+		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
+		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
+		feeder.accept(grammarAccess.getVerbatimExpressionAccess().getCodeSTRINGTerminalRuleCall_0(), semanticObject.getCode());
+		feeder.finish();
 	}
 }

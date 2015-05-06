@@ -62,7 +62,7 @@ public class AddStateFeature extends AbstractAddShapeFeature {
     int _width = context.getWidth();
     boolean _lessEqualsThan = (_width <= 0);
     if (_lessEqualsThan) {
-      _xifexpression = 50;
+      _xifexpression = 40;
     } else {
       int _width_1 = context.getWidth();
       _xifexpression = Math.max(_width_1, 20);
@@ -72,7 +72,7 @@ public class AddStateFeature extends AbstractAddShapeFeature {
     int _height = context.getHeight();
     boolean _lessEqualsThan_1 = (_height <= 0);
     if (_lessEqualsThan_1) {
-      _xifexpression_1 = 50;
+      _xifexpression_1 = 40;
     } else {
       int _height_1 = context.getHeight();
       _xifexpression_1 = Math.max(_height_1, 20);
@@ -98,13 +98,13 @@ public class AddStateFeature extends AbstractAddShapeFeature {
     Diagram _diagram = this.getDiagram();
     Font _manageFont = this.manageFont(_diagram, "Arial", 12);
     text.setFont(_manageFont);
-    this._iGaService.setLocationAndSize(text, 0, 0, width, 20);
     this.link(textShape, addedState);
     IFeatureProvider _featureProvider = this.getFeatureProvider();
     final IDirectEditingInfo directEditingInfo = _featureProvider.getDirectEditingInfo();
     directEditingInfo.setMainPictogramElement(containerShape);
     directEditingInfo.setPictogramElement(textShape);
     directEditingInfo.setGraphicsAlgorithm(text);
+    this.layoutPictogramElement(containerShape);
     return containerShape;
   }
 }

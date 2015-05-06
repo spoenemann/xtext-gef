@@ -198,7 +198,17 @@ public class TransitionItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(StatemachinePackage.Literals.TRANSITION__EVENT,
-				 StatemachineFactory.eINSTANCE.createEvent()));
+				 StatemachineFactory.eINSTANCE.createExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StatemachinePackage.Literals.TRANSITION__EVENT,
+				 StatemachineFactory.eINSTANCE.createVerbatimExpression()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StatemachinePackage.Literals.TRANSITION__EVENT,
+				 StatemachineFactory.eINSTANCE.createStatePropertyExpression()));
 	}
 
 	/**

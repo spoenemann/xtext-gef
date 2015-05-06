@@ -7,6 +7,8 @@
  *******************************************************************************/
 package org.xtext.example.statemachine.scoping
 
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider
+
 /**
  * This class contains custom scoping description.
  * 
@@ -14,6 +16,6 @@ package org.xtext.example.statemachine.scoping
  * on how and when to use it.
  *
  */
-class StatemachineScopeProvider extends org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider {
-
+class StatemachineScopeProvider extends AbstractDeclarativeScopeProvider {
+	
 }

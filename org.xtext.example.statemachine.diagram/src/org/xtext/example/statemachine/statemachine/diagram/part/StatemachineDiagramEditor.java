@@ -70,14 +70,16 @@ public class StatemachineDiagramEditor extends DiagramDocumentEditor implements
 		FrameworkAdapters.addAdapter(new FrameworkAdapters.IAdapter() {
 			@Override
 			public boolean appliesTo(Object element) {
-				return element instanceof IGraphicalEditPart && getModel(element) instanceof State;
+				return element instanceof IGraphicalEditPart
+						&& getModel(element) instanceof State;
 			}
-			
+
 			@Override
 			public EObject getModel(Object element) {
-				return ((IGraphicalEditPart) element).getNotationView().getElement();
+				return ((IGraphicalEditPart) element).getNotationView()
+						.getElement();
 			}
-			
+
 			@Override
 			public TransactionalEditingDomain getEditingDomain(Object element) {
 				return ((IGraphicalEditPart) element).getEditingDomain();

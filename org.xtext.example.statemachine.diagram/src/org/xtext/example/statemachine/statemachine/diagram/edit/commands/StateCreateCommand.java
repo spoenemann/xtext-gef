@@ -11,6 +11,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.xtext.example.statemachine.StatemachineUtil;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.Statemachine;
 import org.xtext.example.statemachine.statemachine.StatemachineFactory;
@@ -49,7 +50,7 @@ public class StateCreateCommand extends EditElementCommand {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
 			IAdaptable info) throws ExecutionException {
@@ -57,6 +58,7 @@ public class StateCreateCommand extends EditElementCommand {
 
 		Statemachine owner = (Statemachine) getElementToEdit();
 		owner.getStates().add(newElement);
+		StatemachineUtil.ensureUniqueIds(owner.eResource());
 
 		doConfigure(newElement, monitor, info);
 

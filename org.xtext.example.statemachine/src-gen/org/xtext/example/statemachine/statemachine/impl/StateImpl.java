@@ -30,6 +30,8 @@ import org.xtext.example.statemachine.statemachine.StatemachinePackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#isInitial <em>Initial</em>}</li>
+ *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#isFinal <em>Final</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.xtext.example.statemachine.statemachine.impl.StateImpl#getActions <em>Actions</em>}</li>
@@ -39,6 +41,46 @@ import org.xtext.example.statemachine.statemachine.StatemachinePackage;
  */
 public class StateImpl extends MinimalEObjectImpl.Container implements State
 {
+  /**
+   * The default value of the '{@link #isInitial() <em>Initial</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isInitial()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean INITIAL_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isInitial() <em>Initial</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isInitial()
+   * @generated
+   * @ordered
+   */
+  protected boolean initial = INITIAL_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean FINAL_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isFinal() <em>Final</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isFinal()
+   * @generated
+   * @ordered
+   */
+  protected boolean final_ = FINAL_EDEFAULT;
+
   /**
    * The default value of the '{@link #getId() <em>Id</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -108,6 +150,52 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   protected EClass eStaticClass()
   {
     return StatemachinePackage.Literals.STATE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isInitial()
+  {
+    return initial;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setInitial(boolean newInitial)
+  {
+    boolean oldInitial = initial;
+    initial = newInitial;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, StatemachinePackage.STATE__INITIAL, oldInitial, initial));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean isFinal()
+  {
+    return final_;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFinal(boolean newFinal)
+  {
+    boolean oldFinal = final_;
+    final_ = newFinal;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, StatemachinePackage.STATE__FINAL, oldFinal, final_));
   }
 
   /**
@@ -196,6 +284,10 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case StatemachinePackage.STATE__INITIAL:
+        return isInitial();
+      case StatemachinePackage.STATE__FINAL:
+        return isFinal();
       case StatemachinePackage.STATE__ID:
         return getId();
       case StatemachinePackage.STATE__NAME:
@@ -217,6 +309,12 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case StatemachinePackage.STATE__INITIAL:
+        setInitial((Boolean)newValue);
+        return;
+      case StatemachinePackage.STATE__FINAL:
+        setFinal((Boolean)newValue);
+        return;
       case StatemachinePackage.STATE__ID:
         setId((String)newValue);
         return;
@@ -241,6 +339,12 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case StatemachinePackage.STATE__INITIAL:
+        setInitial(INITIAL_EDEFAULT);
+        return;
+      case StatemachinePackage.STATE__FINAL:
+        setFinal(FINAL_EDEFAULT);
+        return;
       case StatemachinePackage.STATE__ID:
         setId(ID_EDEFAULT);
         return;
@@ -264,6 +368,10 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
   {
     switch (featureID)
     {
+      case StatemachinePackage.STATE__INITIAL:
+        return initial != INITIAL_EDEFAULT;
+      case StatemachinePackage.STATE__FINAL:
+        return final_ != FINAL_EDEFAULT;
       case StatemachinePackage.STATE__ID:
         return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
       case StatemachinePackage.STATE__NAME:
@@ -285,7 +393,11 @@ public class StateImpl extends MinimalEObjectImpl.Container implements State
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (id: ");
+    result.append(" (initial: ");
+    result.append(initial);
+    result.append(", final: ");
+    result.append(final_);
+    result.append(", id: ");
     result.append(id);
     result.append(", name: ");
     result.append(name);

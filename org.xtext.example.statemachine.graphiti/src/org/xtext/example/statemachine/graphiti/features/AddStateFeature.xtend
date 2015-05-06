@@ -35,8 +35,8 @@ class AddStateFeature extends AbstractAddShapeFeature {
 		val addedState = context.newObject as State
 		val targetDiagram = context.targetContainer as Diagram
 		
-		val width = if (context.width <= 0) 50 else Math.max(context.width, 20)
-		val height = if (context.height <= 0) 50 else Math.max(context.height, 20)
+		val width = if (context.width <= 0) 40 else Math.max(context.width, 20)
+		val height = if (context.height <= 0) 40 else Math.max(context.height, 20)
 
 		val containerShape = targetDiagram.createContainerShape(true)
 		containerShape.createChopboxAnchor()
@@ -51,13 +51,13 @@ class AddStateFeature extends AbstractAddShapeFeature {
 		text.foreground = manageColor(IColorConstant.BLACK)
 		text.horizontalAlignment = Orientation.ALIGNMENT_CENTER
 		text.font = diagram.manageFont('Arial', 12)
-		text.setLocationAndSize(0, 0, width, 20);
 		link(textShape, addedState)
 		val directEditingInfo = featureProvider.directEditingInfo
 		directEditingInfo.mainPictogramElement = containerShape
 		directEditingInfo.pictogramElement = textShape
 		directEditingInfo.graphicsAlgorithm = text
- 
+		
+		containerShape.layoutPictogramElement()
 		return containerShape
 	}
 	

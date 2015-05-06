@@ -14,10 +14,25 @@
           name="StateFigure">
         <layout
             xsi:type="gmfgraph:FlowLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor
+            xsi:type="gmfgraph:RGBColor"
+            red="240"
+            green="240"
+            blue="240"/>
+        <preferredSize
+            dx="40"
+            dy="40"/>
         <children
             xsi:type="gmfgraph:Label"
             name="StateNameFigure"
-            text="&lt;...>"/>
+            text="&lt;...>">
+          <font
+              xsi:type="gmfgraph:BasicFont"
+              faceName="Arial"
+              height="12"/>
+        </children>
       </actualFigure>
       <accessors
           figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>

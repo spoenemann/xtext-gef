@@ -9,11 +9,15 @@ package org.xtext.example.statemachine.formatting2;
 
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
+import org.xtext.example.statemachine.statemachine.ExecuteCommand
+import org.xtext.example.statemachine.statemachine.PrintCommand
+import org.xtext.example.statemachine.statemachine.SetCommand
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.statemachine.Statemachine
 import org.xtext.example.statemachine.statemachine.Transition
 
 import static org.xtext.example.statemachine.statemachine.StatemachinePackage.Literals.*
+import org.xtext.example.statemachine.statemachine.StatePropertyExpression
 
 class StatemachineFormatter extends AbstractFormatter2 {
 	
@@ -27,7 +31,10 @@ class StatemachineFormatter extends AbstractFormatter2 {
 	}
 
 	def dispatch void format(State state, extension IFormattableDocument document) {
-		state.append[setNewLines(1, 1, 2)]
+		if (state.initial)
+			state.regionFor.keyword('initial').append[oneSpace]
+		if (state.final)
+			state.regionFor.keyword('final').append[oneSpace]
 		interior(
 			state.regionFor.keyword('state').append[oneSpace],
 			state.regionFor.keyword('end'),
@@ -45,13 +52,47 @@ class StatemachineFormatter extends AbstractFormatter2 {
 			state.regionFor.keyword('}').append[newLine],
 			[indent]
 		)
-		state.actions.forEach[append[newLine]]
+		state.append[setNewLines(1, 1, 2)]
+		for (command : state.actions) {
+			command.format
+		}
 	}
 	
 	def dispatch void format(Transition transition, extension IFormattableDocument document) {
-		transition.append[setNewLines(1, 1, 2)]
 		transition.regionFor.keywords('=>', '(', ')').forEach[
-			prepend[oneSpace].append[oneSpace]
+			surround[oneSpace]
 		]
+		transition.append[setNewLines(1, 1, 2)]
+		transition.event.format
 	}
+	
+	def dispatch void format(SetCommand command, extension IFormattableDocument document) {
+		command.regionFor.keyword('set').append[oneSpace]
+		command.regionFor.feature(SET_COMMAND__SIGNAL).append[oneSpace]
+		command.regionFor.keyword('=').append[oneSpace]
+		command.append[newLine]
+		command.value.format
+	}
+	
+	def dispatch void format(ExecuteCommand command, extension IFormattableDocument document) {
+		command.regionFor.keyword('execute').append[oneSpace]
+		command.regionFor.keyword('(').surround[noSpace]
+		command.regionFor.keywords(',').forEach[prepend[noSpace] append[oneSpace]]
+		command.regionFor.keyword(')').prepend[noSpace]
+		command.append[newLine]
+		for (expression : command.arguments) {
+			expression.format
+		}
+	}
+	
+	def dispatch void format(PrintCommand command, extension IFormattableDocument document) {
+		command.regionFor.keyword('print').append[oneSpace]
+		command.append[newLine]
+		command.value.format
+	}
+	
+	def dispatch void format(StatePropertyExpression expression, extension IFormattableDocument document) {
+		expression.regionFor.keyword('.').surround[noSpace]
+	}
+	
 }

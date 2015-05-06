@@ -63,9 +63,78 @@ public class StateItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addInitialPropertyDescriptor(object);
+			addFinalPropertyDescriptor(object);
+			addIdPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Initial feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addInitialPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_State_initial_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_State_initial_feature", "_UI_State_type"),
+				 StatemachinePackage.Literals.STATE__INITIAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Final feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addFinalPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_State_final_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_State_final_feature", "_UI_State_type"),
+				 StatemachinePackage.Literals.STATE__FINAL,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_State_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_State_id_feature", "_UI_State_type"),
+				 StatemachinePackage.Literals.STATE__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -158,6 +227,9 @@ public class StateItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(State.class)) {
+			case StatemachinePackage.STATE__INITIAL:
+			case StatemachinePackage.STATE__FINAL:
+			case StatemachinePackage.STATE__ID:
 			case StatemachinePackage.STATE__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -183,6 +255,21 @@ public class StateItemProvider
 			(createChildParameter
 				(StatemachinePackage.Literals.STATE__ACTIONS,
 				 StatemachineFactory.eINSTANCE.createCommand()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StatemachinePackage.Literals.STATE__ACTIONS,
+				 StatemachineFactory.eINSTANCE.createSetCommand()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StatemachinePackage.Literals.STATE__ACTIONS,
+				 StatemachineFactory.eINSTANCE.createExecuteCommand()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(StatemachinePackage.Literals.STATE__ACTIONS,
+				 StatemachineFactory.eINSTANCE.createPrintCommand()));
 	}
 
 	/**

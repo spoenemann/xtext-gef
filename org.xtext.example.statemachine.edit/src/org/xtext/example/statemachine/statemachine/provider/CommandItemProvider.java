@@ -60,31 +60,8 @@ public class CommandItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addCodePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Code feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addCodePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Command_code_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Command_code_feature", "_UI_Command_type"),
-				 StatemachinePackage.Literals.COMMAND__CODE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -106,10 +83,7 @@ public class CommandItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Command)object).getCode();
-		return label == null || label.length() == 0 ?
-			getString("_UI_Command_type") :
-			getString("_UI_Command_type") + " " + label;
+		return getString("_UI_Command_type");
 	}
 	
 
@@ -123,12 +97,6 @@ public class CommandItemProvider
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Command.class)) {
-			case StatemachinePackage.COMMAND__CODE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-		}
 		super.notifyChanged(notification);
 	}
 
