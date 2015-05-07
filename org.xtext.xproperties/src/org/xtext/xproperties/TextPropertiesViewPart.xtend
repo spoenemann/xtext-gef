@@ -9,6 +9,8 @@ package org.xtext.xproperties
 
 import com.google.inject.Inject
 import java.util.ArrayList
+import java.util.List
+import java.util.concurrent.Executors
 import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.transaction.RecordingCommand
@@ -17,23 +19,24 @@ import org.eclipse.swt.graphics.Font
 import org.eclipse.swt.graphics.Resource
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
-import org.eclipse.xtext.resource.XtextResource
+import org.eclipse.xtext.diagnostics.Severity
 import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.XtextSourceViewer
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess
+import org.eclipse.xtext.util.TextRegion
+import org.eclipse.xtext.validation.Issue
 
 class TextPropertiesViewPart extends ViewPart {
 
 	@Inject EditedResourceProvider resourceProvider
-	
 	@Inject IModelMerger modelMerger
-	
 	@Inject EmbeddedEditorFactory editorFactory
-	
+	@Inject EmbeddedResourceValidator resourceValidator
 	@Inject ISerializer serializer
 	
 	val swtResources = new ArrayList<Resource>
+	val executorService = Executors.newCachedThreadPool
 	
 	EObjectSelectionListener selectionListener
 	XtextSourceViewer viewer
@@ -45,21 +48,31 @@ class TextPropertiesViewPart extends ViewPart {
 	boolean refreshing
 	boolean mergingBack
 	Thread clearStatusThread
+	List<Issue> validationErrors
 	
 	override createPartControl(Composite parent) {
 		val editor = editorFactory.newEditor(resourceProvider)
 				.showErrorAndWarningAnnotations()
+				.withResourceValidator(resourceValidator)
+				.processIssuesBy[issues, monitor |
+					validationErrors = issues.filter[severity == Severity.ERROR].toList
+					executorService.submit[documentChanged()]
+				]
 				.withParent(parent)
 		modelAccess = editor.createPartialEditor()
-		editor.document.addModelListener[documentChanged]
 		viewer = editor.viewer
 		viewer.textWidget.font = font
+		resourceValidator.embeddedTextProvider = [modelAccess.serializedModel]
+		resourceValidator.visibleRegionProvider = [
+			val region = viewer.visibleRegion
+			new TextRegion(region.offset, region.length)
+		]
 
 		selectionListener = new EObjectSelectionListener
 		selectionListener.addStateChangeListener[object, notification, editingDomain |
 			refresh(object, notification)
 			this.editingDomain = editingDomain
-		]		
+		]
 		refresh(selectionListener.selectedObject, null)
 		editingDomain = selectionListener.editingDomain
 	}
@@ -74,6 +87,7 @@ class TextPropertiesViewPart extends ViewPart {
 		selectionListener?.dispose()
 		swtResources.forEach[dispose()]
 		swtResources.clear()
+		executorService.shutdown()
 		super.dispose()
 	}
 	
@@ -97,7 +111,7 @@ class TextPropertiesViewPart extends ViewPart {
 				val content = modelAccess.editablePart
 				if (content != lastMergedContent) {
 					var EObject mergeSource
-					if (object !== currentViewedObject && resourceProvider.resource.parseResult.syntaxErrors.empty) {
+					if (object !== currentViewedObject && validationErrors.empty) {
 						mergeSource = mergeBack(currentViewedObject, editingDomain)
 					}
 					if (mergeSource === null)
@@ -105,6 +119,7 @@ class TextPropertiesViewPart extends ViewPart {
 				}
 			}
 			
+			resourceValidator.originalObject = object
 			if (object === null) {
 				lastMergedContent = ''
 				modelAccess.updateModel(lastMergedContent)
@@ -120,8 +135,8 @@ class TextPropertiesViewPart extends ViewPart {
 		}
 	}
 	
-	protected def documentChanged(XtextResource resource) {
-		if (!refreshing && !mergingBack && currentViewedObject !== null && resource.parseResult.syntaxErrors.empty) {
+	protected def documentChanged() {
+		if (!refreshing && !mergingBack && currentViewedObject !== null && validationErrors.empty) {
 			mergingBack = true
 			try {
 				val mergeSource = mergeBack(currentViewedObject, editingDomain)
@@ -162,26 +177,30 @@ class TextPropertiesViewPart extends ViewPart {
 	}
 	
 	protected def handleDiscardedChanges() {
-		if (clearStatusThread !== null && clearStatusThread.alive)
+		if (clearStatusThread !== null)
 			clearStatusThread.interrupt()
 		val display = viewSite.shell.display
 		val actionBars = #[viewSite.actionBars, selectionListener.currentEditor.editorSite.actionBars]
 		display.asyncExec[
 			actionBars.forEach[
-				statusLineManager.errorMessage = 'Warning: The previous text changes have been discarded due to syntax errors.'
+				statusLineManager.errorMessage = 'Warning: The previous text changes have been discarded due to validation errors.'
 			]
 		]
-		clearStatusThread = new Thread[
+		executorService.submit([
 			try {
+				clearStatusThread = Thread.currentThread
 				Thread.sleep(5000)
 				display.syncExec[
 					actionBars.forEach[
 						statusLineManager.errorMessage = null
 					]
 				]
-			} catch (InterruptedException exception) {}
-		]
-		clearStatusThread.start
+			} catch (InterruptedException exception) {
+			} finally {
+				if (clearStatusThread == Thread.currentThread)
+					clearStatusThread = null
+			}
+		] as Runnable)
 	}
 	
 	override setFocus() {

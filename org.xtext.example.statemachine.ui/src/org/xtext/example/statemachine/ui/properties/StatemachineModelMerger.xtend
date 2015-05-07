@@ -7,6 +7,7 @@
  *******************************************************************************/
 package org.xtext.example.statemachine.ui.properties
 
+import com.google.inject.Singleton
 import java.util.Map
 import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.ecore.EObject
@@ -19,6 +20,7 @@ import org.xtext.xproperties.IModelMerger
 
 import static org.xtext.example.statemachine.statemachine.StatemachinePackage.Literals.*
 
+@Singleton
 class StatemachineModelMerger implements IModelMerger {
 	
 	override findMatchingObject(EObject model, EObject object) {

@@ -9,6 +9,7 @@ package org.xtext.example.statemachine.ui.properties;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
+import com.google.inject.Singleton;
 import java.util.Iterator;
 import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
@@ -28,6 +29,7 @@ import org.xtext.example.statemachine.statemachine.Statemachine;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
 import org.xtext.xproperties.IModelMerger;
 
+@Singleton
 @SuppressWarnings("all")
 public class StatemachineModelMerger implements IModelMerger {
   @Override

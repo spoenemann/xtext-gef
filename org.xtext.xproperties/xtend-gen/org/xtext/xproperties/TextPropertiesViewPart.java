@@ -12,12 +12,18 @@ import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IStatusLineManager;
+import org.eclipse.jface.text.IRegion;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Resource;
@@ -30,7 +36,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.part.ViewPart;
-import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.serializer.ISerializer;
@@ -38,15 +44,20 @@ import org.eclipse.xtext.ui.editor.XtextSourceViewer;
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditor;
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory;
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess;
-import org.eclipse.xtext.ui.editor.model.IXtextModelListener;
-import org.eclipse.xtext.ui.editor.model.XtextDocument;
+import org.eclipse.xtext.ui.editor.validation.IValidationIssueProcessor;
+import org.eclipse.xtext.util.ITextRegion;
+import org.eclipse.xtext.util.TextRegion;
+import org.eclipse.xtext.validation.Issue;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 import org.xtext.xproperties.EObjectSelectionListener;
 import org.xtext.xproperties.EditedResourceProvider;
+import org.xtext.xproperties.EmbeddedResourceValidator;
 import org.xtext.xproperties.IModelMerger;
 
 @SuppressWarnings("all")
@@ -61,9 +72,14 @@ public class TextPropertiesViewPart extends ViewPart {
   private EmbeddedEditorFactory editorFactory;
   
   @Inject
+  private EmbeddedResourceValidator resourceValidator;
+  
+  @Inject
   private ISerializer serializer;
   
   private final ArrayList<Resource> swtResources = new ArrayList<Resource>();
+  
+  private final ExecutorService executorService = Executors.newCachedThreadPool();
   
   private EObjectSelectionListener selectionListener;
   
@@ -83,36 +99,75 @@ public class TextPropertiesViewPart extends ViewPart {
   
   private Thread clearStatusThread;
   
+  private List<Issue> validationErrors;
+  
   @Override
   public void createPartControl(final Composite parent) {
     EmbeddedEditorFactory.Builder _newEditor = this.editorFactory.newEditor(this.resourceProvider);
     EmbeddedEditorFactory.Builder _showErrorAndWarningAnnotations = _newEditor.showErrorAndWarningAnnotations();
-    final EmbeddedEditor editor = _showErrorAndWarningAnnotations.withParent(parent);
-    EmbeddedEditorModelAccess _createPartialEditor = editor.createPartialEditor();
-    this.modelAccess = _createPartialEditor;
-    XtextDocument _document = editor.getDocument();
-    final IXtextModelListener _function = new IXtextModelListener() {
+    EmbeddedEditorFactory.Builder _withResourceValidator = _showErrorAndWarningAnnotations.withResourceValidator(this.resourceValidator);
+    final IValidationIssueProcessor _function = new IValidationIssueProcessor() {
       @Override
-      public void modelChanged(final XtextResource it) {
-        TextPropertiesViewPart.this.documentChanged(it);
+      public void processIssues(final List<Issue> issues, final IProgressMonitor monitor) {
+        final Function1<Issue, Boolean> _function = new Function1<Issue, Boolean>() {
+          @Override
+          public Boolean apply(final Issue it) {
+            Severity _severity = it.getSeverity();
+            return Boolean.valueOf(Objects.equal(_severity, Severity.ERROR));
+          }
+        };
+        Iterable<Issue> _filter = IterableExtensions.<Issue>filter(issues, _function);
+        List<Issue> _list = IterableExtensions.<Issue>toList(_filter);
+        TextPropertiesViewPart.this.validationErrors = _list;
+        final Callable<String> _function_1 = new Callable<String>() {
+          @Override
+          public String call() throws Exception {
+            return TextPropertiesViewPart.this.documentChanged();
+          }
+        };
+        TextPropertiesViewPart.this.executorService.<String>submit(_function_1);
       }
     };
-    _document.addModelListener(_function);
+    EmbeddedEditorFactory.Builder _processIssuesBy = _withResourceValidator.processIssuesBy(_function);
+    final EmbeddedEditor editor = _processIssuesBy.withParent(parent);
+    EmbeddedEditorModelAccess _createPartialEditor = editor.createPartialEditor();
+    this.modelAccess = _createPartialEditor;
     XtextSourceViewer _viewer = editor.getViewer();
     this.viewer = _viewer;
     StyledText _textWidget = this.viewer.getTextWidget();
     Font _font = this.getFont();
     _textWidget.setFont(_font);
+    final Function0<String> _function_1 = new Function0<String>() {
+      @Override
+      public String apply() {
+        return TextPropertiesViewPart.this.modelAccess.getSerializedModel();
+      }
+    };
+    this.resourceValidator.setEmbeddedTextProvider(_function_1);
+    final Function0<ITextRegion> _function_2 = new Function0<ITextRegion>() {
+      @Override
+      public ITextRegion apply() {
+        TextRegion _xblockexpression = null;
+        {
+          final IRegion region = TextPropertiesViewPart.this.viewer.getVisibleRegion();
+          int _offset = region.getOffset();
+          int _length = region.getLength();
+          _xblockexpression = new TextRegion(_offset, _length);
+        }
+        return _xblockexpression;
+      }
+    };
+    this.resourceValidator.setVisibleRegionProvider(_function_2);
     EObjectSelectionListener _eObjectSelectionListener = new EObjectSelectionListener();
     this.selectionListener = _eObjectSelectionListener;
-    final Procedure3<EObject, Notification, TransactionalEditingDomain> _function_1 = new Procedure3<EObject, Notification, TransactionalEditingDomain>() {
+    final Procedure3<EObject, Notification, TransactionalEditingDomain> _function_3 = new Procedure3<EObject, Notification, TransactionalEditingDomain>() {
       @Override
       public void apply(final EObject object, final Notification notification, final TransactionalEditingDomain editingDomain) {
         TextPropertiesViewPart.this.refresh(object, notification);
         TextPropertiesViewPart.this.editingDomain = editingDomain;
       }
     };
-    this.selectionListener.addStateChangeListener(_function_1);
+    this.selectionListener.addStateChangeListener(_function_3);
     EObject _selectedObject = this.selectionListener.getSelectedObject();
     this.refresh(_selectedObject, null);
     TransactionalEditingDomain _editingDomain = this.selectionListener.getEditingDomain();
@@ -141,6 +196,7 @@ public class TextPropertiesViewPart extends ViewPart {
     };
     IterableExtensions.<Resource>forEach(this.swtResources, _function);
     this.swtResources.clear();
+    this.executorService.shutdown();
     super.dispose();
   }
   
@@ -178,10 +234,7 @@ public class TextPropertiesViewPart extends ViewPart {
           if (!(object != this.currentViewedObject)) {
             _and = false;
           } else {
-            XtextResource _resource = this.resourceProvider.getResource();
-            IParseResult _parseResult = _resource.getParseResult();
-            Iterable<INode> _syntaxErrors = _parseResult.getSyntaxErrors();
-            boolean _isEmpty = IterableExtensions.isEmpty(_syntaxErrors);
+            boolean _isEmpty = this.validationErrors.isEmpty();
             _and = _isEmpty;
           }
           if (_and) {
@@ -193,6 +246,7 @@ public class TextPropertiesViewPart extends ViewPart {
           }
         }
       }
+      this.resourceValidator.setOriginalObject(object);
       if ((object == null)) {
         this.lastMergedContent = "";
         this.modelAccess.updateModel(this.lastMergedContent);
@@ -212,15 +266,13 @@ public class TextPropertiesViewPart extends ViewPart {
     }
   }
   
-  protected String documentChanged(final XtextResource resource) {
+  protected String documentChanged() {
     String _xifexpression = null;
     boolean _and = false;
     if (!(((!this.refreshing) && (!this.mergingBack)) && (this.currentViewedObject != null))) {
       _and = false;
     } else {
-      IParseResult _parseResult = resource.getParseResult();
-      Iterable<INode> _syntaxErrors = _parseResult.getSyntaxErrors();
-      boolean _isEmpty = IterableExtensions.isEmpty(_syntaxErrors);
+      boolean _isEmpty = this.validationErrors.isEmpty();
       _and = _isEmpty;
     }
     if (_and) {
@@ -305,71 +357,82 @@ public class TextPropertiesViewPart extends ViewPart {
     return copy;
   }
   
-  protected void handleDiscardedChanges() {
-    boolean _and = false;
-    if (!(this.clearStatusThread != null)) {
-      _and = false;
-    } else {
-      boolean _isAlive = this.clearStatusThread.isAlive();
-      _and = _isAlive;
-    }
-    if (_and) {
-      this.clearStatusThread.interrupt();
-    }
-    IViewSite _viewSite = this.getViewSite();
-    Shell _shell = _viewSite.getShell();
-    final Display display = _shell.getDisplay();
-    IViewSite _viewSite_1 = this.getViewSite();
-    IActionBars _actionBars = _viewSite_1.getActionBars();
-    IEditorPart _currentEditor = this.selectionListener.getCurrentEditor();
-    IEditorSite _editorSite = _currentEditor.getEditorSite();
-    IActionBars _actionBars_1 = _editorSite.getActionBars();
-    final List<IActionBars> actionBars = Collections.<IActionBars>unmodifiableList(CollectionLiterals.<IActionBars>newArrayList(_actionBars, _actionBars_1));
-    final Runnable _function = new Runnable() {
-      @Override
-      public void run() {
-        final Procedure1<IActionBars> _function = new Procedure1<IActionBars>() {
-          @Override
-          public void apply(final IActionBars it) {
-            IStatusLineManager _statusLineManager = it.getStatusLineManager();
-            _statusLineManager.setErrorMessage("Warning: The previous text changes have been discarded due to syntax errors.");
-          }
-        };
-        IterableExtensions.<IActionBars>forEach(actionBars, _function);
+  protected Future<?> handleDiscardedChanges() {
+    Future<?> _xblockexpression = null;
+    {
+      if ((this.clearStatusThread != null)) {
+        this.clearStatusThread.interrupt();
       }
-    };
-    display.asyncExec(_function);
-    final Runnable _function_1 = new Runnable() {
-      @Override
-      public void run() {
-        try {
-          Thread.sleep(5000);
-          final Runnable _function = new Runnable() {
+      IViewSite _viewSite = this.getViewSite();
+      Shell _shell = _viewSite.getShell();
+      final Display display = _shell.getDisplay();
+      IViewSite _viewSite_1 = this.getViewSite();
+      IActionBars _actionBars = _viewSite_1.getActionBars();
+      IEditorPart _currentEditor = this.selectionListener.getCurrentEditor();
+      IEditorSite _editorSite = _currentEditor.getEditorSite();
+      IActionBars _actionBars_1 = _editorSite.getActionBars();
+      final List<IActionBars> actionBars = Collections.<IActionBars>unmodifiableList(CollectionLiterals.<IActionBars>newArrayList(_actionBars, _actionBars_1));
+      final Runnable _function = new Runnable() {
+        @Override
+        public void run() {
+          final Procedure1<IActionBars> _function = new Procedure1<IActionBars>() {
             @Override
-            public void run() {
-              final Procedure1<IActionBars> _function = new Procedure1<IActionBars>() {
-                @Override
-                public void apply(final IActionBars it) {
-                  IStatusLineManager _statusLineManager = it.getStatusLineManager();
-                  _statusLineManager.setErrorMessage(null);
-                }
-              };
-              IterableExtensions.<IActionBars>forEach(actionBars, _function);
+            public void apply(final IActionBars it) {
+              IStatusLineManager _statusLineManager = it.getStatusLineManager();
+              _statusLineManager.setErrorMessage("Warning: The previous text changes have been discarded due to validation errors.");
             }
           };
-          display.syncExec(_function);
-        } catch (final Throwable _t) {
-          if (_t instanceof InterruptedException) {
-            final InterruptedException exception = (InterruptedException)_t;
-          } else {
-            throw Exceptions.sneakyThrow(_t);
-          }
+          IterableExtensions.<IActionBars>forEach(actionBars, _function);
         }
-      }
-    };
-    Thread _thread = new Thread(_function_1);
-    this.clearStatusThread = _thread;
-    this.clearStatusThread.start();
+      };
+      display.asyncExec(_function);
+      final Function1<Object, Object> _function_1 = new Function1<Object, Object>() {
+        @Override
+        public Object apply(final Object it) {
+          Object _xtrycatchfinallyexpression = null;
+          try {
+            Thread _currentThread = Thread.currentThread();
+            TextPropertiesViewPart.this.clearStatusThread = _currentThread;
+            Thread.sleep(5000);
+            final Runnable _function = new Runnable() {
+              @Override
+              public void run() {
+                final Procedure1<IActionBars> _function = new Procedure1<IActionBars>() {
+                  @Override
+                  public void apply(final IActionBars it) {
+                    IStatusLineManager _statusLineManager = it.getStatusLineManager();
+                    _statusLineManager.setErrorMessage(null);
+                  }
+                };
+                IterableExtensions.<IActionBars>forEach(actionBars, _function);
+              }
+            };
+            display.syncExec(_function);
+          } catch (final Throwable _t) {
+            if (_t instanceof InterruptedException) {
+              final InterruptedException exception = (InterruptedException)_t;
+              _xtrycatchfinallyexpression = null;
+            } else {
+              throw Exceptions.sneakyThrow(_t);
+            }
+          } finally {
+            Thread _currentThread_1 = Thread.currentThread();
+            boolean _equals = Objects.equal(TextPropertiesViewPart.this.clearStatusThread, _currentThread_1);
+            if (_equals) {
+              TextPropertiesViewPart.this.clearStatusThread = null;
+            }
+          }
+          return _xtrycatchfinallyexpression;
+        }
+      };
+      _xblockexpression = this.executorService.submit(
+        ((Runnable) new Runnable() {
+            public void run() {
+              _function_1.apply(null);
+            }
+        }));
+    }
+    return _xblockexpression;
   }
   
   @Override
