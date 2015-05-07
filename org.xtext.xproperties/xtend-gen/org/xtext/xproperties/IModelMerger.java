@@ -7,9 +7,12 @@
  */
 package org.xtext.xproperties;
 
+import com.google.inject.ImplementedBy;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
+import org.xtext.xproperties.GenericModelMerger;
 
+@ImplementedBy(GenericModelMerger.class)
 @SuppressWarnings("all")
 public interface IModelMerger {
   public abstract EObject findMatchingObject(final EObject model, final EObject object);

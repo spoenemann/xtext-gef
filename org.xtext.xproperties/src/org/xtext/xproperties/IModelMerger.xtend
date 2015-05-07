@@ -7,9 +7,11 @@
  *******************************************************************************/
 package org.xtext.xproperties
 
+import com.google.inject.ImplementedBy
 import org.eclipse.emf.common.notify.Notification
 import org.eclipse.emf.ecore.EObject
 
+@ImplementedBy(GenericModelMerger)
 interface IModelMerger {
 	
 	def EObject findMatchingObject(EObject model, EObject object)
