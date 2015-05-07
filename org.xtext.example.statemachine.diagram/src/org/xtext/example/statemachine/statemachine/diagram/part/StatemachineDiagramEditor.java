@@ -44,7 +44,7 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.diagram.navigator.StatemachineNavigatorItem;
-import org.xtext.example.statemachine.ui.FrameworkAdapters;
+import org.xtext.xproperties.FrameworkAdapters;
 
 /**
  * @generated

@@ -5,26 +5,36 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.xtext.example.statemachine.ui.views;
+package org.xtext.xproperties;
 
+import com.google.inject.Inject;
+import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend.lib.annotations.AccessorType;
 import org.eclipse.xtend.lib.annotations.Accessors;
+import org.eclipse.xtext.resource.FileExtensionProvider;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pure;
 
 @SuppressWarnings("all")
 public class EditedResourceProvider implements IEditedResourceProvider {
+  @Inject
+  private FileExtensionProvider fileExtensionProvider;
+  
   @Accessors(AccessorType.PUBLIC_GETTER)
   private XtextResource resource;
   
   @Override
   public XtextResource createResource() {
     final XtextResourceSet resourceSet = new XtextResourceSet();
-    final URI uri = URI.createURI("embeddedResource.statemachine");
+    Set<String> _fileExtensions = this.fileExtensionProvider.getFileExtensions();
+    String _head = IterableExtensions.<String>head(_fileExtensions);
+    String _plus = ("embeddedResource." + _head);
+    final URI uri = URI.createURI(_plus);
     Resource _createResource = resourceSet.createResource(uri);
     this.resource = ((XtextResource) _createResource);
     return this.resource;

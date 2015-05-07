@@ -394,7 +394,7 @@
   </extension>
   <extension point="org.eclipse.ui.views">
       <view
-            class="org.xtext.example.statemachine.ui.views.TextPropertiesViewPart"
+            class="org.xtext.example.statemachine.ui.StatemachineExecutableExtensionFactory:org.xtext.xproperties.TextPropertiesViewPart"
             icon="icons/properties.gif"
             id="org.xtext.example.statemachine.textProperties"
             name="XProperties"

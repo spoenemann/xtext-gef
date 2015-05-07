@@ -36,7 +36,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.xtext.example.statemachine;visibility:=reexport,
  org.xtext.example.statemachine.edit;visibility:=reexport,
- org.xtext.example.statemachine.ui,
+ org.xtext.xproperties;bundle-version="1.0.0",
  org.eclipse.gef;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport

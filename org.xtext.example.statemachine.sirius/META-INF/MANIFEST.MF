@@ -6,7 +6,7 @@ Bundle-Version: 0.1.0.qualifier
 Bundle-Activator: org.xtext.example.statemachine.sirius.StatemachineSiriusActivator
 Require-Bundle: org.eclipse.core.runtime,
  org.xtext.example.statemachine,
- org.xtext.example.statemachine.ui,
+ org.xtext.xproperties;bundle-version="1.0.0",
  org.eclipse.sirius;bundle-version="2.0.0",
  org.eclipse.sirius.diagram.ui;bundle-version="2.0.0",
  org.eclipse.emf.transaction;bundle-version="1.8.0",

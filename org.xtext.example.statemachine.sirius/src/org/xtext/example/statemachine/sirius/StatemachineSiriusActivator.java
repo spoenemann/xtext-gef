@@ -20,7 +20,7 @@ import org.eclipse.sirius.diagram.ui.edit.api.part.IDiagramElementEditPart;
 import org.eclipse.sirius.viewpoint.description.Viewpoint;
 import org.osgi.framework.BundleContext;
 import org.xtext.example.statemachine.statemachine.State;
-import org.xtext.example.statemachine.ui.FrameworkAdapters;
+import org.xtext.xproperties.FrameworkAdapters;
 
 public class StatemachineSiriusActivator extends Plugin {
 	

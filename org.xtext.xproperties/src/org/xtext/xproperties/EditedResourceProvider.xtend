@@ -5,22 +5,26 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine.ui.views
+package org.xtext.xproperties
 
+import com.google.inject.Inject
 import org.eclipse.emf.common.util.URI
 import org.eclipse.xtend.lib.annotations.Accessors
+import org.eclipse.xtext.resource.FileExtensionProvider
 import org.eclipse.xtext.resource.XtextResource
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.xtext.ui.editor.embedded.IEditedResourceProvider
 
 class EditedResourceProvider implements IEditedResourceProvider {
 	
+	@Inject FileExtensionProvider fileExtensionProvider
+	
 	@Accessors(PUBLIC_GETTER)
 	XtextResource resource
 	
 	override createResource() {
 		val resourceSet = new XtextResourceSet
-		val uri = URI.createURI("embeddedResource.statemachine")
+		val uri = URI.createURI("embeddedResource." + fileExtensionProvider.fileExtensions.head)
 		resource = resourceSet.createResource(uri) as XtextResource
 		return resource
 	}

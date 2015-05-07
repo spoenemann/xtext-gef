@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.xtext.example.statemachine.ui.views;
+package org.xtext.xproperties;
 
 import com.google.common.base.Objects;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
 import org.eclipse.xtext.xbase.lib.Pure;
-import org.xtext.example.statemachine.ui.FrameworkAdapters;
+import org.xtext.xproperties.FrameworkAdapters;
 
 @SuppressWarnings("all")
 class EObjectSelectionListener implements ISelectionListener {

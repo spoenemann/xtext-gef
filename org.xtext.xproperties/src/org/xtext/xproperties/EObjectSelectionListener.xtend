@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine.ui.views
+package org.xtext.xproperties
 
 import java.util.ArrayList
 import org.eclipse.emf.common.notify.Adapter
@@ -20,7 +20,6 @@ import org.eclipse.ui.ISelectionListener
 import org.eclipse.ui.IWorkbenchPart
 import org.eclipse.ui.PlatformUI
 import org.eclipse.xtend.lib.annotations.Accessors
-import org.xtext.example.statemachine.ui.FrameworkAdapters
 
 package class EObjectSelectionListener implements ISelectionListener {
 		

@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine.merging
+package org.xtext.example.statemachine.ui.properties
 
 import java.util.Map
 import org.eclipse.emf.common.notify.Notification
@@ -15,10 +15,11 @@ import org.xtext.example.statemachine.statemachine.Command
 import org.xtext.example.statemachine.statemachine.State
 import org.xtext.example.statemachine.statemachine.StatePropertyExpression
 import org.xtext.example.statemachine.statemachine.Statemachine
+import org.xtext.xproperties.IModelMerger
 
 import static org.xtext.example.statemachine.statemachine.StatemachinePackage.Literals.*
 
-class ExplicitModelMerger implements IModelMerger {
+class StatemachineModelMerger implements IModelMerger {
 	
 	override findMatchingObject(EObject model, EObject object) {
 		if (!(model instanceof Statemachine))

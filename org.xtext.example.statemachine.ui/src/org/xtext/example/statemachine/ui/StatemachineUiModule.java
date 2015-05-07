@@ -8,12 +8,20 @@
 package org.xtext.example.statemachine.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.xtext.example.statemachine.ui.properties.StatemachineModelMerger;
+import org.xtext.xproperties.IModelMerger;
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class StatemachineUiModule extends AbstractStatemachineUiModule {
+	
 	public StatemachineUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
+	
+	public Class<? extends IModelMerger> bindIModelMerger() {
+		return StatemachineModelMerger.class;
+	}
+	
 }

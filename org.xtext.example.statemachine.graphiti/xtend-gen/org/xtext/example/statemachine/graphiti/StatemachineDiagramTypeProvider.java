@@ -19,7 +19,7 @@ import org.eclipse.graphiti.ui.platform.IConfigurationProvider;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.xtext.example.statemachine.graphiti.StatemachineFeatureProvider;
 import org.xtext.example.statemachine.statemachine.State;
-import org.xtext.example.statemachine.ui.FrameworkAdapters;
+import org.xtext.xproperties.FrameworkAdapters;
 
 @SuppressWarnings("all")
 public class StatemachineDiagramTypeProvider extends AbstractDiagramTypeProvider {

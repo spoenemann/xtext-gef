@@ -10,7 +10,7 @@ package org.xtext.example.statemachine.graphiti
 import org.eclipse.graphiti.dt.AbstractDiagramTypeProvider
 import org.eclipse.graphiti.ui.internal.parts.IPictogramElementEditPart
 import org.xtext.example.statemachine.statemachine.State
-import org.xtext.example.statemachine.ui.FrameworkAdapters
+import org.xtext.xproperties.FrameworkAdapters
 
 class StatemachineDiagramTypeProvider extends AbstractDiagramTypeProvider {
 	

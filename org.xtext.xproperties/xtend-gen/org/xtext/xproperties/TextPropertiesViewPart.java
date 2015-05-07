@@ -5,11 +5,10 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.xtext.example.statemachine.ui.views;
+package org.xtext.xproperties;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
-import com.google.inject.Injector;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -46,10 +45,9 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure3;
-import org.xtext.example.statemachine.merging.IModelMerger;
-import org.xtext.example.statemachine.ui.internal.StatemachineActivator;
-import org.xtext.example.statemachine.ui.views.EObjectSelectionListener;
-import org.xtext.example.statemachine.ui.views.EditedResourceProvider;
+import org.xtext.xproperties.EObjectSelectionListener;
+import org.xtext.xproperties.EditedResourceProvider;
+import org.xtext.xproperties.IModelMerger;
 
 @SuppressWarnings("all")
 public class TextPropertiesViewPart extends ViewPart {
@@ -84,13 +82,6 @@ public class TextPropertiesViewPart extends ViewPart {
   private boolean mergingBack;
   
   private Thread clearStatusThread;
-  
-  public TextPropertiesViewPart() {
-    super();
-    StatemachineActivator _instance = StatemachineActivator.getInstance();
-    final Injector injector = _instance.getInjector("org.xtext.example.statemachine.Statemachine");
-    injector.injectMembers(this);
-  }
   
   @Override
   public void createPartControl(final Composite parent) {
@@ -166,7 +157,7 @@ public class TextPropertiesViewPart extends ViewPart {
     this.refreshing = true;
     try {
       if (((object == this.currentViewedObject) && (notification != null))) {
-        final EObject mergeResult = this.<EObject>mergeForward(object, notification);
+        final EObject mergeResult = this.mergeForward(object, notification);
         if ((mergeResult != null)) {
           org.eclipse.emf.ecore.resource.Resource _eResource = mergeResult.eResource();
           final String uriFragment = _eResource.getURIFragment(mergeResult);
@@ -259,7 +250,7 @@ public class TextPropertiesViewPart extends ViewPart {
     return _xifexpression;
   }
   
-  protected <T extends EObject> T mergeForward(final T object, final Notification notification) {
+  protected EObject mergeForward(final EObject object, final Notification notification) {
     XtextResource _resource = this.resourceProvider.getResource();
     IParseResult _parseResult = _resource.getParseResult();
     final EObject modelCopy = _parseResult.getRootASTElement();
@@ -277,7 +268,7 @@ public class TextPropertiesViewPart extends ViewPart {
     }
     try {
       this.modelMerger.apply(notification, copy);
-      return ((T) copy);
+      return copy;
     } catch (final Throwable _t) {
       if (_t instanceof UnsupportedOperationException) {
         final UnsupportedOperationException uoe = (UnsupportedOperationException)_t;

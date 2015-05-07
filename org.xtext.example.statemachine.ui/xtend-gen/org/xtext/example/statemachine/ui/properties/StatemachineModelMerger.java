@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.xtext.example.statemachine.merging;
+package org.xtext.example.statemachine.ui.properties;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterators;
@@ -21,15 +21,15 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.xtext.example.statemachine.merging.IModelMerger;
 import org.xtext.example.statemachine.statemachine.Command;
 import org.xtext.example.statemachine.statemachine.State;
 import org.xtext.example.statemachine.statemachine.StatePropertyExpression;
 import org.xtext.example.statemachine.statemachine.Statemachine;
 import org.xtext.example.statemachine.statemachine.StatemachinePackage;
+import org.xtext.xproperties.IModelMerger;
 
 @SuppressWarnings("all")
-public class ExplicitModelMerger implements IModelMerger {
+public class StatemachineModelMerger implements IModelMerger {
   @Override
   public EObject findMatchingObject(final EObject model, final EObject object) {
     State _xifexpression = null;

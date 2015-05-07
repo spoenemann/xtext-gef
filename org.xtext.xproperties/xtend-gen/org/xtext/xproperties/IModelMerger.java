@@ -5,14 +5,11 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  */
-package org.xtext.example.statemachine.merging;
+package org.xtext.xproperties;
 
-import com.google.inject.ImplementedBy;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
-import org.xtext.example.statemachine.merging.ExplicitModelMerger;
 
-@ImplementedBy(ExplicitModelMerger.class)
 @SuppressWarnings("all")
 public interface IModelMerger {
   public abstract EObject findMatchingObject(final EObject model, final EObject object);

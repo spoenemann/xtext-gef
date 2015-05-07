@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine.ui
+package org.xtext.xproperties
 
 import java.util.ArrayList
 import org.eclipse.emf.ecore.EObject

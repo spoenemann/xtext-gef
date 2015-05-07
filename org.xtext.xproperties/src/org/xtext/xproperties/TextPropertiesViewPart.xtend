@@ -5,7 +5,7 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.xtext.example.statemachine.ui.views
+package org.xtext.xproperties
 
 import com.google.inject.Inject
 import java.util.ArrayList
@@ -22,8 +22,6 @@ import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.XtextSourceViewer
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorModelAccess
-import org.xtext.example.statemachine.merging.IModelMerger
-import org.xtext.example.statemachine.ui.internal.StatemachineActivator
 
 class TextPropertiesViewPart extends ViewPart {
 
@@ -47,12 +45,6 @@ class TextPropertiesViewPart extends ViewPart {
 	boolean refreshing
 	boolean mergingBack
 	Thread clearStatusThread
-	
-	new() {
-		super()
-		val injector = StatemachineActivator.instance.getInjector('org.xtext.example.statemachine.Statemachine')
-		injector.injectMembers(this)
-	}
 	
 	override createPartControl(Composite parent) {
 		val editor = editorFactory.newEditor(resourceProvider)
@@ -141,7 +133,7 @@ class TextPropertiesViewPart extends ViewPart {
 		}
 	}
 	
-	protected def <T extends EObject> mergeForward(T object, Notification notification) {
+	protected def mergeForward(EObject object, Notification notification) {
 		val modelCopy = resourceProvider.resource.parseResult.rootASTElement
 		val copy = modelMerger.findMatchingObject(modelCopy, object)
 		if (copy === null || copy.eContainer === null) {
@@ -149,7 +141,7 @@ class TextPropertiesViewPart extends ViewPart {
 		}
 		try {
 			modelMerger.apply(notification, copy)
-			return copy as T
+			return copy
 		} catch (UnsupportedOperationException uoe) {
 			return null
 		}
