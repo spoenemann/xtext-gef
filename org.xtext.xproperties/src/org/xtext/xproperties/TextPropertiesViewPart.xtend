@@ -20,6 +20,7 @@ import org.eclipse.swt.graphics.Resource
 import org.eclipse.swt.widgets.Composite
 import org.eclipse.ui.part.ViewPart
 import org.eclipse.xtext.diagnostics.Severity
+import org.eclipse.xtext.resource.SaveOptions
 import org.eclipse.xtext.serializer.ISerializer
 import org.eclipse.xtext.ui.editor.XtextSourceViewer
 import org.eclipse.xtext.ui.editor.embedded.EmbeddedEditorFactory
@@ -101,7 +102,8 @@ class TextPropertiesViewPart extends ViewPart {
 				val mergeResult = mergeForward(object, notification)
 				if (mergeResult !== null) {
 					val uriFragment = mergeResult.eResource.getURIFragment(mergeResult)
-					modelAccess.updateModel(serializer.serialize(mergeResult.eContainer), uriFragment)
+					val serializedModel = serializer.serialize(mergeResult.eContainer, SaveOptions.newBuilder.format.options)
+					modelAccess.updateModel(serializedModel, uriFragment)
 					lastMergedContent = modelAccess.editablePart
 					return
 				}
@@ -125,7 +127,8 @@ class TextPropertiesViewPart extends ViewPart {
 				modelAccess.updateModel(lastMergedContent)
 			} else {
 				val uriFragment = object.eResource.getURIFragment(object)
-				modelAccess.updateModel(serializer.serialize(object.eContainer), uriFragment)
+				val serializedModel = serializer.serialize(object.eContainer, SaveOptions.newBuilder.format.options)
+				modelAccess.updateModel(serializedModel, uriFragment)
 				viewer.setSelectedRange(0, 0)
 				lastMergedContent = modelAccess.editablePart
 			}
